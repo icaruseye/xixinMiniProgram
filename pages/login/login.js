@@ -1,4 +1,5 @@
 // pages/loginPhone/loginPhone.js
+const app = getApp()
 Page({
 
   /**
@@ -7,6 +8,8 @@ Page({
   data: {
     captcha: '',
     phone: '',
+    sessionToken: '',
+    viewID: '8abdf1fd447645cf80aba70c64c373f6',
     captchaText: '发送验证码',
     captchaDisabled: false
   },
@@ -20,9 +23,33 @@ Page({
   },
 
   getPhoneNumber(e) {
+    const that = this
     console.log(e.detail.errMsg)
     console.log(e.detail.iv)
     console.log(e.detail.encryptedData)
+    wx.login({
+      success(res) {
+        wx.request({
+          url: `${app.globalData.devApi}/api/SPUser/Login?servantViewID=${that.data.viewID}`,
+          data: {
+            mobileString: e.detail.encryptedData,
+            iv: e.detail.iv,
+            sessionToken: that.data.sessionToken
+          },
+          success(res) {
+            that.setData({
+              sessionToken: res.data.Data.SessionToken,
+            })
+            console.log(res.data.SessionToken)
+          },
+          complete() {
+            that.setData({
+              pageReady: true
+            })
+          }
+        })
+      }
+    })
   },
   /**
    * 记录输入的验证码
@@ -107,7 +134,29 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    const that = this
+    wx.login({
+      success(res){
+        wx.request({
+          url: `${app.globalData.devApi}/api/SPUser/GetSessionKey?servantViewID=${that.data.viewID}`,
+          data: {
+            code: res.code,
+          },
+          success(res) {
+            that.setData({
+              sessionToken: res.data.Data,
+            })
+            console.log(res.data.Data)
+          },
+          complete() {
+            that.setData({
+              pageReady: true
+            })
+          }
+        })
+      }
+    })
+    
   },
 
   /**

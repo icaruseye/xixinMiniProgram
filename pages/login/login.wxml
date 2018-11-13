@@ -8,7 +8,7 @@
   <view class="button_wrap">
     <button class='wx' type='primary' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">微信快捷登录</button>
   </view>
-  <view class="input_cell">
+  <!-- <view class="input_cell">
     <van-cell-group>
       <van-field
         value="{{ phone }}"
@@ -34,5 +34,5 @@
     </van-cell-group>
     <view></view>
     <button class='login_in' bindtap='login'>登录</button>
-  </view>
+  </view> -->
 </view>

@@ -31,8 +31,8 @@ App({
     })
   },
   globalData: {
-    devApi: 'http://192.168.2.100',
-    // devApi: 'https://lan-test.xixincloud.com',
+    //devApi: 'http://192.168.2.100',
+    devApi: 'https://lan-test.xixincloud.com',    //对应的就是192.168.2.100
     proApi: 'https://test-api.xixincloud.com',
     header: {
       token: ''
