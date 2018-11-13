@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "服务首页",
+  "usingComponents": {
+    "i-tab-bar": "../../dist/iview/tab-bar/index",
+    "i-tab-bar-item": "../../dist/iview/tab-bar-item/index"
+  }
+}

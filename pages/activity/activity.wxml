@@ -1,0 +1,51 @@
+<!--index.wxml-->
+<wxs module='filter' src='../../utils/filter.wxs'></wxs>
+<view class='container'>
+  <i-spin size="large" fix wx:if="{{ !pageReady }}"></i-spin>
+  <!-- <view class='index_banner'>
+    <image class='index_banner_img' src='https://img.mukewang.com/5bbab9ed000152e809360316.jpg' mode='scaleToFill'></image>
+  </view> -->
+  <view class='index_list_wrap' wx:if='{{pageReady}}'>
+    <view class='index_list_title'>热门活动</view>
+    <view class='index_list_item' wx:for="{{list}}" wx:key='{{index}}' bindtap="toDetail" data-id="{{item.ID}}">
+      <image class='poster' mode='scaleToFill' src='{{filter.transformImgUrl(item.CoverPhoto)}}'></image>
+      <view class='content'>
+        <view class='name'>{{item.ActivityName}} </view>
+        <view class='desc'>{{item.ActivityDescribe}}</view>
+        <view class='price'>
+          <text class='tag'>拼团价</text>
+          <text class='saleprice'>￥{{item.PresentPrice}}</text>
+        </view>
+        <view class='elide'>
+          <text class='showprice'>门市价：￥{{item.OriginalPrice}}</text>
+          <!-- <text class='count'>201人参加</text> -->
+        </view>
+      </view>
+    </view>
+    <!-- <button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">获取用户信息</button> -->
+  </view>
+  <view wx:else class='empty_box'>
+    <image class='icon' src='../../images/empty_icon.png' mode='aspectFit'></image>
+    <view class='text'>暂无活动</view>
+  </view>
+  <i-tab-bar current="{{ current }}" bindchange="handleChange" color="#36C5C5" fixed>
+    <i-tab-bar-item
+      key="activity"
+      img="../../../images/tabbar1-1.png"
+      current-img="../../../images/tabbar1-2.png"
+      title="首页">
+    </i-tab-bar-item>
+    <i-tab-bar-item
+      key="activityMine" 
+      img="../../../images/tabbar2-1.png"
+      current-img="../../../images/tabbar2-2.png"
+      title="我的活动">
+    </i-tab-bar-item>
+    <i-tab-bar-item
+      key="activityHelp" 
+      img="../../../images/tabbar3-1.png"
+      current-img="../../../images/tabbar3-2.png"
+      title="活动帮助">
+    </i-tab-bar-item>
+  </i-tab-bar>
+</view>

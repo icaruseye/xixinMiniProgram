@@ -1,0 +1,11 @@
+<!--pages/service/service.wxml-->
+<view class='container'>
+  <view class='index_banner'>
+    <image class='index_banner_img' src='https://img.mukewang.com/5bbab9ed000152e809360316.jpg' mode='scaleToFill'></image>
+  </view>
+  <i-tab-bar current="{{ current }}" color="#36C5C5" bindchange="handleChange" class="tab_bar">
+    <i-tab-bar-item key="homepage" icon="homepage" current-icon="homepage_fill" title="服务"></i-tab-bar-item>
+    <i-tab-bar-item key="group" icon="group" current-icon="group_fill" title="我的服务"></i-tab-bar-item>
+    <i-tab-bar-item key="remind" icon="remind" current-icon="remind_fill" title="服务帮助"></i-tab-bar-item>
+  </i-tab-bar>
+</view>

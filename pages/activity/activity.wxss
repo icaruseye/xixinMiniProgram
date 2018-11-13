@@ -1,0 +1,89 @@
+/**index.wxss**/
+.container {
+  padding-bottom: 120rpx;
+}
+
+.index_banner {
+  margin: 24rpx;
+}
+.index_banner_img {
+  width: 100%;
+  height: 250rpx;
+  background: #ccc;
+  border-radius: 11rpx;
+}
+
+.index_list_wrap {
+  padding: 0 32rpx;
+}
+
+.index_list_wrap .index_list_title {
+  margin-bottom: 22rpx;
+  font-size: 36rpx;
+  color: #333;
+  font-weight: bolder;
+}
+
+.index_list_wrap .index_list_item {
+  display: flex;
+  border-top: 1rpx solid RGBA(204, 240, 238, .5);
+  padding: 48rpx 0 30rpx;
+}
+
+.index_list_wrap .index_list_item:last-child {
+  border-bottom: 1rpx solid RGBA(204, 240, 238, .5);
+}
+
+.index_list_wrap .index_list_item .poster {
+  width: 150rpx;
+  height: 150rpx;
+  overflow: hidden;
+  border-radius: 8rpx;
+}
+
+.index_list_wrap .index_list_item .content {
+  flex: 1;
+  margin-left: 24rpx;
+}
+
+.index_list_item .content .name {
+  margin-bottom: 5rpx;
+  font-size: 36rpx;
+  color: #333;
+  font-weight: bold;
+}
+
+.index_list_item .content .desc {
+  margin-bottom: 15rpx;
+  font-size: 28rpx;
+  color: #999;
+}
+
+.index_list_item .content .price {
+  display: flex;
+  align-items: center;
+}
+
+.index_list_item .content .tag {
+  font-size: 20rpx;
+  color: #FF5F5F;
+  background: RGBA(255, 95, 95, .3);
+  border-radius: 4rpx;
+  padding: 2px 4px;
+}
+
+.index_list_item .content .saleprice {
+  font-size: 36rpx;
+  color: #FF4C44;
+}
+
+.index_list_item .content .elide {
+  display: flex;
+  justify-content: space-between;
+  font-size: 24rpx;
+  color: #999;
+}
+
+.index_list_item .content .elide .showprice {
+  text-decoration:line-through;
+}

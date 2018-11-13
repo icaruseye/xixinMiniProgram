@@ -1,0 +1,54 @@
+<!--pages/activityIntro/activityIntro.wxml-->
+<wxs module='filter' src='../../utils/filter.wxs'></wxs>
+<view class='container'>
+  <i-spin size="large" fix wx:if="{{ !pageReady }}"></i-spin>
+  <view wx:if="{{ pageReady }}">
+    <view class='activityDetail_info'>
+      <view class='title'>{{info.ActivityName}}</view>
+      <view class='count'>99人已购买</view>
+    </view>
+    <view class='activityDetail_intro'>
+      <view class='title'>活动介绍</view>
+      <view class='section'>
+        {{info.ActivityDescribe}}
+      </view>
+      <view wx:for='{{info.ActivityIntroductionImg}}' wx:key='index'>
+        <image class='section_image' src='{{filter.transformImgUrl(item)}}' mode='aspectFit'></image>
+      </view>
+    </view>
+    <view class='activityDetail_goods'>
+      <view class='item' bindtap='toDetail' data-id='{{info.CommodityID}}'>
+        <image class='icon' src='{{filter.xxMissionTypeIconFilter(info.PackageType)}}'></image>
+        <view class='content'>
+          <view class='name'>{{info.CommodityName}}</view>
+          <view class='price'>￥{{info.PresentPrice}}元</view>
+        </view>
+      </view>
+    </view>
+    <view class='activityDetail_apply'>
+      <button class='btn'>报名</button>
+    </view>
+  </view>
+  <van-popup
+    custom-class="item_popup_wrap"
+    show="{{ show }}"
+    position="bottom"
+    bind:close="onClose">
+    <view>
+      <view class='activityDetail_goods'>
+        <view class='item'>
+          <image class='icon' src='{{filter.xxMissionTypeIconFilter(info.PackageType)}}'></image>
+          <view class='content'>
+            <view class='name'>{{info.CommodityName}}</view>
+            <view class='price'>￥{{info.PresentPrice}}元</view>
+          </view>
+        </view>
+      </view>
+      <view class='item_popup_title'>产品介绍</view>
+      <view class='item_popup_content'>
+      工作于急诊，擅长消化道危急重症，比如消化道出血，溃疡，黄疸，胰腺炎，胆囊炎，腹泻腹痛，发热等。其他像呼吸道，心血管急症。
+      </view>
+    </view>
+  </van-popup>
+</view>
+

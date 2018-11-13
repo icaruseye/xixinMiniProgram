@@ -1,0 +1,37 @@
+{
+  "pages": [
+    "pages/activity/activity",
+    "pages/activityIntro/activityIntro",
+    "pages/login/login",
+    "pages/loginPhone/loginPhone",
+    "pages/itemDetail/itemDetail",
+    "pages/activityMine/activityMine",
+    "pages/mine/mine",
+    "pages/service/service",
+    "pages/activityHlep/activityHelp",
+    "pages/index/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "悉心",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "backgroundColor": "#fff",
+    "borderStyle": "white",
+    "selectedColor": "#36C5C5",
+    "color": "#ccc",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "个人中心"
+      }
+    ]
+  },
+  "debug": true
+}

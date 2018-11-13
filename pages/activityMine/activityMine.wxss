@@ -1,0 +1,107 @@
+/* pages/activityMine/activityMine.wxss */
+.container {
+  background: RGBA(233, 253, 253, .2);
+  min-height: 100vh;
+  padding: 0 24rpx 140rpx;
+}
+
+.acMine_userinfo {
+  padding-top: 40rpx;
+  display: flex;
+}
+
+.acMine_userinfo_avatar {
+  margin-right: 24rpx;
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  border: 2rpx solid #fff;
+}
+
+.acMine_userinfo_content {
+  flex: 1;
+}
+
+.acMine_userinfo_content_name {
+  font-size: 30rpx;
+  color: #666;
+  font-weight: bold;
+}
+
+.acMine_userinfo_content_id {
+  background: RGBA(216, 216, 216, .4);
+  font-size: 24rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  padding: 0 22rpx;
+  border-radius: 20rpx;
+  color: #999;
+}
+
+.acMine_content {
+  margin-top: 24rpx;
+  background: #fff;
+  border-radius: 22rpx;
+  box-shadow: 0 7rpx 20rpx #D1F8F8;
+}
+
+.acMine_content_tabs {
+  padding: 57rpx 22rpx 26rpx 22rpx;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1rpx solid #CEF1EF;
+}
+
+.acMine_content_tabs_item {
+  background: #fff;
+  border: 1rpx solid #999;
+  border-radius: 26rpx;
+  padding: 0 30rpx;
+  height: 46rpx;
+  line-height: 46rpx;
+  font-size: 28rpx;
+}
+
+.acMine_content_tabs_item.active {
+  background: #36C5C5;
+  color: #fff;
+  border-color: #36C5C5;
+}
+
+.acMine_list_item {
+  padding: 50rpx 24rpx;
+  display: flex;
+  border-bottom: 1px solid #eee;
+}
+
+.acMine_list_item:last-child {
+  border: 0;
+}
+
+.acMine_list_item_icon {
+  margin-right: 24rpx;
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 4rpx;
+}
+
+.acMine_list_item_content {
+  flex: 1;
+}
+
+.acMine_list_item_content_name {
+  margin-bottom: 11rpx;
+  font-size: 36rpx;
+  color: #333;
+  font-weight: bold;
+}
+
+.acMine_list_item_content_desc {
+  font-size: 28rpx;
+  color: #999;
+}
+
+.acMine_list_item_content_price {
+  font-size: 24rpx;
+  color: #666;
+}

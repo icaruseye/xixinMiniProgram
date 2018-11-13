@@ -1,0 +1,33 @@
+
+// filter.wxs
+var transformImgUrl = function (val) {
+  if (!val) return false
+  if (val.indexOf('http') === -1 && val.indexOf('Upload') === -1 && val.indexOf('base64') === -1) {
+    return 'http://www.xixincloud.com:6883/File/GetImage/' + val 
+  } else {
+    // 值为完整url
+    return val
+  }
+}
+
+/**
+ * 任务图标
+ */
+var xxMissionTypeIconFilter = function (useType) {
+  switch (useType) {
+    case 2:
+      return '../../images/icon_consult_item.png'
+    case 3:
+      return '../../images/icon_hospital.png'
+    default:
+      return '../../images/icon_tcmr.png'
+  }
+}
+
+/*
+ * 导出
+ */
+module.exports = {
+  transformImgUrl: transformImgUrl,
+  xxMissionTypeIconFilter: xxMissionTypeIconFilter
+}

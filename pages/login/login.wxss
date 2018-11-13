@@ -1,0 +1,57 @@
+/* pages/login/login.wxss */
+.container {
+  min-height: 100vh;
+  background: #eff5f7;
+}
+
+.logo_wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 121rpx 0;
+}
+
+.logo_wrap .left {
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 50%;
+}
+
+.logo_wrap .mid {
+  margin: 0 46rpx;
+  width: 34rpx;
+  height: 12rpx;
+}
+
+.logo_wrap .right {
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 50%;
+}
+
+.button_wrap {
+  padding: 0 80rpx;
+}
+
+.button_wrap .wx {
+  margin-bottom: 30rpx;
+  font-size: 32rpx;
+  color: #fff;
+  background: #3ECCCC;
+}
+
+.button_wrap .phone {
+  font-size: 32rpx;
+  border: 0;
+}
+
+.input_cell {
+  padding: 30rpx 30rpx 30rpx;
+}
+
+.login_in {
+  margin: 59rpx 0 0 0;
+  color: #fff;
+  font-size: 36rpx;
+  background: #3ECCCC;
+}

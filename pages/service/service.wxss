@@ -1,0 +1,11 @@
+/* pages/service/service.wxss */
+
+.index_banner {
+  margin: 24rpx;
+}
+.index_banner_img {
+  width: 100%;
+  height: 250rpx;
+  background: #ccc;
+  border-radius: 11rpx;
+}

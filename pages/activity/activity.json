@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "活动",
+  "usingComponents": {
+    "i-tab-bar": "../../dist/iview/tab-bar/index",
+    "i-tab-bar-item": "../../dist/iview/tab-bar-item/index",
+    "i-spin": "../../dist/iview/spin/index"
+  }
+}
