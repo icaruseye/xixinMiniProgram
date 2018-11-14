@@ -9,6 +9,7 @@ Page({
     captcha: '',
     phone: '',
     sessionToken: '',
+    mobileToken: '',
     viewID: '8abdf1fd447645cf80aba70c64c373f6',
     captchaText: '发送验证码',
     captchaDisabled: false
@@ -30,7 +31,7 @@ Page({
     wx.login({
       success(res) {
         wx.request({
-          url: `${app.globalData.devApi}/api/SPUser/Login?servantViewID=${that.data.viewID}`,
+          url: `${app.globalData.devApi}/api/SPUser/GetMobile?servantViewID=${that.data.viewID}`,
           data: {
             mobileString: e.detail.encryptedData,
             iv: e.detail.iv,
@@ -38,7 +39,8 @@ Page({
           },
           success(res) {
             that.setData({
-              sessionToken: res.data.Data.SessionToken,
+              phone: res.data.Data.Mobile,
+              mobileToken: res.data.Data.Token,
             })
             console.log(res.data.SessionToken)
           },
