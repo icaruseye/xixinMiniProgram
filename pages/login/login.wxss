@@ -30,7 +30,7 @@
 }
 
 .button_wrap {
-  padding: 0 80rpx;
+  padding: 0 40rpx;
 }
 
 .button_wrap .wx {
@@ -46,12 +46,19 @@
 }
 
 .input_cell {
-  padding: 30rpx 30rpx 30rpx;
+  padding: 40rpx 40rpx 40rpx;
 }
 
 .login_in {
-  margin: 59rpx 0 0 0;
+  margin: 30rpx 0 0 0;
   color: #fff;
   font-size: 36rpx;
   background: #3ECCCC;
+}
+
+.login_tips {
+  text-align: right;
+  padding: 30rpx 0 0;
+  font-size: 24rpx;
+  color: #666;
 }

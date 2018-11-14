@@ -1,4 +1,6 @@
-// pages/activityIntro/activityIntro.js
+import { isLogin } from '../../utils/util.js'
+import Dialog from '../../dist/vant/dialog/dialog'
+
 const app = getApp()
 
 Page({
@@ -8,13 +10,20 @@ Page({
   data: {
     info: null,
     show: false,
-    pageReady: false
+    pageReady: false,
+    activityId: ''
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad (options) {
-    this.getActivityDetail(options.id)
+    this.setData({
+      activityId: options.id
+    })
+  },
+  onShow () {
+    if (!isLogin()) return false
+    this.getActivityDetail(this.data.activityId)
   },
   getActivityDetail (activityId) {
     const that = this

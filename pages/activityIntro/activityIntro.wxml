@@ -1,6 +1,7 @@
 <!--pages/activityIntro/activityIntro.wxml-->
 <wxs module='filter' src='../../utils/filter.wxs'></wxs>
 <view class='container'>
+  <van-dialog id="van-dialog" />
   <i-spin size="large" fix wx:if="{{ !pageReady }}"></i-spin>
   <view wx:if="{{ pageReady }}">
     <view class='activityDetail_info'>

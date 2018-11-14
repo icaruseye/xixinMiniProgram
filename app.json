@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/login/login",
     "pages/activity/activity",
+    "pages/login/login",
     "pages/activityIntro/activityIntro",
     "pages/loginPhone/loginPhone",
     "pages/itemDetail/itemDetail",
@@ -11,6 +11,10 @@
     "pages/activityHlep/activityHelp",
     "pages/index/index"
   ],
+  "usingComponents": {
+    "i-modal": "./dist/iview/modal/index",
+    "van-dialog": "./dist/vant/dialog/index"
+  },
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",

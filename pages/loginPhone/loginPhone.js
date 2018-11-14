@@ -5,8 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    captcha: '',
     phone: '',
+    captcha: '',
     captchaText: '发送验证码',
     captchaDisabled: false
   },

@@ -1,14 +1,14 @@
 <!--pages/login/login.wxml-->
-<view class='container'>
+<view class='container' wx:if="pageReady">
   <view class='logo_wrap'>
     <image class='left' src='https://tva4.sinaimg.cn/crop.0.0.750.750.180/883d794fjw8evemld5qqwj20ku0ku3zz.jpg'></image>
     <image class='mid' src='../../images/login-mid.png'></image>
     <image class='right' src='../../images/logo.png'></image>
   </view>
-  <view class="button_wrap">
+  <view class="button_wrap" wx:if='{{ !showForm }}'>
     <button class='wx' type='primary' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">微信快捷登录</button>
   </view>
-  <!-- <view class="input_cell">
+  <view class="input_cell" wx:else>
     <van-cell-group>
       <van-field
         value="{{ phone }}"
@@ -32,7 +32,7 @@
         bind:input="getInputCaptcha"
         />
     </van-cell-group>
-    <view></view>
+    <view class='login_tips' bindtap='toggleLoginWay'>微信手机号授权登录</view>
     <button class='login_in' bindtap='login'>登录</button>
-  </view> -->
+  </view>
 </view>

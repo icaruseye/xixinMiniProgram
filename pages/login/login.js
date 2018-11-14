@@ -1,56 +1,149 @@
-// pages/loginPhone/loginPhone.js
+import api from '../../utils/api.js'
+
 const app = getApp()
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    captcha: '',
+    pageReady: false,
+    showForm: false,
     phone: '',
-    sessionToken: '',
-    mobileToken: '',
-    viewID: '8abdf1fd447645cf80aba70c64c373f6',
+    captcha: '',
     captchaText: '发送验证码',
-    captchaDisabled: false
+    captchaDisabled: false,
+    sessionToken: '',
+    mobileToken: ''
   },
   /**
-   * 记录输入的手机号
+   * 生命周期函数--监听页面加载
    */
-  getInputPhone(e) {
-    this.setData({
-      phone: e.detail
-    })
-  },
-
-  getPhoneNumber(e) {
+  onLoad: function (options) {
+    console.log(options)
     const that = this
-    console.log(e.detail.errMsg)
-    console.log(e.detail.iv)
-    console.log(e.detail.encryptedData)
     wx.login({
       success(res) {
-        wx.request({
-          url: `${app.globalData.devApi}/api/SPUser/GetMobile?servantViewID=${that.data.viewID}`,
-          data: {
+        api._get(`/SPUser/GetSessionKey`, {
+          servantViewID: wx.getStorageSync('servantViewID') || '8abdf1fd447645cf80aba70c64c373f6',
+          code: res.code,
+        }).then(res => {
+          console.log(res)
+          that.setData({
+            sessionToken: res.Data,
+            pageReady: true
+          })
+        })
+      }
+    })
+  },
+  /**
+   * 通过微信获取手机号 
+   */
+  getPhoneNumber(e) {
+    const that = this
+    if (!this.data.pageReady) return false
+    if (e.detail.errMsg === 'getPhoneNumber:ok') {
+      wx.login({
+        success(res) {
+          api._get(`/SPUser/GetMobile?servantViewID=${that.data.viewID}`, {
             mobileString: e.detail.encryptedData,
             iv: e.detail.iv,
             sessionToken: that.data.sessionToken
-          },
-          success(res) {
+          }).then(res => {
             that.setData({
-              phone: res.data.Data.Mobile,
-              mobileToken: res.data.Data.Token,
+              phone: res.Data.Mobile,
+              mobileToken: res.Data.Token,
             })
-            console.log(res.data.SessionToken)
-          },
+            wx.showModal({
+              title: '提示',
+              content: `是否用${ res.Data.Mobile.substr(0, 3)}****${ res.Data.Mobile.substr(7, 4) }作为登录账号`,
+              confirmText: '是',
+              cancelText: '其他号码',
+              success(res) {
+                if (res.confirm) {
+                  api._get('/SPUser/LoginMobile', {
+                    mobile: that.data.phone,
+                    vCode: '',
+                    mobileToken: that.data.mobileToken,
+                    servantViewID: wx.getStorageSync('servantViewID') || '8abdf1fd447645cf80aba70c64c373f6'
+                  }).then(res => {
+                    if (res.Code === 100000) {
+                      wx.setStorageSync('token', res.Data)
+                      wx.showToast({
+                        title: '登陆成功',
+                        duration: 1500,
+                        complete() {
+                          wx.navigateBack({
+                            delta: 1
+                          })
+                        }
+                      })
+                    }
+                  })
+                } else if (res.cancel) {
+                  that.setData({
+                    phone: '',
+                    showForm: true
+                  })
+                }
+              }
+            })
+          })
+        }
+      })
+    }
+  },
+  /**
+   * 其他手机号登录 
+   */
+  login() {
+    const that = this
+    if (!this.data.phone.trim()) {
+      wx.showToast({
+        title: '手机号不能为空',
+        icon: 'none',
+        duration: 1500
+      })
+      return false
+    }
+    if (!this.checkPhoneNumber()) {
+      return false
+    }
+    if (!this.data.captcha.trim()) {
+      wx.showToast({
+        title: '验证码不能为空',
+        icon: 'none',
+        duration: 1500
+      })
+      return false
+    }
+    api._get('/SPUser/LoginMobile', {
+      mobile: that.data.phone,
+      vCode: that.data.captcha,
+      mobileToken: '',
+      servantViewID: wx.getStorageSync('servantViewID') || '8abdf1fd447645cf80aba70c64c373f6'
+    }).then(res => {
+      if (res.Code === 100000) {
+        wx.showToast({
+          title: '登陆成功',
+          duration: 1500,
           complete() {
-            that.setData({
-              pageReady: true
+            wx.navigateBack({
+              delta: 1
             })
           }
         })
       }
+    })
+  },
+  /**
+    * 记录输入的手机号
+    */
+  getInputPhone(e) {
+    this.setData({
+      phone: e.detail
     })
   },
   /**
@@ -80,23 +173,23 @@ Page({
    * 获取手机验证码
    */
   getCaptcha() {
+    const that = this
     if (this.checkPhoneNumber()) {
       this.setData({
         captchaDisabled: true
       })
-      this.setCaptchaText()
-      // wx.request({
-      //   url: '',
-      //   success (res) {
-      //   }
-      // })
+      api._get('/SPUser/SendVCode', {
+        mobile: this.data.phone
+      }).then(res => {
+        that.setCaptchaText()
+      })
     }
   },
   /**
    * 设置验证码按钮文字 
    */
   setCaptchaText() {
-    let timer = 3
+    let timer = 60
     let interval = setInterval(() => {
       if (timer > 0) {
         this.setData({
@@ -111,56 +204,11 @@ Page({
       }
     }, 1000)
   },
-  login() {
-    if (!this.data.phone.trim()) {
-      wx.showToast({
-        title: '手机号不能为空',
-        icon: 'none',
-        duration: 1500
-      })
-      return false
-    }
-    if (!this.checkPhoneNumber()) {
-      return false
-    }
-    if (!this.data.captcha.trim()) {
-      wx.showToast({
-        title: '验证码不能为空',
-        icon: 'none',
-        duration: 1500
-      })
-      return false
-    }
-  },
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    const that = this
-    wx.login({
-      success(res){
-        wx.request({
-          url: `${app.globalData.devApi}/api/SPUser/GetSessionKey?servantViewID=${that.data.viewID}`,
-          data: {
-            code: res.code,
-          },
-          success(res) {
-            that.setData({
-              sessionToken: res.data.Data,
-            })
-            console.log(res.data.Data)
-          },
-          complete() {
-            that.setData({
-              pageReady: true
-            })
-          }
-        })
-      }
+  toggleLoginWay () {
+    this.setData({
+      showForm: false
     })
-    
   },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -171,8 +219,8 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-
+  onShow: function (options) {
+    console.log(options)
   },
 
   /**

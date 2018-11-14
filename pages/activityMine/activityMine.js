@@ -1,4 +1,6 @@
-// pages/activityMine/activityMine.js
+import { isLogin } from '../../utils/util.js'
+import Dialog from '../../dist/vant/dialog/dialog'
+
 const app = getApp()
 
 Page({
@@ -16,6 +18,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+  },
+  onShow() {
+    if (!isLogin(options)) return false
     this.getMyList()
   },
   getMyList() {
