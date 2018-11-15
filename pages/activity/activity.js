@@ -23,7 +23,7 @@ Page({
   },
   getActivityList () {
     const that = this
-    api._get('/api/User/Activity-List', {
+    api._get('/User/Activity-List', {
       viewId: wx.getStorageSync('servantViewID')
     }).then(res => {
       that.setData({

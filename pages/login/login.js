@@ -1,6 +1,7 @@
 import api from '../../utils/api.js'
 
 const app = getApp()
+const viewID = wx.getStorageSync('servantViewID') || '8abdf1fd447645cf80aba70c64c373f6'
 
 Page({
 
@@ -26,9 +27,10 @@ Page({
     wx.login({
       success(res) {
         api._get(`/SPUser/GetSessionKey`, {
-          servantViewID: wx.getStorageSync('servantViewID') || '8abdf1fd447645cf80aba70c64c373f6',
+          servantViewID: viewID,
           code: res.code,
         }).then(res => {
+          wx.setStorageSync('servantViewID', viewID)      //将ViewID缓存
           console.log(res)
           that.setData({
             sessionToken: res.Data,
@@ -67,7 +69,7 @@ Page({
                     mobile: that.data.phone,
                     vCode: '',
                     mobileToken: that.data.mobileToken,
-                    servantViewID: wx.getStorageSync('servantViewID') || '8abdf1fd447645cf80aba70c64c373f6'
+                    servantViewID: viewID
                   }).then(res => {
                     if (res.Code === 100000) {
                       wx.setStorageSync('token', res.Data)
@@ -123,9 +125,10 @@ Page({
       mobile: that.data.phone,
       vCode: that.data.captcha,
       mobileToken: '',
-      servantViewID: wx.getStorageSync('servantViewID') || '8abdf1fd447645cf80aba70c64c373f6'
+      servantViewID: viewID
     }).then(res => {
       if (res.Code === 100000) {
+        wx.setStorageSync('token', res.Data)
         wx.showToast({
           title: '登陆成功',
           duration: 1500,
