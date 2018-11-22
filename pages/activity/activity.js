@@ -1,6 +1,5 @@
-//index.js
-import { isLogin } from '../../utils/util.js'
 import Dialog from '../../dist/vant/dialog/dialog'
+import { isLogin } from '../../utils/util.js'
 import api from '../../utils/api.js'
 
 const app = getApp()
@@ -9,31 +8,28 @@ Page({
   data: {
     current: 'activity',
     hasUserInfo: false,
-    viewId: 'abc',
     list: [],
-    pageReady: false
+    pageReady: true
   },
   onLoad(options) {
     wx.setStorageSync('servantViewID', options.servantViewID)
+    wx.setStorageSync('localUrl', this.route)
   },
   onShow() {
-    console.log(isLogin())
+    console.log('onShow')
     if (!isLogin()) return false
     this.getActivityList()
   },
   getActivityList () {
     const that = this
     api._get('/User/Activity-List', {
-      viewId: wx.getStorageSync('servantViewID')
+      viewId: wx.getStorageSync('servantViewID') || 'fa5ae362fb654419b0a856ef5d0fc87f'
     }).then(res => {
       that.setData({
-        list: res.data.Data,
-        pageReady: true
+        pageReady: true,
+        list: res.Data || []
       })
-    }).catch(e => {
-      that.setData({
-        pageReady: true
-      })
+      console.log(this.data.list)
     })
   },
   handleChange({ detail }) {

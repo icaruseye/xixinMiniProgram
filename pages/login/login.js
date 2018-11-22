@@ -1,7 +1,7 @@
 import api from '../../utils/api.js'
 
 const app = getApp()
-const viewID = wx.getStorageSync('servantViewID') || '8abdf1fd447645cf80aba70c64c373f6'
+const viewID = wx.getStorageSync('servantViewID') || 'fa5ae362fb654419b0a856ef5d0fc87f'
 
 Page({
 
@@ -74,7 +74,7 @@ Page({
                     if (res.Code === 100000) {
                       wx.setStorageSync('token', res.Data)
                       wx.showToast({
-                        title: '登陆成功',
+                        title: '登录成功',
                         duration: 1500,
                         complete() {
                           wx.navigateBack({
@@ -130,7 +130,7 @@ Page({
       if (res.Code === 100000) {
         wx.setStorageSync('token', res.Data)
         wx.showToast({
-          title: '登陆成功',
+          title: '登录成功',
           duration: 1500,
           complete() {
             wx.navigateBack({

@@ -1,5 +1,6 @@
-import { isLogin } from '../../utils/util.js'
 import Dialog from '../../dist/vant/dialog/dialog'
+import { isLogin } from '../../utils/util.js'
+import api from '../../utils/api.js'
 
 const app = getApp()
 
@@ -10,7 +11,6 @@ Page({
    */
   data: {
     current: 'activityMine',
-    viewId: 'abc',
     list: [],
     pageReady: false
   },
@@ -18,25 +18,22 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.setStorageSync('localUrl', this.route)
   },
   onShow() {
-    if (!isLogin(options)) return false
+    console.log('onShow-mine')
+    if (!isLogin()) return false
     this.getMyList()
   },
   getMyList() {
     const that = this
-    wx.request({
-      url: `${app.globalData.devApi}/api/User/Activity-My-List?viewId=${this.data.viewId}`,
-      success(res) {
-        that.setData({
-          list: res.data.Data.MyActivityResult || []
-        })
-      },
-      complete() {
-        that.setData({
-          pageReady: true
-        })
-      }
+    api._get('/User/Activity-My-List', {
+      viewId: wx.getStorageSync('servantViewID')
+    }).then(res => {
+      that.setData({
+        pageReady: true,
+        list: res.data.Data.MyActivityResult || []
+      })
     })
   },
   handleChange({ detail }) {
@@ -52,14 +49,6 @@ Page({
   onReady: function () {
 
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
   /**
    * 生命周期函数--监听页面隐藏
    */

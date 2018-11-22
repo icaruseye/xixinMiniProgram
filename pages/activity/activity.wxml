@@ -6,16 +6,22 @@
   <!-- <view class='index_banner'>
     <image class='index_banner_img' src='https://img.mukewang.com/5bbab9ed000152e809360316.jpg' mode='scaleToFill'></image>
   </view> -->
-  <view class='index_list_wrap' wx:if='{{pageReady}}'>
+  <official-account></official-account>
+  <view class='index_list_wrap' wx:if='{{ pageReady }}'>
     <view class='index_list_title'>热门活动</view>
-    <view class='index_list_item' wx:for="{{list}}" wx:key='{{index}}' bindtap="toDetail" data-id="{{item.ID}}">
+    <view
+      class='index_list_item'
+      wx:for="{{list}}"
+      wx:key='{{index}}'
+      bindtap="toDetail"
+      data-id="{{item.ID}}">
       <image class='poster' mode='scaleToFill' src='{{filter.transformImgUrl(item.CoverPhoto)}}'></image>
       <view class='content'>
         <view class='name'>{{item.ActivityName}} </view>
         <view class='desc'>{{item.ActivityDescribe}}</view>
         <view class='price'>
           <text class='tag'>拼团价</text>
-          <text class='saleprice'>￥{{item.PresentPrice}}</text>
+          <text class='saleprice'>￥{{filter.priceTrans(item.PresentPrice)}}</text>
         </view>
         <view class='elide'>
           <text class='showprice'>门市价：￥{{item.OriginalPrice}}</text>
@@ -23,11 +29,10 @@
         </view>
       </view>
     </view>
-    <!-- <button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">获取用户信息</button> -->
-  </view>
-  <view wx:else class='empty_box'>
-    <image class='icon' src='../../images/empty_icon.png' mode='aspectFit'></image>
-    <view class='text'>暂无活动</view>
+    <view wx:if="{{list.length === 0}}" class='empty_box'>
+      <image class='icon' src='../../images/empty_icon.png' mode='aspectFit'></image>
+      <view class='text'>暂无活动</view>
+    </view>
   </view>
   <i-tab-bar current="{{ current }}" bindchange="handleChange" color="#36C5C5" fixed>
     <i-tab-bar-item

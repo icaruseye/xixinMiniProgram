@@ -1,5 +1,6 @@
 import { isLogin } from '../../utils/util.js'
 import Dialog from '../../dist/vant/dialog/dialog'
+import api from '../../utils/api.js'
 
 const app = getApp()
 
@@ -17,8 +18,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad (options) {
+    wx.setStorageSync('localUrl', this.route)
     this.setData({
-      activityId: options.id
+      activityId: options.id || 2
     })
   },
   onShow () {
@@ -27,20 +29,17 @@ Page({
   },
   getActivityDetail (activityId) {
     const that = this
-    wx.request({
-      url: `${app.globalData.devApi}/api/User/Activity-Detail?activityId=${activityId}`,
-      success (res) {
-        res.data.Data.ActivityIntroductionImg = res.data.Data.ActivityIntroductionImg.split(',')
-        that.setData({
-          info: res.data.Data
-        })
-      },
-      complete() {
-        that.setData({
-          pageReady: true
-        })
-      }
+    api._get(`/User/Activity-Detail?activityId=${activityId}`)
+    .then(res => {
+      res.Data.ActivityIntroductionImg = res.Data.ActivityIntroductionImg.split(',')
+      that.setData({
+        pageReady: true,
+        info: res.Data
+      })
     })
+  },
+  topay () {
+    
   },
   toDetail (e) {
     this.setData({
@@ -59,13 +58,6 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
 
   },
 

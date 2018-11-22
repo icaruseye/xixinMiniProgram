@@ -11,7 +11,7 @@ const http = ({ url = '', param = {}, ...other } = {}) => {
       data: param,
       header: {
         'content-type': 'application/json',
-        'token': wx.getStorageInfoSync('token')
+        'token': wx.getStorageSync('token')
       },
       ...other,
       complete: (res) => {
@@ -19,7 +19,6 @@ const http = ({ url = '', param = {}, ...other } = {}) => {
         if (res.statusCode >= 200 && res.statusCode < 300) {
           resolve(res.data)
         } else {
-          console.log(res)
           if (res.data.Code === 100010) {
             wx.showToast({
               title: '请登录后重试',
@@ -29,6 +28,21 @@ const http = ({ url = '', param = {}, ...other } = {}) => {
                 wx.navigateTo({
                   url: '/pages/login/login',
                 })
+              }
+            })
+          } else {
+            const localUrl = wx.getStorageSync('localUrl')
+            wx.showModal({
+              title: '提示',
+              content: '出错了请重试',
+              showCancel: false,
+              confirmText: '刷新',
+              success(res) {
+                if (res.confirm) {
+                  wx.redirectTo({
+                    url: '/'+ localUrl
+                  })
+                }
               }
             })
           }

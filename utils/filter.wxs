@@ -24,10 +24,19 @@ var xxMissionTypeIconFilter = function (useType) {
   }
 }
 
+/**
+ * 价格换算
+ */
+var priceTrans = function (val) {
+  val = (val / 100).toFixed(2)
+  return val
+}
+
 /*
  * 导出
  */
 module.exports = {
   transformImgUrl: transformImgUrl,
-  xxMissionTypeIconFilter: xxMissionTypeIconFilter
+  xxMissionTypeIconFilter: xxMissionTypeIconFilter,
+  priceTrans: priceTrans
 }

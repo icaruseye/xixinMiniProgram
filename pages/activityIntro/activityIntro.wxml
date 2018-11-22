@@ -27,10 +27,10 @@
       </view>
     </view>
     <view class='activityDetail_apply'>
-      <button class='btn'>报名</button>
+      <button class='btn' bindtap='topay'>报名</button>
     </view>
   </view>
-  <van-popup
+  <!-- <van-popup
     custom-class="item_popup_wrap"
     show="{{ show }}"
     position="bottom"
@@ -50,6 +50,6 @@
       工作于急诊，擅长消化道危急重症，比如消化道出血，溃疡，黄疸，胰腺炎，胆囊炎，腹泻腹痛，发热等。其他像呼吸道，心血管急症。
       </view>
     </view>
-  </van-popup>
+  </van-popup> -->
 </view>
 

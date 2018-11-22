@@ -1,8 +1,8 @@
 {
   "pages": [
     "pages/activity/activity",
-    "pages/login/login",
     "pages/activityIntro/activityIntro",
+    "pages/login/login",
     "pages/loginPhone/loginPhone",
     "pages/itemDetail/itemDetail",
     "pages/activityMine/activityMine",
