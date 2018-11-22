@@ -1,7 +1,7 @@
 import api from '../../utils/api.js'
 
 const app = getApp()
-const viewID = wx.getStorageSync('servantViewID') || 'fa5ae362fb654419b0a856ef5d0fc87f'
+const viewID = wx.getStorageSync('servantViewID')
 
 Page({
 

@@ -12,7 +12,7 @@ Page({
     pageReady: true
   },
   onLoad(options) {
-    wx.setStorageSync('servantViewID', options.servantViewID)
+    wx.setStorageSync('servantViewID', options.servantViewID || 'fa5ae362fb654419b0a856ef5d0fc87f')
     wx.setStorageSync('localUrl', this.route)
   },
   onShow() {
@@ -23,7 +23,7 @@ Page({
   getActivityList () {
     const that = this
     api._get('/User/Activity-List', {
-      viewId: wx.getStorageSync('servantViewID') || 'fa5ae362fb654419b0a856ef5d0fc87f'
+      viewId: wx.getStorageSync('servantViewID')
     }).then(res => {
       that.setData({
         pageReady: true,
