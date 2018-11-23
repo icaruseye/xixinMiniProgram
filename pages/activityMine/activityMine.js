@@ -27,12 +27,12 @@ Page({
   },
   getMyList() {
     const that = this
-    api._get('/User/Activity-My-List', {
+    api._get('/SPUser/Activity-My-List', {
       viewId: wx.getStorageSync('servantViewID')
     }).then(res => {
       that.setData({
         pageReady: true,
-        list: res.data.Data.MyActivityResult || []
+        list: res.Data.MyActivityResult || []
       })
     })
   },

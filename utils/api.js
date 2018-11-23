@@ -32,18 +32,23 @@ const http = ({ url = '', param = {}, ...other } = {}) => {
             })
           } else {
             const localUrl = wx.getStorageSync('localUrl')
-            wx.showModal({
-              title: '提示',
-              content: '出错了请重试',
-              showCancel: false,
-              confirmText: '刷新',
-              success(res) {
-                if (res.confirm) {
-                  wx.redirectTo({
-                    url: '/'+ localUrl
-                  })
-                }
-              }
+            // wx.showModal({
+            //   title: '提示',
+            //   content: '出错了请重试',
+            //   showCancel: false,
+            //   confirmText: '刷新',
+            //   success(res) {
+            //     if (res.confirm) {
+            //       wx.redirectTo({
+            //         url: '/'+ localUrl
+            //       })
+            //     }
+            //   }
+            // })
+            wx.showToast({
+              title: '出错了',
+              icon: 'none',
+              duration: 1500
             })
           }
           reject(res)

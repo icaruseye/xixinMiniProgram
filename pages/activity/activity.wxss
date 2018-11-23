@@ -35,8 +35,8 @@
 }
 
 .index_list_wrap .index_list_item .poster {
-  width: 150rpx;
-  height: 150rpx;
+  width: 180rpx;
+  height: 120rpx;
   overflow: hidden;
   border-radius: 8rpx;
 }

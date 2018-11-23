@@ -12,7 +12,8 @@ Page({
     info: null,
     show: false,
     pageReady: false,
-    activityId: ''
+    activityId: 2,
+    servantViewID: wx.getStorageSync('servantViewID')
   },
   /**
    * 生命周期函数--监听页面加载
@@ -20,16 +21,16 @@ Page({
   onLoad (options) {
     wx.setStorageSync('localUrl', this.route)
     this.setData({
-      activityId: options.id || 2
+      activityId: options.id
     })
+    this.getActivityDetail(this.data.activityId)
   },
   onShow () {
     if (!isLogin()) return false
-    this.getActivityDetail(this.data.activityId)
   },
   getActivityDetail (activityId) {
     const that = this
-    api._get(`/User/Activity-Detail?activityId=${activityId}`)
+    api._get(`/SPUser/Activity-Detail?activityId=${activityId}`)
     .then(res => {
       res.Data.ActivityIntroductionImg = res.Data.ActivityIntroductionImg.split(',')
       that.setData({
@@ -39,15 +40,33 @@ Page({
     })
   },
   topay () {
-    
+    api._get(`/SPUser/UserPreOrder`,{
+      packageID: this.data.activityId,
+      orderType: 4,
+      servantViewID: this.data.servantViewID
+    })
+    .then(res => {
+      if (res.Code === 100000) {
+        if (res.Data.RedirectState === 0) {
+          return api._get(`/User/PayShopInfo?orderID=${this.$route.query.OrderID}`)
+        }
+      }
+    })
+    .then(res => {
+    })
+  },
+  async getPayShopInfo(OrderID) {
+    const res = await api._get(`/User/PayShopInfo?orderID=${OrderID}`)
+    return res
+  },
+  async getUserOpenID() {
+    const res = await api._get('/User/UserOpenID')
+    return res
   },
   toDetail (e) {
     this.setData({
       show: true
     })
-    // wx.navigateTo({
-    //   url: `../itemDetail/itemDetail?id=${e.currentTarget.dataset.id}`
-    // })
   },
   onClose () {
     this.setData({

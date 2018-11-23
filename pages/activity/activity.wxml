@@ -15,7 +15,7 @@
       wx:key='{{index}}'
       bindtap="toDetail"
       data-id="{{item.ID}}">
-      <image class='poster' mode='scaleToFill' src='{{filter.transformImgUrl(item.CoverPhoto)}}'></image>
+      <image class='poster' mode='aspectFit' src='{{filter.transformImgUrl(item.CoverPhoto)}}'></image>
       <view class='content'>
         <view class='name'>{{item.ActivityName}} </view>
         <view class='desc'>{{item.ActivityDescribe}}</view>
