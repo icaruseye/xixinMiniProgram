@@ -14,10 +14,11 @@ Page({
   onLoad(options) {
     wx.setStorageSync('servantViewID', options.servantViewID || 'fa5ae362fb654419b0a856ef5d0fc87f')
     wx.setStorageSync('localUrl', this.route)
+    if (isLogin()) return false
   },
   onShow() {
     console.log('onShow')
-    if (!isLogin()) return false
+    
     this.getActivityList()
   },
   getActivityList () {

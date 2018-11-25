@@ -13,6 +13,8 @@ Page({
     show: false,
     pageReady: false,
     activityId: 2,
+    orderID : null,
+    openID: null,
     servantViewID: wx.getStorageSync('servantViewID')
   },
   /**
@@ -40,15 +42,27 @@ Page({
     })
   },
   topay () {
-    api._get(`/SPUser/UserPreOrder`,{
+    const that = this
+    api._post(`/SPUser/PreOrder`,{
       packageID: this.data.activityId,
-      orderType: 4,
-      servantViewID: this.data.servantViewID
+      refereeType: '2',
+      refereeViewID: this.data.servantViewID,
     })
     .then(res => {
       if (res.Code === 100000) {
         if (res.Data.RedirectState === 0) {
-          return api._get(`/User/PayShopInfo?orderID=${this.$route.query.OrderID}`)
+
+          api._get(`/SPUser/UserOpenID?sessionToken=${wx.getStorageSync('sessionToken')}`).then(openIDRes=>{
+            api._get(`/SPUser/PayShopInfo?orderID=${res.Data.OrderID}`).then(shopInfoRes=>{
+              api._post(`/SPUser/CreateOrder?orderID=${res.Data.OrderID}&openID=${openIDRes.Data}&servantViewID=${that.data.servantViewID}`)
+            })             //临时改了一下
+            
+          })
+          
+          
+           
+          
+
         }
       }
     })
@@ -56,11 +70,11 @@ Page({
     })
   },
   async getPayShopInfo(OrderID) {
-    const res = await api._get(`/User/PayShopInfo?orderID=${OrderID}`)
+    const res = await api._get(`/SPUser/PayShopInfo?orderID=${OrderID}`)
     return res
   },
   async getUserOpenID() {
-    const res = await api._get('/User/UserOpenID')
+    const res = await api._get(`/SPUser/UserOpenID?sessionToken=${wx.getStorageSync('sessionToken')}`)
     return res
   },
   toDetail (e) {

@@ -1,7 +1,7 @@
 import api from '../../utils/api.js'
 
 const app = getApp()
-const viewID = wx.getStorageSync('servantViewID')
+const viewID = wx.getStorageSync('servantViewID') ||'fa5ae362fb654419b0a856ef5d0fc87f'
 
 Page({
 
@@ -32,6 +32,7 @@ Page({
         }).then(res => {
           wx.setStorageSync('servantViewID', viewID)      //将ViewID缓存
           console.log(res)
+          wx.setStorageSync('sessionToken', res.Data)     //存下来等获取OpenID时使用
           that.setData({
             sessionToken: res.Data,
             pageReady: true
@@ -52,7 +53,7 @@ Page({
           api._get(`/SPUser/GetMobile?servantViewID=${that.data.viewID}`, {
             mobileString: e.detail.encryptedData,
             iv: e.detail.iv,
-            sessionToken: that.data.sessionToken
+            sessionToken: that.data.sessionToken,
           }).then(res => {
             that.setData({
               phone: res.Data.Mobile,
@@ -69,6 +70,7 @@ Page({
                     mobile: that.data.phone,
                     vCode: '',
                     mobileToken: that.data.mobileToken,
+                    sessionToken: wx.getStorageSync('sessionToken'),
                     servantViewID: viewID
                   }).then(res => {
                     if (res.Code === 100000) {
@@ -125,6 +127,7 @@ Page({
       mobile: that.data.phone,
       vCode: that.data.captcha,
       mobileToken: '',
+      sessionToken: wx.getStorageSync('sessionToken'),
       servantViewID: viewID
     }).then(res => {
       if (res.Code === 100000) {
