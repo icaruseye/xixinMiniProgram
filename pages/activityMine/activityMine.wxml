@@ -1,22 +1,16 @@
 <!--pages/activityMine/activityMine.wxml-->
 <wxs module='filter' src='../../utils/filter.wxs'></wxs>
 <view class='container'>
-  <van-dialog id="van-dialog" />
-  <i-spin size="large" fix wx:if="{{ !pageReady }}"></i-spin>
   <view wx:if="{{ pageReady }}">
     <view class='acMine_userinfo'>
-      <image class='acMine_userinfo_avatar' src='https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=2012229968,1712227563&fm=58&bpow=400&bpoh=437'></image>
+      <image class='acMine_userinfo_avatar' src='{{userInfo.avatarUrl}}'></image>
       <view class='acMine_userinfo_content'>
-        <view class='acMine_userinfo_content_name'>派大星</view>
-        <text class='acMine_userinfo_content_id'>手机： 155***1212</text>
+        <view class='acMine_userinfo_content_name' wx:if="{{userInfo.nickName}}">{{userInfo.nickName}}</view>
+        <button class='userInfo_btn' size="mini" wx:if="{{!userInfo.nickName}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo">获取头像昵称</button>
+        <view class='acMine_userinfo_content_id'>手机： {{ mobile }}</view>
       </view>
     </view>
     <view class='acMine_content'>
-      <!-- <view class='acMine_content_tabs'>
-        <view class='acMine_content_tabs_item active'>已开始</view>
-        <view class='acMine_content_tabs_item'>未开始</view>
-        <view class='acMine_content_tabs_item'>已结束</view>
-      </view> -->
       <view class='acMine_list' wx:if='{{list.length > 0}}'>
         <view class='acMine_list_item' wx:for='{{list}}' wx:key='index'>
           <image class='acMine_list_item_icon' src='{{filter.transformImgUrl(item.CoverPhoto)}}'></image>
@@ -24,7 +18,7 @@
             <view class='acMine_list_item_content_name'>{{item.ActivityName}}</view>
             <view class='acMine_list_item_content_desc'>{{item.ActivityDescribe}}</view>
           </view>
-          <view class='acMine_list_item_content_price'>￥{{item.PresentPrice}}</view>
+          <view class='acMine_list_item_content_price'>￥{{filter.priceTrans(item.PresentPrice)}}</view>
         </view>
       </view>
       <view wx:else class='empty_box'>

@@ -57,12 +57,12 @@ Page({
     }
   },
   backIndex () {
-    wx.navigateTo({
+    wx.redirectTo({
       url: '/pages/activity/activity',
     })
   },
   backMine () {
-    wx.navigateTo({
+    wx.redirectTo({
       url: '/pages/activityMine/activityMine',
     })
   },

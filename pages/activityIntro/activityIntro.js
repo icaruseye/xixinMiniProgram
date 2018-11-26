@@ -29,9 +29,9 @@ Page({
   getActivityDetail (activityId) {
     const that = this
     api._get(`/SPUser/Activity-Detail?activityId=${activityId}`)
-    .then(res => {
+      .then(res => {
       res.Data.ActivityIntroductionImg = res.Data.ActivityIntroductionImg.split(',')
-      that.setData({
+      this.setData({
         pageReady: true,
         info: res.Data
       })

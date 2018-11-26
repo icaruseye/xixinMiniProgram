@@ -72,6 +72,7 @@ Page({
                   }).then(res => {
                     if (res.Code === 100000) {
                       wx.setStorageSync('token', res.Data)
+                      wx.setStorageSync('mobile', that.data.phone)
                       wx.showToast({
                         title: '登录成功',
                         duration: 1500,
@@ -125,10 +126,11 @@ Page({
       vCode: that.data.captcha,
       mobileToken: '',
       sessionToken: wx.getStorageSync('sessionToken'),
-      servantViewID: viewID
+      servantViewID: wx.getStorageSync('servantViewID')
     }).then(res => {
       if (res.Code === 100000) {
         wx.setStorageSync('token', res.Data)
+        wx.setStorageSync('mobile', that.data.phone)
         wx.showToast({
           title: '登录成功',
           duration: 1500,
@@ -184,6 +186,9 @@ Page({
       api._get('/SPUser/SendVCode', {
         mobile: this.data.phone
       }).then(res => {
+        wx.showToast({
+          title: '已发送',
+        })
         that.setCaptchaText()
       })
     }

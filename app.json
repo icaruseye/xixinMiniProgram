@@ -2,11 +2,11 @@
   "pages": [
     "pages/activity/activity",
     "pages/activityIntro/activityIntro",
+    "pages/activityMine/activityMine",
     "pages/pay/pay",
     "pages/login/login",
     "pages/loginPhone/loginPhone",
     "pages/itemDetail/itemDetail",
-    "pages/activityMine/activityMine",
     "pages/mine/mine",
     "pages/service/service",
     "pages/activityHlep/activityHelp",

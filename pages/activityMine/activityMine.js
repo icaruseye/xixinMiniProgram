@@ -11,13 +11,20 @@ Page({
   data: {
     current: 'activityMine',
     list: [],
-    pageReady: false
+    pageReady: false,
+    hasUserInfo: false,
+    userInfo: {},
+    mobile: ''
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     wx.setStorageSync('localUrl', this.route)
+    this.setData({
+      userInfo: wx.getStorageSync('userInfo'),
+      mobile: wx.getStorageSync('mobile')
+    })
   },
   onShow() {
     this.getMyList()
@@ -29,7 +36,7 @@ Page({
     }).then(res => {
       that.setData({
         pageReady: true,
-        list: res.Data.MyActivityResult || []
+        list: res.Data || []
       })
     })
   },
@@ -39,7 +46,13 @@ Page({
       url: `../${detail.key}/${detail.key}`
     })
   },
-
+  getUserInfo: function (e) {
+    wx.setStorageSync('userInfo', e.detail.userInfo)
+    this.setData({
+      userInfo: e.detail.userInfo,
+      hasUserInfo: true
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

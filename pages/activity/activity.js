@@ -26,7 +26,6 @@ Page({
         pageReady: true,
         list: res.Data || []
       })
-      console.log(this.data.list)
     })
   },
   handleChange({ detail }) {
@@ -40,10 +39,5 @@ Page({
     wx.navigateTo({
       url: `../activityIntro/activityIntro?id=${e.currentTarget.dataset.id}`
     })
-  },
-  onGotUserInfo: function (e) {
-    console.log(e.detail.errMsg)
-    console.log(e.detail.userInfo)
-    console.log(e.detail.rawData)
   }
 })

@@ -16,6 +16,7 @@
   height: 100rpx;
   border-radius: 50%;
   border: 2rpx solid #fff;
+  background: #e1e1e1;
 }
 
 .acMine_userinfo_content {
@@ -23,6 +24,7 @@
 }
 
 .acMine_userinfo_content_name {
+  margin-bottom: 15rpx;
   font-size: 30rpx;
   color: #666;
   font-weight: bold;
@@ -31,6 +33,7 @@
 .acMine_userinfo_content_id {
   background: RGBA(216, 216, 216, .4);
   font-size: 24rpx;
+  width: 240rpx;
   height: 40rpx;
   line-height: 40rpx;
   padding: 0 22rpx;
@@ -104,4 +107,16 @@
 .acMine_list_item_content_price {
   font-size: 24rpx;
   color: #666;
+}
+
+.userInfo_btn {
+  display: block;
+  background: #fff;
+  border: 1px solid #fff;
+  text-align: left;
+  color: #666;
+}
+
+.userInfo_btn::after {
+  border: 0;
 }

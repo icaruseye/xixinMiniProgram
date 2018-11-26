@@ -1,11 +1,12 @@
 
-// filter.wxs
+/**
+ * 图片地址转换
+ */
 var transformImgUrl = function (val) {
   if (!val) return false
   if (val.indexOf('http') === -1 && val.indexOf('Upload') === -1 && val.indexOf('base64') === -1) {
     return 'http://www.xixincloud.com:6883/File/GetImage/' + val 
   } else {
-    // 值为完整url
     return val
   }
 }
@@ -32,11 +33,20 @@ var priceTrans = function (val) {
   return val
 }
 
+/**
+ * 手机号遮蔽
+*/
+var phoneHide = function (val) {
+  // val = val.substr(0, 3) + '****' + val.substr(7, 4)
+  return '123'
+}
+
 /*
  * 导出
  */
 module.exports = {
   transformImgUrl: transformImgUrl,
   xxMissionTypeIconFilter: xxMissionTypeIconFilter,
-  priceTrans: priceTrans
+  priceTrans: priceTrans,
+  phoneHide: phoneHide
 }
