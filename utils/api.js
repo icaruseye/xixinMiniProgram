@@ -17,41 +17,31 @@ const http = ({ url = '', param = {}, ...other } = {}) => {
       complete: (res) => {
         wx.hideLoading()
         if (res.statusCode >= 200 && res.statusCode < 300) {
-          resolve(res.data)
+          if (res.data.Code === 100000) {
+            resolve(res.data)            
+          } else {
+            const localUrl = wx.getStorageSync('localUrl')
+            wx.showToast({
+              title: res.data.Msg,
+              icon: 'none',
+              duration: 1500
+            })
+            console.log(res.data.Code)
+          }
         } else {
+          reject(res)
           if (res.data.Code === 100010) {
             wx.showToast({
               title: '请登录后重试',
               icon: 'none',
               duration: 1500,
-              complete () {
+              complete() {
                 wx.navigateTo({
                   url: '/pages/login/login',
                 })
               }
             })
-          } else {
-            const localUrl = wx.getStorageSync('localUrl')
-            // wx.showModal({
-            //   title: '提示',
-            //   content: '出错了请重试',
-            //   showCancel: false,
-            //   confirmText: '刷新',
-            //   success(res) {
-            //     if (res.confirm) {
-            //       wx.redirectTo({
-            //         url: '/'+ localUrl
-            //       })
-            //     }
-            //   }
-            // })
-            wx.showToast({
-              title: '出错了',
-              icon: 'none',
-              duration: 1500
-            })
           }
-          reject(res)
         }
       }
     })

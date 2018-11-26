@@ -1,0 +1,29 @@
+<!--pages/pay/pay.wxml-->
+<wxs module='filter' src='../../utils/filter.wxs'></wxs>
+<view class='container'>
+  <view class='pay_status_doing' wx:if='{{ status === 0 }}'>
+    <view class='pay_icon_wrap'>
+      <image class='pay_icon_img' src='../../images/ic_paying.png'></image>
+      <text class='pay_icon_text'>支付中...</text>
+    </view>
+    <view class='pay_title_bar'>
+      <view class='pay_title_shop'>{{info.ShopName}}</view>
+      <view class='pay_title_servant'>{{info.ServantName}}</view>
+    </view>
+    <view class='pay_item_bar'>
+      <image class='pay_item_icon' src='{{filter.xxMissionTypeIconFilter(info.PackageType)}}'></image>
+      <view class='pay_item_name'>{{info.PackageName}}</view>
+      <view class='pay_item_price'>{{filter.priceTrans(info.Price)}}元</view>
+    </view>
+  </view>
+  <view class='pay_status_done' wx:if='{{ status === 1 }}'>
+    <view class='pay_icon_wrap'>
+      <image class='pay_icon_img' src='../../images/result_success.png'></image>
+      <text class='pay_icon_text'>购买成功！</text>
+    </view>
+    <view class='pay_btn_bar'>
+      <view class='btn' bindtap='backIndex'>返回首页</view>    
+      <view class='btn green' bindtap='backMine'>我的活动</view>
+    </view>
+  </view>
+</view>

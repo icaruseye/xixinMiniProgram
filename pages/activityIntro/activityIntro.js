@@ -1,7 +1,6 @@
-import { isLogin } from '../../utils/util.js'
+import regeneratorRuntime from '../../libs/regenerator-runtime/runtime.js'
 import Dialog from '../../dist/vant/dialog/dialog'
 import api from '../../utils/api.js'
-
 const app = getApp()
 
 Page({
@@ -13,8 +12,6 @@ Page({
     show: false,
     pageReady: false,
     activityId: 2,
-    orderID : null,
-    openID: null,
     servantViewID: wx.getStorageSync('servantViewID')
   },
   /**
@@ -28,7 +25,6 @@ Page({
     this.getActivityDetail(this.data.activityId)
   },
   onShow () {
-    if (!isLogin()) return false
   },
   getActivityDetail (activityId) {
     const that = this
@@ -41,41 +37,30 @@ Page({
       })
     })
   },
-  topay () {
-    const that = this
-    api._post(`/SPUser/PreOrder`,{
+  async topay () {
+    const resPreOrder = await this.preOrder()
+    const resOpenID = await this.getUserOpenID()
+    if (resPreOrder.OrderID && resOpenID) {
+      wx.navigateTo({
+        url: `/pages/pay/pay?orderID=${resPreOrder.OrderID}&openID=${resOpenID}`
+      })
+    }
+  },
+  async preOrder () {
+    const res = await api._post(`/SPUser/PreOrder`, {
       packageID: this.data.activityId,
       refereeType: '2',
       refereeViewID: this.data.servantViewID,
     })
-    .then(res => {
-      if (res.Code === 100000) {
-        if (res.Data.RedirectState === 0) {
-
-          api._get(`/SPUser/UserOpenID?sessionToken=${wx.getStorageSync('sessionToken')}`).then(openIDRes=>{
-            api._get(`/SPUser/PayShopInfo?orderID=${res.Data.OrderID}`).then(shopInfoRes=>{
-              api._post(`/SPUser/CreateOrder?orderID=${res.Data.OrderID}&openID=${openIDRes.Data}&servantViewID=${that.data.servantViewID}`)
-            })             //临时改了一下
-            
-          })
-          
-          
-           
-          
-
-        }
-      }
-    })
-    .then(res => {
-    })
-  },
-  async getPayShopInfo(OrderID) {
-    const res = await api._get(`/SPUser/PayShopInfo?orderID=${OrderID}`)
-    return res
+    if (res.Code === 100000) {
+      return res.Data
+    }
   },
   async getUserOpenID() {
     const res = await api._get(`/SPUser/UserOpenID?sessionToken=${wx.getStorageSync('sessionToken')}`)
-    return res
+    if (res.Code === 100000) {
+      return res.Data
+    }
   },
   toDetail (e) {
     this.setData({

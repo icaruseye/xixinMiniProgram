@@ -1,5 +1,4 @@
 import Dialog from '../../dist/vant/dialog/dialog'
-import { isLogin } from '../../utils/util.js'
 import api from '../../utils/api.js'
 
 const app = getApp()
@@ -21,8 +20,6 @@ Page({
     wx.setStorageSync('localUrl', this.route)
   },
   onShow() {
-    console.log('onShow-mine')
-    if (!isLogin()) return false
     this.getMyList()
   },
   getMyList() {

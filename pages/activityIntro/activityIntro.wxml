@@ -6,7 +6,7 @@
   <view wx:if="{{ pageReady }}">
     <view class='activityDetail_info'>
       <view class='title'>{{info.ActivityName}}</view>
-      <view class='count'>99人已购买</view>
+      <!-- <view class='count'>99人已购买</view> -->
     </view>
     <view class='activityDetail_intro'>
       <view class='title'>活动介绍</view>
@@ -22,7 +22,7 @@
         <image class='icon' src='{{filter.xxMissionTypeIconFilter(info.PackageType)}}'></image>
         <view class='content'>
           <view class='name'>{{info.CommodityName}}</view>
-          <view class='price'>￥{{info.PresentPrice}}元</view>
+          <view class='price'>￥{{filter.priceTrans(info.PresentPrice)}}元</view>
         </view>
       </view>
     </view>

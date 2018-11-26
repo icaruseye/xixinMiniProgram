@@ -1,7 +1,6 @@
 import api from '../../utils/api.js'
 
 const app = getApp()
-const viewID = wx.getStorageSync('servantViewID') ||'fa5ae362fb654419b0a856ef5d0fc87f'
 
 Page({
 
@@ -27,11 +26,9 @@ Page({
     wx.login({
       success(res) {
         api._get(`/SPUser/GetSessionKey`, {
-          servantViewID: viewID,
+          servantViewID: wx.getStorageSync('servantViewID'),
           code: res.code,
-        }).then(res => {
-          wx.setStorageSync('servantViewID', viewID)      //将ViewID缓存
-          console.log(res)
+        }).then(res => {   //将ViewID缓存
           wx.setStorageSync('sessionToken', res.Data)     //存下来等获取OpenID时使用
           that.setData({
             sessionToken: res.Data,
@@ -71,7 +68,7 @@ Page({
                     vCode: '',
                     mobileToken: that.data.mobileToken,
                     sessionToken: wx.getStorageSync('sessionToken'),
-                    servantViewID: viewID
+                    servantViewID: wx.getStorageSync('servantViewID')
                   }).then(res => {
                     if (res.Code === 100000) {
                       wx.setStorageSync('token', res.Data)

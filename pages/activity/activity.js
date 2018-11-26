@@ -1,5 +1,4 @@
 import Dialog from '../../dist/vant/dialog/dialog'
-import { isLogin } from '../../utils/util.js'
 import api from '../../utils/api.js'
 
 const app = getApp()
@@ -14,11 +13,8 @@ Page({
   onLoad(options) {
     wx.setStorageSync('servantViewID', options.servantViewID || 'fa5ae362fb654419b0a856ef5d0fc87f')
     wx.setStorageSync('localUrl', this.route)
-    if (isLogin()) return false
   },
   onShow() {
-    console.log('onShow')
-    
     this.getActivityList()
   },
   getActivityList () {

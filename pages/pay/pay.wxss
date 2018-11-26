@@ -1,0 +1,85 @@
+/* pages/pay/pay.wxss */
+.pay_icon_wrap {
+  padding: 40rpx 0;
+  text-align: center;
+}
+
+.pay_icon_img {
+  display: block;
+  margin: 0 auto 40rpx;
+  width: 120rpx;
+  height: 100rpx;
+}
+
+.pay_icon_text {
+  font-size: 36rpx;
+  color: #666;
+  font-weight: bold;
+}
+
+.pay_title_bar {
+  border-top: 1rpx solid #E0F6F5;
+  padding: 0 22rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80rpx;
+}
+
+.pay_title_shop {
+  font-size: 28rpx;
+  color: #666;
+}
+
+.pay_title_servant {
+  font-size: 20rpx;
+  color: #999;
+}
+
+.pay_item_bar {
+  border-top: 1rpx solid #E0F6F5;
+  border-bottom: 1rpx solid #E0F6F5;
+  padding: 0 22rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 140rpx;
+}
+
+.pay_item_icon {
+  width: 58rpx;
+  height: 58rpx;
+  border-radius: 4rpx;
+  margin-right: 25rpx;
+}
+
+.pay_item_name {
+  flex: 1;
+  font-size: 36rpx;
+  color: #666;
+}
+
+.pay_item_price {
+  font-size: 36rpx;
+  color: #FF5F5F
+}
+
+.pay_btn_bar {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.pay_btn_bar .btn {
+  width: 180rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  border-radius: 30rpx;
+  text-align: center;
+  color: #fff;
+  font-size: 30rpx;
+  background: #D8D8D8;
+}
+
+.pay_btn_bar .btn.green {
+  background: #3ECCCC;
+}
