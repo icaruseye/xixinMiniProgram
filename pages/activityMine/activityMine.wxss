@@ -115,6 +115,7 @@
   border: 1px solid #fff;
   text-align: left;
   color: #666;
+  padding: 0;
 }
 
 .userInfo_btn::after {

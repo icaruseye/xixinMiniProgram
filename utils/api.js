@@ -2,7 +2,7 @@ const baseUrl = 'https://lan-test.xixincloud.com/api'
 
 const http = ({ url = '', param = {}, ...other } = {}) => {
   wx.showLoading({
-    title: '请求中，请耐心等待..',
+    title: '请求中..',
     mask: true
   })
   return new Promise((resolve, reject) => {

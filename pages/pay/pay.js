@@ -29,6 +29,7 @@ Page({
       signType: 'MD5',
       paySign: orderInfo.paySign,
       success(res) {
+        api._post(`/User/PagePaySuccess?orderID=${options.orderID}`)
         that.setData({
           status: 1
         })

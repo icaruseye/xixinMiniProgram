@@ -18,7 +18,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad (options) {
-    wx.setStorageSync('localUrl', this.route)
+    wx.setStorageSync('localUrl', `${this.route}?id=${options.id}`)
     this.setData({
       activityId: options.id
     })
