@@ -11,7 +11,7 @@ Page({
     pageReady: true
   },
   onLoad(options) {
-    wx.setStorageSync('servantViewID', options.servantViewID || 'fa5ae362fb654419b0a856ef5d0fc87f')
+    wx.setStorageSync('servantViewID', options.servantViewID)
     wx.setStorageSync('localUrl', this.route)
   },
   onShow() {
