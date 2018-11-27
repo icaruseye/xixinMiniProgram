@@ -5,5 +5,11 @@
 
 .acGuide_text {
   font-size: 24rpx;
-  color: #666;
+  color: #333;
+  line-height: 1.8;
+}
+
+.guide_img {
+  width: 700rpx;
+  height: 3212rpx;
 }
