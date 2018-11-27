@@ -9,8 +9,8 @@
     "pages/itemDetail/itemDetail",
     "pages/mine/mine",
     "pages/service/service",
-    "pages/activityHlep/activityHelp",
-    "pages/index/index"
+    "pages/index/index",
+    "pages/activityGuide/activityGuide"
   ],
   "usingComponents": {
     "i-modal": "./dist/iview/modal/index",
@@ -37,6 +37,5 @@
         "text": "个人中心"
       }
     ]
-  },
-  "debug": true
+  }
 }

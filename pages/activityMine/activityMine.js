@@ -10,8 +10,8 @@ Page({
    */
   data: {
     current: 'activityMine',
-    list: [],
     pageReady: false,
+    list: [],
     hasUserInfo: false,
     userInfo: {},
     mobile: ''

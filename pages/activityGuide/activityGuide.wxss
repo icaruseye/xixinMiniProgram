@@ -1,0 +1,9 @@
+/* pages/activityGuide/activityGuide.wxss */
+.container {
+  padding: 24rpx;
+}
+
+.acGuide_text {
+  font-size: 24rpx;
+  color: #666;
+}

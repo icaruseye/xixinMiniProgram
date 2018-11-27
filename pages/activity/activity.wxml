@@ -1,13 +1,8 @@
 <!--index.wxml-->
 <wxs module='filter' src='../../utils/filter.wxs'></wxs>
 <view class='container'>
-  <van-dialog id="van-dialog" />
-  <i-spin size="large" fix wx:if="{{ !pageReady }}"></i-spin>
-  <!-- <view class='index_banner'>
-    <image class='index_banner_img' src='https://img.mukewang.com/5bbab9ed000152e809360316.jpg' mode='scaleToFill'></image>
-  </view> -->
-  <official-account></official-account>
-  <view class='index_list_wrap' wx:if='{{ pageReady }}'>
+  <!-- 活动首页 -->
+  <view class='index_list_wrap' wx:if="{{ pageReady && current === 'activity'}}">
     <view class='index_list_title'>热门活动</view>
     <view
       class='index_list_item'
@@ -15,7 +10,7 @@
       wx:key='{{index}}'
       bindtap="toDetail"
       data-id="{{item.ID}}">
-      <image class='poster' mode='aspectFit' src='{{filter.transformImgUrl(item.CoverPhoto)}}'></image>
+      <image class='poster' lazy-load='{{ true }}' mode='aspectFit' src='{{filter.transformImgUrl(item.CoverPhoto)}}'></image>
       <view class='content'>
         <view class='name'>{{item.ActivityName}} </view>
         <view class='desc'>{{item.ActivityDescribe}}</view>
@@ -34,6 +29,33 @@
       <view class='text'>暂无活动</view>
     </view>
   </view>
+  <!-- 我的活动 -->
+  <view wx:if="{{ pageReady && current === 'activityMine' }}" class="acMine_container">
+    <view class='acMine_userinfo'>
+      <image class='acMine_userinfo_avatar' src='{{userInfo.avatarUrl}}'></image>
+      <view class='acMine_userinfo_content'>
+        <view class='acMine_userinfo_content_name' wx:if="{{userInfo.nickName}}">{{userInfo.nickName}}</view>
+        <button class='userInfo_btn' size="mini" wx:if="{{!userInfo.nickName}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo">获取头像昵称</button>
+        <view class='acMine_userinfo_content_id'>手机： {{ mobile }}</view>
+      </view>
+    </view>
+    <view class='acMine_content'>
+      <view class='acMine_list' wx:if='{{list.length > 0}}'>
+        <view class='acMine_list_item' wx:for='{{list}}' wx:key='index' bindtap='toGuide'>
+          <image class='acMine_list_item_icon' src='{{filter.transformImgUrl(item.CoverPhoto)}}'></image>
+          <view class='acMine_list_item_content'>
+            <view class='acMine_list_item_content_name'>{{item.ActivityName}}</view>
+            <view class='acMine_list_item_content_desc'>{{item.ActivityDescribe}}</view>
+          </view>
+          <view class='acMine_list_item_content_price'>￥{{filter.priceTrans(item.PresentPrice)}}</view>
+        </view>
+      </view>
+      <view wx:else class='empty_box'>
+        <image class='icon' src='../../images/empty_icon.png' mode='aspectFit'></image>
+        <view class='text'>还没购买过活动哦~</view>
+      </view>
+    </view>
+  </view>
   <i-tab-bar current="{{ current }}" bindchange="handleChange" color="#36C5C5" fixed>
     <i-tab-bar-item
       key="activity"
@@ -47,11 +69,11 @@
       current-img="../../../images/tabbar2-2.png"
       title="我的活动">
     </i-tab-bar-item>
-    <i-tab-bar-item
+    <!-- <i-tab-bar-item
       key="activityHelp" 
       img="../../../images/tabbar3-1.png"
       current-img="../../../images/tabbar3-2.png"
       title="活动帮助">
-    </i-tab-bar-item>
+    </i-tab-bar-item> -->
   </i-tab-bar>
 </view>

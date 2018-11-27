@@ -1,4 +1,4 @@
-// pages/activityHlep/activityHelp.js
+// pages/activityGuide/activityGuide.js
 Page({
 
   /**

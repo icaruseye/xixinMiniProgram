@@ -1,5 +1,5 @@
-const baseUrl = 'https://test-api.xixincloud.com/api'
-// const baseUrl = 'https://lan-test.xixincloud.com/api'
+// const baseUrl = 'https://test-api.xixincloud.com/api'
+const baseUrl = 'https://lan-test.xixincloud.com/api'
 
 const http = ({ url = '', param = {}, ...other } = {}) => {
   wx.showLoading({
@@ -17,6 +17,7 @@ const http = ({ url = '', param = {}, ...other } = {}) => {
       ...other,
       complete: (res) => {
         wx.hideLoading()
+        console.log(res)
         if (res.statusCode >= 200 && res.statusCode < 300) {
           if (res.data.Code === 100000) {
             resolve(res.data)            
@@ -27,21 +28,24 @@ const http = ({ url = '', param = {}, ...other } = {}) => {
               icon: 'none',
               duration: 1500
             })
-            console.log(res.data.Code)
           }
         } else {
-          reject(res)
           if (res.data.Code === 100010) {
-            wx.showToast({
-              title: '请登录后重试',
-              icon: 'none',
-              duration: 1500,
-              complete() {
-                wx.navigateTo({
-                  url: '/pages/login/login',
-                })
+            wx.showModal({
+              title: '提示',
+              content: '登录失效，请重新登录',
+              showCancel: false,
+              confirmText: '去登录',
+              success(res) {
+                if (res.confirm) {
+                  wx.navigateTo({
+                    url: '/pages/login/login'
+                  })
+                }
               }
             })
+          } else {
+            reject(res)
           }
         }
       }

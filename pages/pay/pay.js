@@ -64,7 +64,7 @@ Page({
   },
   backMine () {
     wx.redirectTo({
-      url: '/pages/activityMine/activityMine',
+      url: '/pages/activity/activity?isMine=1',
     })
   },
   /**

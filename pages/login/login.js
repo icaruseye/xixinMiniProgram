@@ -21,7 +21,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
     const that = this
     wx.login({
       success(res) {
@@ -227,8 +226,7 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function (options) {
-    console.log(options)
+  onShow: function () {
   },
 
   /**
