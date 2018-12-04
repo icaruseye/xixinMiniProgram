@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "习题练习",
+  "usingComponents": {
+    "topic-type1": "../../components/topicType1/topicType1"
+  }
+}

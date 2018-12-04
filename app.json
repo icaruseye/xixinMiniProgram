@@ -1,16 +1,17 @@
 {
   "pages": [
+    "pages/topic/topic",
+    "pages/courseDetail/courseDetail",
     "pages/activity/activity",
     "pages/activityIntro/activityIntro",
-    "pages/activityMine/activityMine",
     "pages/pay/pay",
     "pages/login/login",
-    "pages/loginPhone/loginPhone",
-    "pages/itemDetail/itemDetail",
     "pages/mine/mine",
-    "pages/service/service",
     "pages/index/index",
-    "pages/activityGuide/activityGuide"
+    "pages/activityGuide/activityGuide",
+    "components/lessonList/lessonList",
+    "components/topicList/topicList",
+    "components/topicType1/topicType1"
   ],
   "usingComponents": {
     "i-modal": "./dist/iview/modal/index",

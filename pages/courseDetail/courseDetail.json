@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "课程详情",
+  "usingComponents": {
+    "i-tabs": "../../dist/iview/tabs/index",
+    "i-tab": "../../dist/iview/tab/index",
+    "lesson-list": "../../components/lessonList/lessonList",
+    "topic-list": "../../components/topicList/topicList"
+  }
+}

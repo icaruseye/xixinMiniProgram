@@ -1,0 +1,36 @@
+<view class='contanier'>
+  <!-- 视频预览/封面 -->
+  <view class='preview_wrap'>
+    <video
+      class='preview_vedio'
+      style="width: 100%; height: 200px"  src='{{ courseInfo.PreViewContent }}'>
+    </video>
+    <view class="title_info">
+      <view class="title">{{ courseInfo.ShopProxyCourseName }}</view>
+      <view>
+        <text class="price">￥{{ courseInfo.Price }}</text>
+      </view>
+    </view>
+  </view>
+  <!-- 课程详情 -->
+  <view class="course_info">
+    <view class="servant-panel_title"><i class="icon icon-2"></i>课程详情</view>
+    <view class="content">{{ courseInfo.Desctiption }}</view>
+  </view>
+  <!-- 课程/习题 Tabbar -->
+  <i-tabs current="{{ current }}" color="#3ecccc" bindchange="handleChange" class="tabbar">
+    <i-tab key="course" title="课程目录"></i-tab>
+    <i-tab key="topic" title="习题练习"></i-tab>
+  </i-tabs>
+  <!-- 课程目录 -->
+  <lesson-list
+    wx-if="{{current === 'course'}}"
+    proxyCourseID="{{proxyCourseID}}"
+    bind:selectLesson="selectLesson"
+    >
+  </lesson-list>
+  <!-- 习题列表 -->
+  <topic-list wx-if="{{ current === 'topic' }}" proxy-courseID="{{ proxyCourseID }}"></topic-list>
+  <!-- 购买按钮 -->
+  <button class='buy_btn'>购买课程</button>
+</view>

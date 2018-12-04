@@ -1,0 +1,13 @@
+<view class="container">
+  <view class="topic_list">
+    <view
+      class="item"
+      wx:for="{{topicList}}"
+      wx:key="{{index}}"
+      wx:for-item="item">
+      <view class="title">{{item.TestPaperName}}</view>
+      <view class="btn" data-id="{{item.TestPaperID}}" bindtap="toTopic">去做题</view>
+    </view>
+  </view>
+  <!-- <view class="empty-box">暂无习题</view> -->
+</view>

@@ -1,0 +1,92 @@
+<view class="wrapper">
+  <!-- 单选题 -->
+  <view class="topic_item" wx:if="data.TestPaperSubtitleName">
+    <view class="topic_title"><span class="tag">{{data.TestPaperSubtitleName}}</span>{{index + 1}}.{{data.QuestionTitle}}</view>
+    <!-- <checker
+      v-if="correctInner === -1"
+      v-model="answerInner"
+      type="radio"
+      default-item-class="topic-checker-item"
+      selected-item-class="topic-checker-item-selected"
+      :radio-required="true">
+      <template v-for="(val, index) in data.Content.split('><')">
+        <checker-item :value="index" :key="index">
+          <i v-if="index === answerInner" class="iconfont icon-gouSolid-copy"></i>
+          <i v-else class="iconfont icon-yuan"></i>
+          <span>{{index | numberToAlp}}.{{val}}</span>
+        </checker-item>
+      </template>
+    </checker> -->
+    <!-- <i-radio-group current="{{answerInner}}" bindchange="handleChange">
+      <i-radio
+        wx:for="{{data.Content}}"
+        wx:key="{{index}}"
+        value="{{item}}"
+        color="#32C0F3"
+        i-class="radio-item"
+        disabled="{{true}}"
+        >
+      </i-radio>
+    </i-radio-group> -->
+    <!-- 未提交 -->
+    <view wx:if="{{correctInner === -1}}">
+      <view
+        class="topic-checker-item"
+        wx:for="{{data.Content}}"
+        wx:key="{{index}}"
+        data-key="{{index}}"
+        bindtap="selectItem"
+        >
+        <image 
+          wx:if="{{index !== answerInner}}"
+          class='topic-checker-item-icon'
+          src="../../images/topic_yuan.png" 
+          mode="scaleToFill">
+        </image>
+        <image 
+          wx:if="{{index === answerInner}}"
+          class='topic-checker-item-icon'
+          src="../../images/topic_right.png" 
+          mode="scaleToFill">
+        </image>
+        <view class='topic-checker-item-text'>{{item}}</view>
+      </view>
+    </view>
+    <!-- 已提交 -->
+    <view wx:else>
+      <view
+        class="topic-checker-item"
+        wx:for="{{data.Content}}"
+        wx:key="{{index}}"
+        data-key="{{index}}"
+        >
+        <image 
+          wx:if="{{(index === answerInner && correctInner === '') || index === correctInner}}"
+          class='topic-checker-item-icon'
+          src="../../images/topic_right.png" 
+          mode="scaleToFill">
+        </image>
+        <image 
+          wx:elif="{{answerInner !== correctInner && answerInner === index}}"
+          class='topic-checker-item-icon'
+          src="../../images/topic_cha.png" 
+          mode="scaleToFill">
+        </image>
+        <image 
+          wx:else
+          class='topic-checker-item-icon'
+          src="../../images/topic_yuan.png" 
+          mode="scaleToFill">
+        </image>
+        <view class='topic-checker-item-text'>{{item}}</view>
+      </view>
+    </view>
+  </view>
+  <!-- 答案解析 -->
+  <view class="answer_wrap" wx:if="{{correctInner !== -1}}">
+    <view style="color:#3AC7F5">[正确答案] {{data.Content[correctInner]}}</view>
+    <view>试题解析：</view>
+    <view>{{data.AnswerRemark}}</view>
+  </view>
+  <button class="submit_button" wx:if="{{paperType && correctInner === -1}}" bindtap="submitAnswer">提交</button>
+</view>

@@ -1,0 +1,75 @@
+/* pages/courseDetail/courseDetail.wxss */
+/* pages/courseDetail.wxss */
+.contanier {
+  padding-top: 500rpx;
+  padding-bottom: 100rpx;
+  background: #f6f6f6;
+}
+
+.preview_wrap {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #fff;
+  z-index: 999;
+}
+
+.contanier .title_info {
+  padding: 20rpx;
+  background: #fff;
+  border-bottom: 1rpx solid #F2F4F5;
+}
+
+.title_info .title {
+  font-size: 30rpx;
+  color: #4A4A4A;
+}
+
+.title_info .price {
+  color: #FF4E4E;
+  font-size: 30rpx;
+}
+
+.course_info {
+  padding: 20rpx 0;
+  margin: 20rpx 0;
+  background: #fff;
+}
+
+.course_info .servant-panel_title {
+  padding: 0 20rpx 20rpx;
+  border-bottom: 1rpx solid #F2F4F5;
+  font-size: 32rpx;
+  color: #333;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.course_info .content {
+  padding: 30rpx;
+  font-size: 24rpx;
+  color: #4A4A4A;
+}
+
+.tabbar {
+  margin-top: 20rpx;
+}
+
+.buy_btn {
+  z-index: 99;
+  position: fixed;
+  bottom: 0;
+  background: #3ecccc;
+  width: 100%;
+  height: 100rpx;
+  line-height: 100rpx;
+  color: #fff;
+  font-size: 36rpx;
+  text-align: center;
+  border-radius: 0;
+}
+
+.buy_btn::after {
+  border: 0;
+}

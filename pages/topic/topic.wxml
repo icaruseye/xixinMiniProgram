@@ -1,0 +1,12 @@
+<view class="container">
+  <view class="topic_wrap" v-if="questionList.length > 0">
+    <!-- 单选题 -->
+    <topic-type1
+      wx:if="{{questionList[answerIndex].QuestionType === 1}}"
+      index="{{answerIndex}}"
+      paperType="{{IsNeedAnswer}}"
+      data="{{questionList[answerIndex]}}"
+      >
+    </topic-type1>
+  </view>
+</view>

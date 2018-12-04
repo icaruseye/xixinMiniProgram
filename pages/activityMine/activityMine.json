@@ -1,9 +1,0 @@
-{
-  "navigationBarTitleText": "我的活动",
-  "navigationBarBackgroundColor": "RGBA(233, 253, 253, .2)",
-  "usingComponents": {
-    "i-tab-bar": "../../dist/iview/tab-bar/index",
-    "i-tab-bar-item": "../../dist/iview/tab-bar-item/index",
-    "i-spin": "../../dist/iview/spin/index"
-  }
-}

@@ -1,0 +1,49 @@
+.topic_title {
+  font-size: 15px;
+  color: #666;
+  margin-bottom: 20px;
+}
+.topic_title .tag {
+  margin-right: 5px;
+  background: #3ecccc;
+  border-radius: 10px 0 10px 0;
+  color: #fff;
+  font-size: 12px;
+  padding: 2px 5px;
+}
+.topic-checker-item {
+  position:relative;
+  padding:12px 15px;
+  display:flex;
+  background:#fff;
+  align-items:center;
+  line-height:1.4;
+  font-size:14px;
+  overflow:hidden;
+}
+.submit_button {
+  margin-top: 10px;
+  background: #3ecccc;
+  color: #fff;
+  font-size: 14px;
+  text-align: center;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 4px;
+  border: 0;
+  width: 100%;
+}
+.answer_wrap {
+  padding-left: 20px;
+  color: #999;
+  font-size: 14px;
+}
+.topic-checker-item-icon {
+  margin-right: 10rpx;
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.topic-checker-item-text {
+  flex: 1;
+}

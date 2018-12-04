@@ -1,0 +1,21 @@
+/* components/topicList/topicList.wxss */
+.topic_list {
+  background: #fff;
+  padding: 0 24rpx;
+}
+.topic_list .item {
+  display: flex;
+  padding: 30rpx 0;
+  align-items: center;
+  border-bottom: 1rpx solid rgba(62, 204, 204, 0.1);
+}
+.topic_list .item .title {
+  flex: 1;
+  color: #666;
+  font-size: 28rpx;
+}
+.topic_list .item .btn {
+  margin-left: 30rpx;
+  font-size: 26rpx;
+  color: #3ecccc;
+}

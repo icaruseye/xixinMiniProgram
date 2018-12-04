@@ -1,0 +1,36 @@
+<view class="container">
+  <view class="step_wrapper">
+    <view class="step_items">
+      <view
+        class="step_item" 
+        wx:for="{{lessonList}}"
+        wx:key="idx"
+        wx:for-item="item">
+        <view class="step_item_title">{{item.ChapterName}}</view>
+        <view class="step__circle"></view>
+        <view class="step__line"></view>
+        <view class="step_item_content">
+          <view
+            class="sub_item"
+            wx:for="{{item.lessonResponse}}" 
+            wx:key="subidx"
+            wx:for-item="subItem">
+            <view
+              class="sub_item_title {{curr === subItem.LessonID && 'active'}}"
+              bindtap="selectLesson"
+              data-id="{{subItem.LessonID}}">
+              <span class="name">{{subItem.LessonName}}</span>
+              <span class="tag">录播</span>
+              <image class='play_icon' src="../../images/course_play.png"></image>
+            </view>
+            <view class="sub_item_time">{{subItem.VideoMinute}}分钟</view>
+          </view>
+          <view class="sub_item" wx:if="{{item.lessonResponse.length === 0}}">
+            <view class="sub_item_title">暂无小节内容</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- <view class="empty-box">暂无章节列表</view> -->
+</view>

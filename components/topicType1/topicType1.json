@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "i-radio-group": "../../dist/iview/radio-group/index",
+    "i-radio": "../../dist/iview/radio/index"
+  }
+}

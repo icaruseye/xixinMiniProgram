@@ -1,0 +1,64 @@
+.topic_wrap {
+  padding: 25px 14px 70px 14px;
+}
+.topic_wrap .topic_title {
+  font-size: 15px;
+  color: #666;
+  margin-bottom: 20px;
+}
+.topic_tools {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  font-size: 12px;
+  padding: 16px 20px 16px 0;
+  background: #fff;
+  color: #666;
+}
+.topic_tools .item {
+  margin: 0 0 0 40rpx;
+  display: flex;
+  align-items: center;
+}
+.topic_tools .item .btn {
+  font-size: 24rpx;
+}
+.topic_tools .item .btn .iconfont {
+  color: #3AC7F5;
+}
+.topic_tools .iconfont {
+  position: relative;
+  top: 2rpx;
+  margin-right: 10rpx;
+  color: #ccc;
+  font-size: 20px;
+}
+.res_wrap {
+  background: #f6f6f6;
+}
+.res_wrap .icon_box {
+  background: #fff;
+  padding: 60rpx 0;
+  text-align: center;
+}
+.res_wrap .icon_box .iconfont {
+  font-size: 60px;
+  color: #32C0F3;
+}
+.res_wrap .icon_box p {
+  font-size: 56rpx;
+  color: #999;
+}
+.res_wrap .submit_paper {
+  margin-top: 20rpx;
+  width: 100%;
+  border: 0;
+  background: #fff;
+  color: #32C0F3;
+  font-size: 32rpx;
+  text-align: center;
+  height: 100rpx;
+  line-height: 100rpx;
+}
