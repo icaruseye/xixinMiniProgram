@@ -1,0 +1,68 @@
+.wrapper {
+  background: #f6f6f6;
+}
+.topic_tools {
+  display: flex;
+  font-size: 12px;
+  padding: 16px 20px 16px 0;
+  background: #fff;
+  color: #666;
+}
+.topic_tools .item {
+  margin: 0 0 0 20px;
+  display: flex;
+  align-items: center;
+}
+.topic_tools .icon {
+  width: 50rpx;
+  height: 50rpx;
+}
+.card_wrap .icon {
+  width: 40rpx;
+  height: 40rpx;
+}
+.card_wrap .title {
+  display: flex;
+  font-size: 13px;
+  color: #666;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+}
+.card_wrap .title .text {
+  flex: 1;
+}
+.card_wrap .item-list {
+  max-height: 300px;
+  overflow: scroll;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  padding: 16px 12px;
+  background: #fff;
+  font-size: 13px;
+  color: #999;
+}
+.card_wrap .item-list .main_item {
+  width: 16.666666%;
+}
+.card_wrap .item-list .main_item .item {
+  margin: 0 auto 12px;
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 50%;
+  border: 1rpx solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.card_wrap .item-list .main_item .item.correct {
+  color: #3ecccc;
+  border-color: #299494;
+  background: #D5F4FF;
+}
+.card_wrap .item-list .main_item .item.wrong {
+  color: #FF5F5F;
+  border-color: #FF5F5F;
+  background: #FFDFDF;
+}

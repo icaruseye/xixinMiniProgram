@@ -1,0 +1,32 @@
+
+<view class="wrapper">
+  <!-- 简答题 -->
+  <view class="topic_item topic_item_jianda" wx:if="{{data.TestPaperSubtitleName}}">
+    <view class="topic_title"><text class="tag">{{data.TestPaperSubtitleName}}</text>{{index + 1}}.{{data.QuestionTitle}}</view>
+    <view wx:if="{{correctInner === ''}}">
+      <textarea class="textarea" value="{{answerInner}}" bindblur="bindinput"></textarea>
+      <button class="submit" wx:if="{{paperType}}" bindtap="submitAnswer">提交</button>
+    </view>
+    <view wx:else>
+      <textarea class="textarea" value="{{answerInner}}" disabled></textarea>
+      <image 
+        wx:if="{{answerInner === correctInner}}"
+        class='topic-checker-item-icon'
+        src="../../images/topic_right.png" 
+        mode="scaleToFill">
+      </image>
+      <image 
+        wx:if="{{answerInner !== correctInner}}"
+        class='topic-checker-item-icon'
+        src="../../images/topic_cha.png" 
+        mode="scaleToFill">
+      </image>
+    </view>
+  </view>
+  <!-- 答案解析 -->
+  <view class="answer_wrap" wx:if="{{correctInner !== ''}}">
+    <view style="color:#3AC7F5">[正确答案] {{correctInner}}</view>
+    <view>试题解析：</view>
+    <view>{{data.AnswerRemark}}</view>
+  </view>
+</view>

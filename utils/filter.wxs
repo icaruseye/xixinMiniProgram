@@ -51,6 +51,12 @@ var numberToAlp = function (index) {
       index = letters[index]
     }
   }
+  return index
+}
+
+var wxIncludes = function (arr, target) {
+  console.log(arr)
+  return arr.indexOf(target)
 }
 
 /*
@@ -60,5 +66,7 @@ module.exports = {
   transformImgUrl: transformImgUrl,
   xxMissionTypeIconFilter: xxMissionTypeIconFilter,
   priceTrans: priceTrans,
-  phoneHide: phoneHide
+  phoneHide: phoneHide,
+  numberToAlp: numberToAlp,
+  wxIncludes: wxIncludes
 }

@@ -11,7 +11,11 @@
     "pages/activityGuide/activityGuide",
     "components/lessonList/lessonList",
     "components/topicList/topicList",
-    "components/topicType1/topicType1"
+    "components/topicType1/topicType1",
+    "components/topicType2/topicType2",
+    "components/topicCard/topicCard",
+    "components/topicType4/topicType4",
+    "components/topicType5/topicType5"
   ],
   "usingComponents": {
     "i-modal": "./dist/iview/modal/index",

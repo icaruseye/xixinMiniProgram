@@ -1,12 +1,102 @@
 <view class="container">
-  <view class="topic_wrap" v-if="questionList.length > 0">
+  <view class="topic_wrap" wx:if="questionList.length > 0">
     <!-- 单选题 -->
     <topic-type1
-      wx:if="{{questionList[answerIndex].QuestionType === 1}}"
+      wx:if="{{questionList[answerIndex].QuestionType === 1 || questionList[answerIndex].QuestionType === 3}}"
       index="{{answerIndex}}"
       paperType="{{IsNeedAnswer}}"
       data="{{questionList[answerIndex]}}"
+      bind:setCourseRightNums="addRightNums"
+      bind:setCourseWrongNums="addWrongNums"
       >
     </topic-type1>
+    <!-- 简单题 -->
+    <topic-type2
+      wx:if="{{questionList[answerIndex].QuestionType === 2}}"
+      index="{{answerIndex}}"
+      paperType="{{IsNeedAnswer}}"
+      data="{{questionList[answerIndex]}}"
+      bind:setCourseRightNums="addRightNums"
+      bind:setCourseWrongNums="addWrongNums"
+      >
+    </topic-type2>
+    <!-- 多选题 -->
+    <topic-type4
+      wx:if="{{questionList[answerIndex].QuestionType === 4}}"
+      index="{{answerIndex}}"
+      paperType="{{IsNeedAnswer}}"
+      data="{{questionList[answerIndex]}}"
+      bind:setCourseRightNums="addRightNums"
+      bind:setCourseWrongNums="addWrongNums"
+      >
+    </topic-type4>
+    <!-- 简单题 -->
+    <topic-type5
+      wx:if="{{questionList[answerIndex].QuestionType === 5}}"
+      index="{{answerIndex}}"
+      paperType="{{IsNeedAnswer}}"
+      data="{{questionList[answerIndex]}}"
+      bind:setCourseRightNums="addRightNums"
+      bind:setCourseWrongNums="addWrongNums"
+      >
+    </topic-type5>
+    <!-- 底部操作栏 -->
+    <view class="topic_tools">
+      <view class="item" wx:if="{{IsNeedAnswer}}">
+        <image src="../../images/topic_right_bot.png"></image>
+        <view style="color:#3ecccc">{{rightNums}}</view>
+      </view>
+      <view class="item" wx:if="{{IsNeedAnswer}}">
+        <image src="../../images/topic_cha_bot.png"></image>
+        <span style="color:#ff4e4e">{{wrongNums}}</span>
+      </view>
+      <view class="item" bindtap="showCard">
+        <image src="../../images/topic_menu.png"></image>
+      </view>
+      <view class="item" bindtap="checkPaper">
+        <span style="color:#3ecccc">提交试卷</span>
+      </view>
+      <view class="item" style="flex:1;justify-content: flex-end;">
+        <view class="btn" bindtap="prevQuestion">
+          <image src="../../images/topic_prev.png"></image>
+        </view>
+        <view class="btn" bindtap="nextQuestion" style="margin-left:10px">
+          <image src="../../images/topic_next.png"></image>
+        </view>
+      </view>
+    </view>
+    <!-- 答题卡 -->
+    <van-popup
+    custom-class="item_popup_wrap"
+    show="{{ isShowCard }}"
+    bind:click-overlay="closeCard"
+    position="bottom">
+      <view>
+        <topic-card
+          wx:if="{{ isShowCard }}"
+          bind:onClick="cardClick"
+          paperType="{{IsNeedAnswer}}"
+          TestPaperName="{{TestPaperName}}"
+          rightNums="{{rightNums}}"
+          wrongNums="{{wrongNums}}"
+          >
+        </topic-card>
+      </view>
+    </van-popup>
+    <!-- 完成试卷 -->
+    <van-popup
+    custom-class="item_popup_wrap"
+    show="{{ isOver }}"
+    bind:click-overlay="closeFinish"
+    position="bottom">
+      <view class="res_wrap">
+        <view class="icon_box">
+          <image class="icon" src="../../images/topic_finish.png"></image>
+          <view class='text' wx:if="{{IsNeedAnswer}}">已完成所有练习题目</view>
+          <view class='text' v-else>已完成所有题目</view>
+        </view>
+        <button class="submit_paper" bindtap="submitPaper">{{IsNeedAnswer ? '返回试卷列表' : '提交试卷'}}</button>
+      </view>
+    </van-popup>
   </view>
 </view>

@@ -1,5 +1,5 @@
 import { NumToLetter } from '../../utils/util.js'
-import { watch, computed } from '../../utils/vuefy.js' 
+import { watch, computed } from '../../utils/vuefy.js'
 
 Component({
   properties: {
@@ -20,15 +20,15 @@ Component({
     }
   },
   data: {
-    answerInner: -1,
-    correctInner: -1,
-    NumToLetter: ''
+    answerInner: '',
+    correctInner: ''
   },
   lifetimes: {
     attached() {
       console.log('attached')
       watch(this, {
         answerInner: function (newVal) {
+          console.log('answerInner update')
           if (!this.data.paperType) {
             this.setStorage(newVal)
           }
@@ -37,47 +37,44 @@ Component({
     }
   },
   methods: {
-    init (index) {
-      console.log('单选题init')
+    // 初始化
+    init(index) {
       const answerList = wx.getStorageSync('userAnswerList')
       this.setData({
-        answerInner: answerList[index].Answer !== -1 ? answerList[index].Answer : -1,
-        correctInner: answerList[index].Answer !== -1 ? this.data.data.IntRightKey : -1,
-        NumToLetter: ''
+        answerInner: answerList[this.data.index].Answer !== '' ? answerList[this.data.index].Answer : '',
+        correctInner: this.data.paperType && answerList[this.data.index].Answer !== '' ? this.data.data.StrRightKey : ''
       })
     },
-    handleChange({ detail = {} }) {
+    // 收集回答
+    bindinput(e) {
+      console.log(e.detail.value)
       this.setData({
-        answerInner: detail.value
+        answerInner: e.detail.value
       })
     },
-    selectItem (e) {
-      this.setData({
-        answerInner: e.currentTarget.dataset.key
-      })
-    },
+    // 缓存答题数据
     setStorage(newVal) {
       const answerList = wx.getStorageSync('userAnswerList')
       answerList[this.data.index].Answer = newVal
       wx.setStorageSync('userAnswerList', answerList)
     },
-    submitAnswer () {
-      if (this.data.answerInner === -1) {
+    // 提交答案
+    submitAnswer() {
+      if (this.data.answerInner === '') {
         wx.showToast({
-          title: '答案不能为空',
+          title: '请完成回答再提交',
           icon: 'none',
           duration: 1500
         })
         return false
       }
-      if (this.data.answerInner !== this.data.data.IntRightKey) {
+      if (this.data.answerInner !== this.data.data.StrRightKey) {
         this.triggerEvent('setCourseWrongNums', {})
       } else {
         this.triggerEvent('setCourseRightNums', {})
       }
       this.setData({
-        NumToLetter: NumToLetter(this.data.data.IntRightKey),
-        correctInner: this.data.data.IntRightKey
+        correctInner: this.data.data.StrRightKey.split('><')
       })
       this.setStorage(this.data.answerInner)
     }

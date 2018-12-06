@@ -1,0 +1,37 @@
+<!-- 简答题 -->
+<view class="wrapper">
+  <view class="topic_item" wx:if="data.TestPaperSubtitleName">
+    <view class="topic_title"><text class="tag">{{data.TestPaperSubtitleName}}</text>{{index + 1}}.{{data.QuestionTitle}}</view>
+    <view wx:if="{{correctInner === ''}}">
+      <view class="topic_input_item" wx:for="{{data.SelectionAmount}}" wx:key="{{index}}">
+        <text>{{index + 1}}</text>
+        <input type="text" value="{{answerInner[index]}}" bindinput="bindinput" data-key="{{index}}"/>
+      </view>
+    </view>
+    <view wx:else>
+      <view class="topic_input_item" wx:for="{{data.SelectionAmount}}" wx:key="{{index}}">
+        <text>{{index + 1}}</text>
+        <input type="text" value="{{answerInner[index]}}" disabled />
+        <image 
+          wx:if="{{answerInner[index] === correctInner[index]}}"
+          class='topic-checker-item-icon'
+          src="../../images/topic_right.png" 
+          mode="scaleToFill">
+        </image>
+        <image 
+          wx:else
+          class='topic-checker-item-icon'
+          src="../../images/topic_cha.png" 
+          mode="scaleToFill">
+        </image>
+      </view>
+    </view>
+    <!-- 答案解析 -->
+    <view class="answer_wrap" wx:if="{{correctInner !== ''}}">
+      <view style="color:#3AC7F5">[正确答案] {{correctInner}}</view>
+      <view>试题解析：</view>
+      <view>{{data.AnswerRemark}}</view>
+    </view>
+    <button class="submit_button" wx:if="{{correctInner === '' && paperType}}" bindtap="submitAnswer">提交</button>
+  </view>
+</view>

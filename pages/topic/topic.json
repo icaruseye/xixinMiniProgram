@@ -1,6 +1,11 @@
 {
   "navigationBarTitleText": "习题练习",
   "usingComponents": {
-    "topic-type1": "../../components/topicType1/topicType1"
+    "van-popup": "../../dist/vant/popup/index",
+    "topic-type1": "../../components/topicType1/topicType1",
+    "topic-type2": "../../components/topicType2/topicType2",
+    "topic-type4": "../../components/topicType4/topicType4",
+    "topic-type5": "../../components/topicType5/topicType5",
+    "topic-card": "../../components/topicCard/topicCard"
   }
 }

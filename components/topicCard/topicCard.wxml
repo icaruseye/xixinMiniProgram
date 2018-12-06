@@ -1,0 +1,43 @@
+<view class="wrapper">
+    <view class="topic_tools">
+      <view class="item" wx:if="{{paperType}}">
+        <image class='icon' src="../../images/topic_right_bot.png"></image>
+        <view style="color:#3ecccc">{{rightNums}}</view>
+      </view>
+      <view class="item" wx:if="{{paperType}}">
+        <image class='icon' src="../../images/topic_cha_bot.png"></image>
+        <span style="color:#FF4E4E">{{wrongNums}}</span>
+      </view>
+      <view class="item">
+        <image class='icon' src="../../images/topic_menu.png"></image>
+      </view>
+    </view>
+    <view class="card_wrap">
+      <view class="title">
+        <view class='text'>{{TestPaperName}}</view>
+        <!-- <image class='icon' src='../../images/topic_remove.png'></image>
+        <view>清空</view> -->
+      </view>
+      <view class="item-list" wx:if="{{paperType}}">
+        <view class="main_item" wx:for="{{answerList}}" wx:key="{{index}}">
+          <view
+            bindtap="clickItem"
+            data-key="{{index}}"
+            class="item {{item.Answer === item.correct ? 'correct' : ''}}{{(item.Answer !== item.correct && item.Answer !== -1 && item.Answer !== '') ? ' wrong' : ''}}">
+            {{index + 1}}
+          </view>
+
+        </view>
+      </view>
+      <view class="item-list" wx:else>
+        <view class="main_item" wx:for="{{answerList}}" wx:key="{{index}}">
+          <view
+            bindtap="clickItem"
+            data-key="{{index}}"
+            class="item {{ (item.Answer !== -1 && item.Answer !== '') ? 'correct' : '' }}">
+            {{index + 1}}
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>

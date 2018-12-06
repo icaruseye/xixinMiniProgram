@@ -1,10 +1,10 @@
 <wxs module='filter' src='../../utils/filter.wxs'></wxs>
 <view class="wrapper">
-  <!-- 单选题 -->
+  <!-- 多选题 -->
   <view class="topic_item" wx:if="data.TestPaperSubtitleName">
     <view class="topic_title"><span class="tag">{{data.TestPaperSubtitleName}}</span>{{index + 1}}.{{data.QuestionTitle}}</view>
     <!-- 未提交 -->
-    <view wx:if="{{correctInner === -1}}">
+    <view wx:if="{{correctInner === ''}}">
       <view
         class="topic-checker-item"
         wx:for="{{data.Content}}"
@@ -12,16 +12,16 @@
         data-key="{{index}}"
         bindtap="selectItem"
         >
-        <image 
-          wx:if="{{index !== answerInner}}"
+        <image
+          wx:if="{{answerInner[index] === index}}"
           class='topic-checker-item-icon'
-          src="../../images/topic_yuan.png" 
+          src="../../images/topic_right.png" 
           mode="scaleToFill">
         </image>
         <image 
-          wx:if="{{index === answerInner}}"
+          wx:else
           class='topic-checker-item-icon'
-          src="../../images/topic_right.png" 
+          src="../../images/topic_yuan.png" 
           mode="scaleToFill">
         </image>
         <view class='topic-checker-item-text'>{{filter.numberToAlp(index)}}.{{item}}</view>
@@ -36,15 +36,9 @@
         data-key="{{index}}"
         >
         <image 
-          wx:if="{{(index === answerInner && correctInner === '') || index === correctInner}}"
+          wx:if="{{answerInner[index] === index}}"
           class='topic-checker-item-icon'
           src="../../images/topic_right.png" 
-          mode="scaleToFill">
-        </image>
-        <image 
-          wx:elif="{{answerInner !== correctInner && answerInner === index}}"
-          class='topic-checker-item-icon'
-          src="../../images/topic_cha.png" 
           mode="scaleToFill">
         </image>
         <image 
@@ -54,14 +48,26 @@
           mode="scaleToFill">
         </image>
         <view class='topic-checker-item-text'>{{filter.numberToAlp(index)}}.{{item}}</view>
+        <image 
+          wx:if="{{correctInner[index]}}"
+          class='topic-checker-item-icon'
+          src="../../images/topic_right.png" 
+          mode="scaleToFill">
+        </image>
+        <image 
+          wx:if="{{answerInner[index] !== correctInner[index] && answerInner[index]}}"
+          class='topic-checker-item-icon'
+          src="../../images/topic_cha.png" 
+          mode="scaleToFill">
+        </image>
       </view>
     </view>
   </view>
   <!-- 答案解析 -->
-  <view class="answer_wrap" wx:if="{{correctInner !== -1}}">
-    <view style="color:#3AC7F5">[正确答案] {{filter.numberToAlp(correctInner)}}</view>
+  <view class="answer_wrap" wx:if="{{correctInner !== ''}}">
+    <view style="color:#3AC7F5">[正确答案] {{NumToLetter}}</view>
     <view>试题解析：</view>
     <view>{{data.AnswerRemark}}</view>
   </view>
-  <button class="submit_button" wx:if="{{paperType && correctInner === -1}}" bindtap="submitAnswer">提交</button>
+  <button class="submit_button" wx:if="{{paperType && correctInner === ''}}" bindtap="submitAnswer">提交</button>
 </view>

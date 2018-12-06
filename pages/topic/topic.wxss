@@ -1,3 +1,7 @@
+.container {
+  background: #f6f6f6;
+  min-height: 100vh;
+}
 .topic_wrap {
   padding: 25px 14px 70px 14px;
 }
@@ -17,6 +21,11 @@
   background: #fff;
   color: #666;
 }
+.topic_tools image {
+  width: 50rpx;
+  height: 50rpx;
+}
+
 .topic_tools .item {
   margin: 0 0 0 40rpx;
   display: flex;
@@ -26,7 +35,7 @@
   font-size: 24rpx;
 }
 .topic_tools .item .btn .iconfont {
-  color: #3AC7F5;
+  color: #3ecccc;
 }
 .topic_tools .iconfont {
   position: relative;
@@ -43,12 +52,12 @@
   padding: 60rpx 0;
   text-align: center;
 }
-.res_wrap .icon_box .iconfont {
-  font-size: 60px;
-  color: #32C0F3;
+.res_wrap .icon_box .icon {
+  width: 170rpx;
+  height: 170rpx
 }
-.res_wrap .icon_box p {
-  font-size: 56rpx;
+.res_wrap .icon_box .text {
+  font-size: 18px;
   color: #999;
 }
 .res_wrap .submit_paper {
@@ -56,7 +65,7 @@
   width: 100%;
   border: 0;
   background: #fff;
-  color: #32C0F3;
+  color: #3ecccc;
   font-size: 32rpx;
   text-align: center;
   height: 100rpx;

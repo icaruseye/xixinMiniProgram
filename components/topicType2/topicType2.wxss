@@ -11,16 +11,6 @@
   font-size: 12px;
   padding: 2px 5px;
 }
-.topic-checker-item {
-  position:relative;
-  padding:12px 15px;
-  display:flex;
-  align-items:center;
-  line-height:1.4;
-  font-size:14px;
-  overflow:hidden;
-  color: #666;
-}
 .submit_button {
   margin-top: 10px;
   background: #3ecccc;
@@ -38,6 +28,27 @@
   color: #999;
   font-size: 14px;
 }
+.topic_input_item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #666;
+}
+.topic_input_item text {
+  color: #999;
+  margin-right: 5px;
+}
+.topic_input_item input {
+  flex: 1;
+  margin-right: 5px;
+  height: 35px;
+  line-height: 35px;
+  padding: 0 10px;
+  background: #e1e1e1;
+  border-radius: 4px;
+}
+
 .topic-checker-item-icon {
   margin-right: 10rpx;
   width: 50rpx;
