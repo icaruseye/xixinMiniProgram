@@ -32,5 +32,5 @@
   <!-- 习题列表 -->
   <topic-list wx-if="{{ current === 'topic' }}" proxy-courseID="{{ proxyCourseID }}"></topic-list>
   <!-- 购买按钮 -->
-  <button class='buy_btn'>购买课程</button>
+  <button class='buy_btn' bindtap='topay'>购买课程</button>
 </view>

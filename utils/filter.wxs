@@ -3,7 +3,7 @@
  * 图片地址转换
  */
 var transformImgUrl = function (val) {
-  if (!val) return false
+  if (!val) return ''
   if (val.indexOf('http') === -1 && val.indexOf('Upload') === -1 && val.indexOf('base64') === -1) {
     return 'http://www.xixincloud.com:6883/File/GetImage/' + val 
   } else {

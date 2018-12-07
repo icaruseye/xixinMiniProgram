@@ -18,7 +18,7 @@ Page({
   onLoad: function (options) {
     wx.setStorageSync('localUrl', this.route)
     this.setData({
-      proxyCourseID: options.id || 1
+      proxyCourseID: options.id
     })
   },
 
@@ -49,7 +49,37 @@ Page({
       lessonID: e.detail,
       proxyCourseID: this.data.proxyCourseID
     })
-    console.log(res)
+    this.setData({
+      'courseInfo.PreViewContent': res.Data
+    })
+  },
+
+  async topay() {
+    const resPreOrder = await this.preOrder(this.data.proxyCourseID)
+    const resOpenID = await this.getUserOpenID()
+    if (resPreOrder.OrderID && resOpenID) {
+      wx.navigateTo({
+        url: `/pages/pay/pay?orderID=${resPreOrder.OrderID}&openID=${resOpenID}`
+      })
+    }
+  },
+
+  async getUserOpenID() {
+    const res = await api._get(`/SPUser/UserOpenID?sessionToken=${wx.getStorageSync('sessionToken')}`)
+    if (res.Code === 100000) {
+      return res.Data
+    }
+  },
+
+  async preOrder(packageID) {
+    const res = await api._post(`/SPUser/PreOrder`, {
+      packageID: packageID,
+      refereeType: '2',
+      refereeViewID: wx.getStorageSync('servantViewID'),
+    })
+    if (res.Code === 100000) {
+      return res.Data
+    }
   },
 
   /**

@@ -27,3 +27,24 @@
   color: #999;
   margin-bottom: 20rpx;
 }
+
+.share_btn {
+  position: absolute;
+  right: 20rpx;
+  top: 35rpx;
+  background: transparent;
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.share_btn .icon {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.share_btn::after {
+  border: 0;
+}

@@ -1,6 +1,9 @@
 <!--pages/activityIntro/activityIntro.wxml-->
 <wxs module='filter' src='../../utils/filter.wxs'></wxs>
 <view class='container'>
+  <button open-type='share' class='share_btn'>
+    <image class='icon' src='../../images/share-icon.png'></image>
+  </button>
   <van-dialog id="van-dialog" />
   <view wx:if="{{ pageReady }}">
     <view class='activityDetail_info'>
@@ -13,7 +16,7 @@
         {{info.ActivityDescribe}}
       </view>
       <view wx:for='{{info.ActivityIntroductionImg}}' wx:key='index'>
-        <image class='section_image' src='{{filter.transformImgUrl(item)}}' mode='aspectFit'></image>
+        <image class='section_image' wx:if="{{item}}" src='{{filter.transformImgUrl(item)}}' mode='aspectFit'></image>
       </view>
     </view>
     <view class='activityDetail_goods'>

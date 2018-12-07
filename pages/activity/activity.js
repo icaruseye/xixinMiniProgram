@@ -32,7 +32,7 @@ Page({
   // 活动列表
   async getActivityList () {
     const that = this
-    const res = await api._get('/SPUser/Activity-List', {
+    await api._get('/SPUser/Activity-List', {
       viewId: wx.getStorageSync('servantViewID')
     }).then(res => {
       that.setData({

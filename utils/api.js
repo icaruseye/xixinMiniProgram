@@ -6,6 +6,7 @@ const http = ({ url = '', param = {}, ...other } = {}) => {
     title: '请求中..',
     mask: true
   })
+  param.shopID = 1
   return new Promise((resolve, reject) => {
     wx.request({
       url: getUrl(url),
@@ -17,7 +18,6 @@ const http = ({ url = '', param = {}, ...other } = {}) => {
       ...other,
       complete: (res) => {
         wx.hideLoading()
-        console.log(res)
         if (res.statusCode >= 200 && res.statusCode < 300) {
           if (res.data.Code === 100000) {
             resolve(res.data)            

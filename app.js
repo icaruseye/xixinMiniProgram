@@ -12,11 +12,10 @@ App({
     }
   },
   globalData: {
-    devApi: 'https://lan-test.xixincloud.com',    //对应的就是192.168.2.100
-    proApi: 'https://test-api.xixincloud.com',
     header: {
       token: ''
     },
-    userInfo: null
+    userInfo: null,
+    userId: ''
   }
 })

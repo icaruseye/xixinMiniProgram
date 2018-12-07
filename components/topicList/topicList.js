@@ -30,12 +30,26 @@ Component({
       })
     },
 
+    async getCouldExam(id) {
+      const res = await api._get(`/User/CouldExam?testPaperID=${id}`)
+      if (res.Data) {
+        wx.navigateTo({
+          url: `/pages/topic/topic?id=${id}&recordID=${res.Data}`,
+        })
+      }
+    },
 
     /**
      * 去做题
      */
-    toTopic (e) {
+    async toTopic (e) {
       console.log(e)
+      const recordID = await this.getCouldExam(e.currentTarget.dataset.id)
+      if (recordID) {
+        wx.navigateTo({
+          url: `/pages/topic/topic?recordID=${recordID}`,
+        })
+      }
     }
   }
 })

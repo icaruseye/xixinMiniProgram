@@ -11,16 +11,30 @@ Page({
     info: null,
     show: false,
     pageReady: false,
-    activityId: 2,
-    servantViewID: wx.getStorageSync('servantViewID')
+    activityId: '',
+    servantViewID: wx.getStorageSync('servantViewID') || '',
+    userId: ''
   },
+
+  onShareAppMessage: function (res) {
+    if (res.from === 'button') {
+      // 来自页面内转发按钮
+      console.log(res.target)
+    }
+    return {
+      title: this.data.info.ActivityName,
+      path: `/pages/activityIntro/activityIntro?id=${this.data.activityId}&${this.data.userId}`
+    }
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad (options) {
     wx.setStorageSync('localUrl', `${this.route}?id=${options.id}`)
     this.setData({
-      activityId: options.id
+      activityId: options.id,
+      userId: app.globalData.userId
     })
     this.getActivityDetail(this.data.activityId)
   },
@@ -38,7 +52,7 @@ Page({
     })
   },
   async topay () {
-    const resPreOrder = await this.preOrder()
+    const resPreOrder = await this.preOrder(this.data.activityId)
     const resOpenID = await this.getUserOpenID()
     if (resPreOrder.OrderID && resOpenID) {
       wx.navigateTo({
@@ -46,9 +60,9 @@ Page({
       })
     }
   },
-  async preOrder () {
+  async preOrder(packageID) {
     const res = await api._post(`/SPUser/PreOrder`, {
-      packageID: this.data.activityId,
+      packageID: packageID,
       refereeType: '2',
       refereeViewID: this.data.servantViewID,
     })
@@ -71,46 +85,5 @@ Page({
     this.setData({
       show: false
     })
-  },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
   }
 })
