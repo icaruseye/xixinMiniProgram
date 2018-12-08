@@ -1,19 +1,20 @@
-// const baseUrl = 'https://test-api.xixincloud.com/api'
-const baseUrl = 'https://lan-test.xixincloud.com/api'
+const baseUrl = 'https://test-api.xixincloud.com/api'
+// const baseUrl = 'https://lan-test.xixincloud.com/api'
 
 const http = ({ url = '', param = {}, ...other } = {}) => {
   wx.showLoading({
     title: '请求中..',
     mask: true
   })
-  param.shopID = 1
+  //param.shopID = 1
   return new Promise((resolve, reject) => {
     wx.request({
       url: getUrl(url),
       data: param,
       header: {
         'content-type': 'application/json',
-        'token': wx.getStorageSync('token')
+        'token': wx.getStorageSync('token'),
+        'shopID': 1,
       },
       ...other,
       complete: (res) => {

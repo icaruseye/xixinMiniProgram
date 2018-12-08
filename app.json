@@ -1,10 +1,10 @@
 {
   "pages": [
-    "pages/activityIntro/activityIntro",
     "pages/activityCom/activityCom",
+    "pages/activity/activity",
+    "pages/activityIntro/activityIntro",
     "pages/topic/topic",
     "pages/courseDetail/courseDetail",
-    "pages/activity/activity",
     "pages/pay/pay",
     "pages/login/login",
     "pages/mine/mine",

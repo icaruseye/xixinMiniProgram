@@ -17,13 +17,13 @@ Page({
   onLoad(options) {
     wx.setStorageSync('servantViewID', options.servantViewID)
     wx.setStorageSync('localUrl', this.route)
-    this.setData({
-      shopID: options.shopID
-    })
+    // this.setData({
+    //   shopID: options.shopID
+    // })
     if (options.isMine) {
       this.setData({
         current: 'activityMine',
-        shopID: options.id
+        // shopID: options.id
       })
     }
     this.setData({
@@ -40,7 +40,7 @@ Page({
   // 活动列表
   async getActivityList() {
     const that = this
-    await api._get(`/SPUser/Activity/List/All?shopID=${this.data.shopID}`).then(res => {
+    await api._get(`/SPUser/Activity/List/All`).then(res => {
       that.setData({
         pageReady: true,
         list: res.Data || []
@@ -54,20 +54,37 @@ Page({
   // 我的活动
   getMyList() {
     const that = this
-    api._get('/SPUser/Activity-My-List', {
-      viewId: wx.getStorageSync('servantViewID')
-    }).then(res => {
-      that.setData({
-        pageReady: true,
-        mineList: res.Data || []
+    if (wx.getStorageSync('servantViewID') !== "") {              //是不是有更优雅的写法???
+      api._get('/SPUser/Activity-My-List', {
+        viewId: wx.getStorageSync('servantViewID')
+      }).then(res => {
+        that.setData({
+          pageReady: true,
+          mineList: res.Data || []
+        })
+      }).catch(e => {
+        that.setData({
+          pageReady: true
+        })
       })
-    }).catch(e => {
-      that.setData({
-        pageReady: true
+    }
+    else{
+      api._get('/SPUser/Activity-My-List-All', {
+      }).then(res => {
+        that.setData({
+          pageReady: true,
+          mineList: res.Data || []
+        })
+      }).catch(e => {
+        that.setData({
+          pageReady: true
+        })
       })
-    })
+    }
   },
-  handleChange({ detail }) {
+  handleChange({
+    detail
+  }) {
     if (detail.key !== this.data.current) {
       this.setData({
         pageReady: false,
@@ -81,7 +98,7 @@ Page({
       }
     }
   },
-  getUserInfo: function (e) {
+  getUserInfo: function(e) {
     wx.setStorageSync('userInfo', e.detail.userInfo)
     this.setData({
       userInfo: e.detail.userInfo,
@@ -94,7 +111,7 @@ Page({
     })
   },
   //事件处理函数
-  toDetail: function (e) {
+  toDetail: function(e) {
     wx.navigateTo({
       url: `../activityIntro/activityIntro?id=${e.currentTarget.dataset.id}`
     })

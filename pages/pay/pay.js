@@ -20,7 +20,7 @@ Page({
     this.setData({
       info: res
     })
-    const orderInfo = await this.createOrder(options.orderID, options.openID, wx.getStorageSync('servantViewID'))
+    const orderInfo = await this.createOrder(options.orderID, options.openID)
     // 发起支付
     wx.requestPayment({
       timeStamp: orderInfo.timeStamp,

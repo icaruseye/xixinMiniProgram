@@ -21,7 +21,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wx.setStorageSync('servantViewID', 'fa5ae362fb654419b0a856ef5d0fc87f')
+    //wx.setStorageSync('servantViewID', 'fa5ae362fb654419b0a856ef5d0fc87f')
     const that = this
     wx.login({
       success(res) {
