@@ -1,8 +1,8 @@
 <!--pages/login/login.wxml-->
 <view class='container' wx:if="pageReady">
   <view class='logo_wrap'>
-    <image class='left' src='https://tva4.sinaimg.cn/crop.0.0.750.750.180/883d794fjw8evemld5qqwj20ku0ku3zz.jpg'></image>
-    <image class='mid' src='../../images/login-mid.png'></image>
+    <!-- <image class='left' src='https://tva4.sinaimg.cn/crop.0.0.750.750.180/883d794fjw8evemld5qqwj20ku0ku3zz.jpg'></image>
+    <image class='mid' src='../../images/login-mid.png'></image> -->
     <image class='right' src='../../images/logo.png'></image>
   </view>
   <view class="button_wrap" wx:if='{{ !showForm }}'>
