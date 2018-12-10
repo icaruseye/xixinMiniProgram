@@ -27,7 +27,6 @@ Component({
   },
   lifetimes: {
     attached() {
-      console.log('attached')
       watch(this, {
         updateVal: function () {
           if (!this.data.paperType) {
@@ -43,7 +42,6 @@ Component({
       console.log('多选题init')
       const answerList = wx.getStorageSync('userAnswerList')
       const { answerInner, correctInner } = this.setAnswer(index)
-      console.log(correctInner)
       this.setData({
         answerInner: answerList[index].Answer || answerInner,
         correctInner: this.data.paperType && answerList[index].Answer !== '' ? correctInner : '',
@@ -82,17 +80,16 @@ Component({
     // 设置回答、答案数据结构
     setAnswer(index) {
       const answerList = wx.getStorageSync('userAnswerList')
-      let correctInner = []
-      let answerInner = []
+      let correctInner = Array(answerList[this.data.index].answerlength).fill(null)
+      let answerInner = Array(answerList[this.data.index].answerlength).fill(null)
       let StrRightKey = this.data.paperType ? this.data.data.StrRightKey.split(',').map(Number) : [] 
-      for (let i = 0; i < answerList[this.data.index].answerlength - 1; i++) {
-        correctInner.push(null)
-        answerInner.push(null)
-        if (StrRightKey[i]) {
-          correctInner[StrRightKey[i]] = StrRightKey[i]
+      if (StrRightKey.length > 0) {
+        for (let i = 0; i < answerList[this.data.index].answerlength; i++) {
+          if (StrRightKey[i]) {
+            correctInner[StrRightKey[i]] = StrRightKey[i]
+          }
         }
       }
-      correctInner.length = answerList[this.data.index].answerlength
       return {
         answerInner: answerInner,
         correctInner: correctInner

@@ -26,7 +26,6 @@ Component({
   },
   lifetimes: {
     attached() {
-      console.log('attached')
       watch(this, {
         answerInner: function (newVal) {
           if (!this.data.paperType) {
@@ -38,7 +37,6 @@ Component({
   },
   methods: {
     init (index) {
-      console.log('单选题init')
       const answerList = wx.getStorageSync('userAnswerList')
       this.setData({
         answerInner: answerList[index].Answer !== -1 ? answerList[index].Answer : -1,

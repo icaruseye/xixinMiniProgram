@@ -37,7 +37,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 3,
 			"list": [
 				{
 					"id": 1,
@@ -56,6 +56,12 @@
 					"name": "activityIntro",
 					"pathName": "pages/activityIntro/activityIntro",
 					"query": "id=12"
+				},
+				{
+					"id": -1,
+					"name": "courseDetail",
+					"pathName": "pages/topic/topic",
+					"query": "id=17"
 				}
 			]
 		}

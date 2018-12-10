@@ -25,10 +25,8 @@ Component({
   },
   lifetimes: {
     attached() {
-      console.log('attached')
       watch(this, {
         answerInner: function (newVal) {
-          console.log('answerInner update')
           if (!this.data.paperType) {
             this.setStorage(newVal)
           }
@@ -47,7 +45,6 @@ Component({
     },
     // 收集回答
     bindinput(e) {
-      console.log(e.detail.value)
       this.setData({
         answerInner: e.detail.value
       })

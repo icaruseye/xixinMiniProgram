@@ -11,19 +11,14 @@ Page({
     list: [],
     mineList: [],
     userInfo: {},
-    mobile: '',
-    shopID: ''
+    mobile: ''
   },
   onLoad(options) {
     wx.setStorageSync('servantViewID', options.servantViewID)
     wx.setStorageSync('localUrl', this.route)
-    // this.setData({
-    //   shopID: options.shopID
-    // })
     if (options.isMine) {
       this.setData({
-        current: 'activityMine',
-        // shopID: options.id
+        current: 'activityMine'
       })
     }
     this.setData({
@@ -32,59 +27,43 @@ Page({
     })
   },
   onShow() {
-    this.getActivityList()
-    wx.showShareMenu({
-      withShareTicket: true
-    })
+    if (this.data.current === 'activity') {
+      this.getActivityList()
+    }
+    if (this.data.current === 'activityMine') {
+      this.getMyList()
+    }
   },
   // 活动列表
   async getActivityList() {
-    const that = this
     await api._get(`/SPUser/Activity/List/All`).then(res => {
-      that.setData({
+      this.setData({
         pageReady: true,
         list: res.Data || []
       })
     }).catch(e => {
-      that.setData({
+      this.setData({
         pageReady: true
       })
     })
   },
-  // 我的活动
+  // 获取我的活动
   getMyList() {
-    const that = this
-    if (wx.getStorageSync('servantViewID') !== "") {              //是不是有更优雅的写法???
-      api._get('/SPUser/Activity-My-List', {
-        viewId: wx.getStorageSync('servantViewID')
-      }).then(res => {
-        that.setData({
-          pageReady: true,
-          mineList: res.Data || []
-        })
-      }).catch(e => {
-        that.setData({
-          pageReady: true
-        })
+    const servantViewID = wx.getStorageSync('servantViewID') || ''
+    const _url = servantViewID ? `/SPUser/Activity-My-List${servantViewID}` : '/SPUser/Activity-My-List-All'
+    api._get(_url).then(res => {
+      this.setData({
+        pageReady: true,
+        mineList: res.Data || []
       })
-    }
-    else{
-      api._get('/SPUser/Activity-My-List-All', {
-      }).then(res => {
-        that.setData({
-          pageReady: true,
-          mineList: res.Data || []
-        })
-      }).catch(e => {
-        that.setData({
-          pageReady: true
-        })
+    }).catch(e => {
+      this.setData({
+        pageReady: true
       })
-    }
+    })
   },
-  handleChange({
-    detail
-  }) {
+  // Tabbar切换
+  handleChange({detail}) {
     if (detail.key !== this.data.current) {
       this.setData({
         pageReady: false,
@@ -98,6 +77,7 @@ Page({
       }
     }
   },
+  // 获取用户昵称头像
   getUserInfo: function(e) {
     wx.setStorageSync('userInfo', e.detail.userInfo)
     this.setData({
@@ -105,12 +85,13 @@ Page({
       hasUserInfo: true
     })
   },
+  // 跳转使用指南
   toGuide() {
     wx.navigateTo({
       url: '/pages/activityGuide/activityGuide',
     })
   },
-  //事件处理函数
+  // 跳转活动详情
   toDetail: function(e) {
     wx.navigateTo({
       url: `../activityIntro/activityIntro?id=${e.currentTarget.dataset.id}`

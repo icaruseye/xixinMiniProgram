@@ -26,7 +26,6 @@ Component({
   },
   lifetimes: {
     attached() {
-      console.log('attached')
       watch(this, {
         updateVal: function () {
           if (!this.data.paperType) {
@@ -39,7 +38,6 @@ Component({
   methods: {
     // 初始化
     init(index) {
-      console.log('填空题')
       const answerList = wx.getStorageSync('userAnswerList')
       this.setAnsewer()
     },
@@ -49,7 +47,6 @@ Component({
       this.setData({
         answerInner: this.data.answerInner
       })
-      console.log(this.data.answerInner)
       if (!this.data.paperType) {
         this.setData({
           updateVal: !this.data.updateVal
@@ -71,9 +68,7 @@ Component({
       let answerInner = []
       let correctInner = ''
       if (!answerList[this.data.index].Answer) {
-        for (let i = 0; i < this.data.data.SelectionAmount; i++) {
-          answerInner.push('')
-        }
+        answerInner = Array(this.data.data.SelectionAmount).fill('')
       } else {
         answerInner = answerList[this.data.index].Answer
         correctInner = answerList[this.data.index].correct

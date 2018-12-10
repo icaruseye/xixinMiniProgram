@@ -55,7 +55,7 @@
           mode="scaleToFill">
         </image>
         <image 
-          wx:if="{{answerInner[index] !== correctInner[index] && answerInner[index]}}"
+          wx:if="{{answerInner[index] !== correctInner[index] && answerInner[index] != null}}"
           class='topic-checker-item-icon'
           src="../../images/topic_cha.png" 
           mode="scaleToFill">
