@@ -209,9 +209,9 @@ Page({
       }
     }, 1000)
   },
-  toggleLoginWay () {
+  toggleLoginWay (e) {
     this.setData({
-      showForm: false
+      showForm: !this.data.showForm
     })
   }
 })

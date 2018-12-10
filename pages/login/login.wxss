@@ -57,8 +57,14 @@
 }
 
 .login_tips {
-  text-align: right;
+  text-align: center;
   padding: 30rpx 0 0;
+  font-size: 24rpx;
+  color: #666;
+}
+
+.tips_text {
+  text-align: center;
   font-size: 24rpx;
   color: #666;
 }
