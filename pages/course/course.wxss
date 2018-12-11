@@ -35,10 +35,10 @@
 }
 
 .index_list_wrap .index_list_item .poster {
-  width: 180rpx;
-  height: 120rpx;
+  width: 280rpx;
+  height: 160rpx;
   overflow: hidden;
-  border-radius: 8rpx;
+  border-radius: 4rpx;
 }
 
 .index_list_wrap .index_list_item .content {
@@ -48,19 +48,20 @@
 
 .index_list_item .content .name {
   margin-bottom: 5rpx;
-  font-size: 36rpx;
+  font-size: 24rpx;
   color: #333;
   font-weight: bold;
 }
 
 .index_list_item .content .desc {
   margin-bottom: 15rpx;
-  font-size: 28rpx;
+  font-size: 20rpx;
   color: #999;
 }
 
 .index_list_item .content .price {
   display: flex;
+  font-size: 24rpx;
   align-items: center;
 }
 

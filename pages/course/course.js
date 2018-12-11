@@ -8,6 +8,7 @@ Page({
     current: 'course',
     hasUserInfo: false,
     pageReady: false,
+    page: 1,
     list: [],
     mineList: [],
     userInfo: {},
@@ -29,15 +30,13 @@ Page({
   onShow() {
     this.getcourseList()
   },
-  // 活动列表
+  // 课程列表
   async getcourseList() {
     const that = this
-    await api._get('/SPUser/course-List', {
-      viewId: wx.getStorageSync('servantViewID')
-    }).then(res => {
+    await api._get(`/User/CourseList?page=${this.data.page}`, ).then(res => {
       that.setData({
         pageReady: true,
-        list: res.Data || []
+        list: res.Data.proxyCourseResponseList || []
       })
     }).catch(e => {
       that.setData({
@@ -45,12 +44,10 @@ Page({
       })
     })
   },
-  // 我的活动
+  // 我的课程
   getMyList() {
     const that = this
-    api._get('/SPUser/course-My-List', {
-      viewId: wx.getStorageSync('servantViewID')
-    }).then(res => {
+    api._get('/User/Proxy-Course-List').then(res => {
       that.setData({
         pageReady: true,
         mineList: res.Data || []
@@ -85,7 +82,7 @@ Page({
   //事件处理函数
   toDetail: function (e) {
     wx.navigateTo({
-      url: `../courseDeatail/courseDeatail?id=${e.currentTarget.dataset.id}`
+      url: `../courseDetail/courseDetail?id=${e.currentTarget.dataset.id}`
     })
   }
 })
