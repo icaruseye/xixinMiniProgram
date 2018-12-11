@@ -29,11 +29,12 @@ Page({
   },
   onShow() {
     this.getcourseList()
+    this.getMyList()
   },
   // 课程列表
-  async getcourseList() {
+  getcourseList() {
     const that = this
-    await api._get(`/User/CourseList?page=${this.data.page}`, ).then(res => {
+    api._get(`/User/CourseList?page=${this.data.page}`, ).then(res => {
       that.setData({
         pageReady: true,
         list: res.Data.proxyCourseResponseList || []
@@ -46,14 +47,13 @@ Page({
   },
   // 我的课程
   getMyList() {
-    const that = this
     api._get('/User/Proxy-Course-List').then(res => {
-      that.setData({
+      this.setData({
         pageReady: true,
         mineList: res.Data || []
       })
     }).catch(e => {
-      that.setData({
+      this.setData({
         pageReady: true
       })
     })

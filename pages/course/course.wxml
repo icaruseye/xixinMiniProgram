@@ -15,7 +15,7 @@
         <view class='name'>{{item.ProxyCourseName}} </view>
         <view class='desc'>{{item.Description}}</view>
         <view class='price'>
-          <text class='saleprice'>￥{{filter.priceTrans(item.Price)}}</text>
+          <text class='saleprice'>￥{{item.Price}}</text>
         </view>
       </view>
     </view>
@@ -40,9 +40,8 @@
           <image class='acMine_list_item_icon' src='{{filter.transformImgUrl(item.Image)}}'></image>
           <view class='acMine_list_item_content'>
             <view class='acMine_list_item_content_name'>{{item.Title}}</view>
-            <view class='acMine_list_item_content_desc'>{{item.ActivityDescribe}}</view>
+            <view class='acMine_list_item_content_desc'>{{item.Discription}}</view>
           </view>
-          <view class='acMine_list_item_content_price'>￥{{filter.priceTrans(item.Price)}}</view>
         </view>
       </view>
       <view wx:else class='empty_box'>

@@ -22,8 +22,8 @@
       <text class='pay_icon_text'>购买成功！</text>
     </view>
     <view class='pay_btn_bar'>
-      <view class='btn' bindtap='backIndex'>返回首页</view>    
-      <view class='btn green' bindtap='backMine'>我的活动</view>
+      <view class='btn' bindtap='backIndex'>首页</view>    
+      <view class='btn green' bindtap='backMine'>我的</view>
     </view>
   </view>
 </view>

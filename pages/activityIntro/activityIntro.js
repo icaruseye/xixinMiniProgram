@@ -56,13 +56,14 @@ Page({
     const resOpenID = await this.getUserOpenID()
     if (resPreOrder.OrderID && resOpenID) {
       wx.navigateTo({
-        url: `/pages/pay/pay?orderID=${resPreOrder.OrderID}&openID=${resOpenID}`
+        url: `/pages/pay/pay?orderID=${resPreOrder.OrderID}&openID=${resOpenID}&OrderType=4`
       })
     }
   },
   async preOrder(packageID) {
     const res = await api._post(`/SPUser/PreOrder`, {
       packageID: packageID,
+      OrderType: 4,
       refereeType: '2',
       refereeViewID: this.data.servantViewID,
     })

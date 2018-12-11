@@ -8,7 +8,9 @@ Page({
    */
   data: {
     current: 'course',
-    courseInfo: null,
+    courseInfo: {
+      IsPurchased: true
+    },
     proxyCourseID: ''
   },
 
@@ -59,7 +61,7 @@ Page({
     const resOpenID = await this.getUserOpenID()
     if (resPreOrder.OrderID && resOpenID) {
       wx.navigateTo({
-        url: `/pages/pay/pay?orderID=${resPreOrder.OrderID}&openID=${resOpenID}`
+        url: `/pages/pay/pay?orderID=${resPreOrder.OrderID}&openID=${resOpenID}&OrderType=2`
       })
     }
   },
@@ -74,6 +76,7 @@ Page({
   async preOrder(packageID) {
     const res = await api._post(`/SPUser/PreOrder`, {
       packageID: packageID,
+      OrderType: 2,
       refereeType: '2',
       refereeViewID: wx.getStorageSync('servantViewID'),
     })

@@ -28,35 +28,34 @@ Page({
   },
   onShow() {
     this.getActivityList()
+    this.getMyList()
   },
   // 活动列表
-  async getActivityList () {
-    const that = this
-    await api._get('/SPUser/Activity-List', {
+  getActivityList () {
+    api._get('/SPUser/Activity-List', {
       viewId: wx.getStorageSync('servantViewID')
     }).then(res => {
-      that.setData({
+      this.setData({
         pageReady: true,
         list: res.Data || []
       })
     }).catch(e => {
-      that.setData({
+      this.setData({
         pageReady: true
       })
     })
   },
   // 我的活动
   getMyList() {
-    const that = this
     api._get('/SPUser/Activity-My-List', {
       viewId: wx.getStorageSync('servantViewID')
     }).then(res => {
-      that.setData({
+      this.setData({
         pageReady: true,
         mineList: res.Data || []
       })
     }).catch(e => {
-      that.setData({
+      this.setData({
         pageReady: true
       })
     })

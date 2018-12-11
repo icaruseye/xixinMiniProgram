@@ -10,7 +10,7 @@
     <view class="title_info">
       <view class="title">{{ courseInfo.ShopProxyCourseName }}</view>
       <view>
-        <text class="price">￥{{ filter.priceTrans(courseInfo.Price) }}</text>
+        <text class="price">￥{{courseInfo.Price}}</text>
       </view>
     </view>
   </view>
@@ -34,5 +34,5 @@
   <!-- 习题列表 -->
   <topic-list wx-if="{{ current === 'topic' }}" proxy-courseID="{{ proxyCourseID }}"></topic-list>
   <!-- 购买按钮 -->
-  <button class='buy_btn' bindtap='topay'>购买课程</button>
+  <button class='buy_btn' bindtap='topay' wx:if="{{!courseInfo.IsPurchased}}">购买课程</button>
 </view>

@@ -18,30 +18,36 @@ Page({
     const that = this
     const res = await this.getPayShopInfo(options.orderID)
     this.setData({
-      info: res
+      info: res,
+      OrderType: options.OrderType
     })
     const orderInfo = await this.createOrder(options.orderID, options.openID)
     // 发起支付
-    wx.requestPayment({
-      timeStamp: orderInfo.timeStamp,
-      nonceStr: orderInfo.nonceStr,
-      package: orderInfo.package,
-      signType: 'MD5',
-      paySign: orderInfo.paySign,
-      success(res) {
-        api._post(`/User/PagePaySuccess?orderID=${options.orderID}`)
-        that.setData({
-          status: 1
-        })
-      },
-      fail(res) {
-        wx.navigateBack({
-          delta: 1
-        })
-      }
-    })
-  },
-  onShow() {
+    if (orderInfo.Price !== 0) {
+      wx.requestPayment({
+        timeStamp: orderInfo.timeStamp,
+        nonceStr: orderInfo.nonceStr,
+        package: orderInfo.package,
+        signType: 'MD5',
+        paySign: orderInfo.paySign,
+        success(res) {
+          api._post(`/User/PagePaySuccess?orderID=${options.orderID}`)
+          that.setData({
+            status: 1
+          })
+        },
+        fail(res) {
+          wx.navigateBack({
+            delta: 1
+          })
+        }
+      })
+    } else {
+      api._post(`/User/PagePaySuccess?orderID=${options.orderID}`)
+      that.setData({
+        status: 1
+      })
+    }
   },
   // 获取订单信息接口
   async getPayShopInfo(orderID) {
@@ -58,54 +64,37 @@ Page({
     }
   },
   backIndex () {
-    wx.redirectTo({
-      url: '/pages/activity/activity',
-    })
+    if (this.data.OrderType === '2') {
+      wx.redirectTo({
+        url: '/pages/course/course',
+      })
+    }
+    if (this.data.OrderType === '4' && wx.getStorageSync('servantViewID')) {
+      wx.redirectTo({
+        url: '/pages/activity/activity',
+      })
+    }
+    if (this.data.OrderType === '4' && !wx.getStorageSync('servantViewID')) {
+      wx.redirectTo({
+        url: '/pages/activityCom/activityCom',
+      })
+    }
   },
   backMine () {
-    wx.redirectTo({
-      url: '/pages/activity/activity?isMine=1',
-    })
-  },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+    if (this.data.OrderType === '2') {
+      wx.redirectTo({
+        url: '/pages/course/course?isMine=1',
+      })
+    }
+    if (this.data.OrderType === '4' && wx.getStorageSync('servantViewID')) {
+      wx.redirectTo({
+        url: '/pages/activity/activity?isMine=1',
+      })
+    }
+    if (this.data.OrderType === '4' && !wx.getStorageSync('servantViewID')) {
+      wx.redirectTo({
+        url: '/pages/activityCom/activityCom?isMine=1',
+      })
+    }
   }
 })
