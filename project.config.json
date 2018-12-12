@@ -64,10 +64,10 @@
 					"query": "id=17"
 				},
 				{
-					"id": -1,
+					"id": 4,
 					"name": "course",
 					"pathName": "pages/course/course",
-					"query": "id=17"
+					"query": "id=1"
 				},
 				{
 					"id": -1,
@@ -76,9 +76,10 @@
 					"query": "id=17"
 				},
 				{
-					"id": -1,
+					"id": 6,
 					"name": "activity",
-					"pathName": "pages/activity/activity"
+					"pathName": "pages/activity/activity",
+					"query": "servantViewID=fa5ae362fb654419b0a856ef5d0fc87f"
 				}
 			]
 		}

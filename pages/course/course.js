@@ -26,21 +26,20 @@ Page({
       userInfo: wx.getStorageSync('userInfo'),
       mobile: wx.getStorageSync('mobile')
     })
-  },
-  onShow() {
     this.getcourseList()
     this.getMyList()
   },
+  onShow() {
+  },
   // 课程列表
   getcourseList() {
-    const that = this
     api._get(`/User/CourseList?page=${this.data.page}`, ).then(res => {
-      that.setData({
+      this.setData({
         pageReady: true,
         list: res.Data.proxyCourseResponseList || []
       })
     }).catch(e => {
-      that.setData({
+      this.setData({
         pageReady: true
       })
     })

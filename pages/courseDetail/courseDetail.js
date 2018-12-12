@@ -8,9 +8,8 @@ Page({
    */
   data: {
     current: 'course',
-    courseInfo: {
-      IsPurchased: true
-    },
+    courseInfo: {},
+    IsPurchased: true,
     proxyCourseID: ''
   },
 
@@ -29,6 +28,7 @@ Page({
    */
   onShow: function () {
     this.getCourseInfo()
+    this.getLicenceCheck()
   },
 
   /**
@@ -41,6 +41,13 @@ Page({
     this.setData({
       courseInfo: res.Data
     })
+  },
+
+  async getLicenceCheck () {
+    const res = await api._get('/SPUser/Course/Licence/Check', {
+      shopProxyCourseID: this.data.proxyCourseID
+    })
+    this.setData({IsPurchased: res.Data})
   },
 
   /**

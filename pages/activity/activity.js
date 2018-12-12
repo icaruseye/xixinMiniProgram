@@ -81,10 +81,18 @@ Page({
       hasUserInfo: true
     })
   },
-  toGuide () {
-    wx.navigateTo({
-      url: '/pages/activityGuide/activityGuide',
-    })
+  toGuide (e) {
+    const _data = this.data.mineList[e.currentTarget.dataset.index]
+    if (_data.CommodityType === 1) {
+      wx.navigateTo({
+        url: '/pages/activityGuide/activityGuide',
+      })
+    }
+    if (_data.CommodityType === 2) {
+      wx.navigateTo({
+        url: `/pages/courseDetail/courseDetail?id=${_data.CommodityID}`,
+      })
+    }
   },
   //事件处理函数
   toDetail: function(e) {
