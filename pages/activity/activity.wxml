@@ -15,7 +15,7 @@
         <view class='name'>{{item.ActivityName}} </view>
         <view class='desc'>{{item.ActivityDescribe}}</view>
         <view class='price'>
-          <text class='tag'>拼团价</text>
+          <text class='tag'>活动价</text>
           <text class='saleprice'>￥{{filter.priceTrans(item.PresentPrice)}}</text>
         </view>
         <view class='elide'>

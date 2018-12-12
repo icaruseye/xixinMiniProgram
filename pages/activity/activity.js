@@ -21,14 +21,14 @@ Page({
         current: 'activityMine'
       })
     }
-    this.setData({
-      userInfo: wx.getStorageSync('userInfo'),
-      mobile: wx.getStorageSync('mobile')
-    })
   },
   onShow() {
     this.getActivityList()
     this.getMyList()
+    this.setData({
+      userInfo: wx.getStorageSync('userInfo'),
+      mobile: wx.getStorageSync('mobile')
+    })
   },
   // 活动列表
   getActivityList () {

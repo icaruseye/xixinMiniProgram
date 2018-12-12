@@ -15,7 +15,7 @@
         <view class='name'>{{item.ProxyCourseName}} </view>
         <view class='desc'>{{item.Description}}</view>
         <view class='price'>
-          <text class='saleprice'>￥{{item.Price}}</text>
+          <text class='saleprice'>￥{{filter.priceTrans(item.Price)}}</text>
         </view>
       </view>
     </view>
