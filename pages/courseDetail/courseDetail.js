@@ -10,7 +10,8 @@ Page({
     current: 'course',
     courseInfo: {},
     IsPurchased: true,
-    proxyCourseID: ''
+    proxyCourseID: '',
+    activityID:'',
   },
 
   /**
@@ -19,7 +20,8 @@ Page({
   onLoad: function (options) {
     wx.setStorageSync('localUrl', this.route)
     this.setData({
-      proxyCourseID: options.id
+      proxyCourseID: options.id,
+      activityID: options.activityID || 0
     })
   },
 
@@ -45,7 +47,8 @@ Page({
 
   async getLicenceCheck () {
     const res = await api._get('/SPUser/Course/Licence/Check', {
-      shopProxyCourseID: this.data.proxyCourseID
+      shopProxyCourseID: this.data.proxyCourseID,
+      activityID: this.data.activityID || 0,
     })
     this.setData({IsPurchased: res.Data})
   },
@@ -56,7 +59,8 @@ Page({
   async selectLesson (e) {
     const res = await api._get('/User/CouldWatchingVideo', {
       lessonID: e.detail,
-      proxyCourseID: this.data.proxyCourseID
+      proxyCourseID: this.data.proxyCourseID,
+      activityID: this.data.activityID
     })
     this.setData({
       'courseInfo.PreViewContent': res.Data
