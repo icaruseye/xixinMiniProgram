@@ -19,7 +19,7 @@
           <text class='saleprice'>￥{{filter.priceTrans(item.PresentPrice)}}</text>
         </view>
         <view class='elide'>
-          <text class='showprice'>门市价：￥{{item.OriginalPrice}}</text>
+          <!-- <text class='showprice'>门市价：￥{{filter.priceTrans(item.OriginalPrice)}}</text> -->
           <!-- <text class='count'>201人参加</text> -->
         </view>
       </view>
