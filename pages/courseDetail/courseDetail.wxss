@@ -1,25 +1,38 @@
 /* pages/courseDetail/courseDetail.wxss */
 /* pages/courseDetail.wxss */
+page {
+  background: #f6f6f6;
+}
 .contanier {
-  padding-top: 500rpx;
-  padding-bottom: 100rpx;
   background: #f6f6f6;
   min-height: 100vh;
   box-sizing: border-box;
 }
 
+.grid-box{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.grid-var{
+  height: calc(100vh - 610rpx);
+}
+
+.content{height: 100%;}
+
 .preview_wrap {
-  position: fixed;
-  top: 0;
+  height: 500rpx;
   width: 100%;
   background: #fff;
   z-index: 999;
 }
 
-.contanier .title_info {
+.preview_wrap .title_info {
   padding: 20rpx;
   background: #fff;
   border-bottom: 1rpx solid #F2F4F5;
+  overflow: hidden;
 }
 
 .title_info .title {
