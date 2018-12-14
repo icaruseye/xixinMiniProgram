@@ -70,7 +70,8 @@ Page({
                     servantViewID: wx.getStorageSync('servantViewID')
                   }).then(res => {
                     if (res.Code === 100000) {
-                      wx.setStorageSync('token', res.Data)
+                      wx.setStorageSync('token', res.Data.token)
+                      wx.setStorageSync('userID', res.Data.userID)
                       wx.setStorageSync('mobile', that.data.phone)
                       wx.showToast({
                         title: '登录成功',
@@ -127,7 +128,8 @@ Page({
       servantViewID: wx.getStorageSync('servantViewID')
     }).then(res => {
       if (res.Code === 100000) {
-        wx.setStorageSync('token', res.Data)
+        wx.setStorageSync('token', res.Data.token)
+        wx.setStorageSync('userID', res.Data.userID)
         wx.setStorageSync('mobile', this.data.phone)
         wx.showToast({
           title: '登录成功',

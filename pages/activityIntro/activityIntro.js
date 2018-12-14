@@ -12,8 +12,7 @@ Page({
     show: false,
     pageReady: false,
     activityId: '',
-    servantViewID: wx.getStorageSync('servantViewID') || '',
-    userId: ''
+    servantViewID: wx.getStorageSync('servantViewID') || ''
   },
 
   onShareAppMessage: function (res) {
@@ -23,7 +22,7 @@ Page({
     }
     return {
       title: this.data.info.ActivityName,
-      path: `/pages/activityIntro/activityIntro?id=${this.data.activityId}&${this.data.userId}`
+      path: `/pages/activityIntro/activityIntro?id=${this.data.activityId}&userID=${wx.getStorageSync('userID')}`
     }
   },
 
@@ -33,8 +32,7 @@ Page({
   onLoad (options) {
     wx.setStorageSync('localUrl', `${this.route}?id=${options.id}`)
     this.setData({
-      activityId: options.id,
-      userId: app.globalData.userId
+      activityId: options.id
     })
     this.getActivityDetail(this.data.activityId)
   },

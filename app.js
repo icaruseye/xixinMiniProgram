@@ -15,7 +15,6 @@ App({
     header: {
       token: ''
     },
-    userInfo: null,
-    userId: ''
+    userInfo: null
   }
 })
