@@ -31,7 +31,7 @@ Component({
     },
 
     async getCouldExam(id) {
-      const res = await api._get(`/User/CouldExam?testPaperID=${id}`)
+      const res = await api._get(`/User/CouldExam?testPaperID=${id}&proxyCourseID=${this.data.proxyCourseID}`)
       if (res.Data) {
         wx.navigateTo({
           url: `/pages/topic/topic?id=${id}&recordID=${res.Data}`,

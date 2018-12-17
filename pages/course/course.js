@@ -5,7 +5,7 @@ const app = getApp()
 
 Page({
   data: {
-    current: 'mine',
+    current: 'course',
     hasUserInfo: false,
     pageReady: false,
     page: 1,

@@ -1,7 +1,7 @@
 <!-- 简答题 -->
 <view class="wrapper">
   <view class="topic_item" wx:if="data.TestPaperSubtitleName">
-    <view class="topic_title"><text class="tag">{{data.TestPaperSubtitleName}}</text>{{index + 1}}.{{data.QuestionTitle}}</view>
+    <view class="topic_title"><text class="tag">简答题</text>{{index + 1}}.{{data.QuestionTitle}}</view>
     <view wx:if="{{correctInner === ''}}">
       <view class="topic_input_item" wx:for="{{data.SelectionAmount}}" wx:key="{{index}}">
         <text>{{index + 1}}</text>

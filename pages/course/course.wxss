@@ -258,8 +258,8 @@
 }
 
 .menu_list_item .item_icon {
-  width: 40rpx;
-  height: 40rpx;
+  width: 30rpx;
+  height: 30rpx;
 }
 
 .menu_list_item .arrow_right {

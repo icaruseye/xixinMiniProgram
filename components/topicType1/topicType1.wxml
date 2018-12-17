@@ -2,7 +2,7 @@
 <view class="wrapper">
   <!-- 单选题 -->
   <view class="topic_item" wx:if="data.TestPaperSubtitleName">
-    <view class="topic_title"><span class="tag">{{data.TestPaperSubtitleName}}</span>{{index + 1}}.{{data.QuestionTitle}}</view>
+    <view class="topic_title"><span class="tag">{{data.QuestionType == 1 ? '单选题' : '判断题'}}</span>{{index + 1}}.{{data.QuestionTitle}}</view>
     <!-- 未提交 -->
     <view wx:if="{{correctInner === -1}}">
       <view
