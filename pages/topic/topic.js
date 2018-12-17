@@ -65,6 +65,7 @@ Page({
       confirmText: '返回试卷列表',
       success(res) {
         if (res.confirm) {
+          wx.removeStorageSync('userAnswerList')
           wx.navigateBack({
             delta: 1
           })
@@ -78,6 +79,7 @@ Page({
    */
   submitPaper () {
     if (this.data.IsNeedAnswer) {
+      wx.removeStorageSync('userAnswerList')
       wx.navigateBack({
         delta: 1
       })

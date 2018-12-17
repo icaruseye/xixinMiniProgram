@@ -1,0 +1,18 @@
+<view class="ex_container">
+  <view class="tips">输入兑换码可兑换相应课程</view>
+  <view class="exchange_from">
+    <view class="exchange_from_cell">
+      <input class="primary" type="number" placeholder="请输入卡号" />
+    </view>
+    <view class="exchange_from_cell">
+      <input class="primary" type="number" placeholder="请输入卡密" />
+    </view>
+    <view class="exchange_from_cell" wx:if="{{isNeedAuth}}">
+      <input class="primary code" type="text" placeholder="请输入验证码" />
+      <image class="code_image" />
+    </view>
+    <view class="exchange_from_cell">
+      <button class="exchange_btn">兑换</button>
+    </view>
+  </view>
+</view>

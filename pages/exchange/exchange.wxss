@@ -1,0 +1,56 @@
+.ex_container {
+  min-height: 100vh;
+  border-top: 1rpx solid #fcfcfc;
+  padding: 0 30rpx;
+  background: #fcfcfc;
+}
+
+.ex_container .tips {
+  font-size: 28rpx;
+  color: #5e5e5e;
+  margin: 70rpx auto 65rpx;
+  text-align: center;
+}
+
+.exchange_from_cell {
+  display: flex;
+}
+
+.exchange_from_cell .primary {
+  width: 100%;
+  margin-bottom: 40rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  padding: 0 24rpx;
+  font-size: 30rpx;
+  color: #666;
+  border: 1rpx solid #e1e1e1;
+  /* border-radius: 4rpx; */
+  background: #f8f8f8;
+  box-sizing: border-box;
+}
+
+.exchange_from_cell .primary::placeholder {
+  color: #999;
+}
+
+.exchange_from_cell .primary.code {
+  flex: 1;
+}
+
+.exchange_from_cell .code_image {
+  margin-left: 15rpx;
+  height: 80rpx;
+  width: 200rpx;
+}
+
+.exchange_from_cell .exchange_btn {
+  width: 100%;
+  background: #fe5a32;
+  color: #fff;
+  border-radius: 0;
+}
+
+.exchange_from_cell .exchange_btn::after {
+  border: 0
+}

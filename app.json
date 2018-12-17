@@ -17,7 +17,8 @@
     "components/topicCard/topicCard",
     "components/topicType4/topicType4",
     "components/topicType5/topicType5",
-    "pages/course/course"
+    "pages/course/course",
+    "pages/exchange/exchange"
   ],
   "usingComponents": {
     "i-modal": "./dist/iview/modal/index",
