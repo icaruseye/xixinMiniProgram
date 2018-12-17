@@ -12,7 +12,8 @@ Page({
     current: 'course',
     courseInfo: {},
     IsPurchased: true,
-    proxyCourseID: ''
+    proxyCourseID: '',
+    activityID:'',
   },
 
   onShareAppMessage: function (res) {
@@ -60,7 +61,7 @@ Page({
   async getLicenceCheck () {
     const res = await api._get('/SPUser/Course/Licence/Check', {
       shopProxyCourseID: this.data.proxyCourseID,
-      activityID: this.data.activityID
+      activityID: this.data.activityID || 0,
     })
     this.setData({IsPurchased: res.Data})
   },
