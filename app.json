@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/activityCom/activityCom",
     "pages/activity/activity",
+    "pages/activityCom/activityCom",
     "pages/activityIntro/activityIntro",
     "pages/topic/topic",
     "pages/courseDetail/courseDetail",

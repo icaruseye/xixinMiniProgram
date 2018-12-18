@@ -1,20 +1,22 @@
 
 //app.js
 App({
-  onLaunch: function () {
-    // 展示本地存储能力
+  onLaunch: function (options) {
     var userInfo = wx.getStorageSync('userInfo') || null
-
     if (userInfo) {
       if (userInfo.servantViewID) {
         this.globalData.userInfo = userInfo
       }
     }
   },
+  onShow: function () {
+    if (wx.getLaunchOptionsSync() === 1089) {
+      wx.redirectTo({
+        url: '/pages/activityCom/activityCom'
+      })
+    }
+  },
   globalData: {
-    header: {
-      token: ''
-    },
     userInfo: null
   }
 })
