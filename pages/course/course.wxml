@@ -51,14 +51,14 @@
     </view>
   </view>
   <!-- 我的 -->
-  <view class="mine_container" wx:if="{{ pageReady && current === 'mine' }}">
+  <view class="mine_container" wx:if="{{ current === 'mine' }}">
     <view class="userinfo_wrap">
       <image class="avatar" src="{{userInfo.avatarUrl}}"></image>
       <text class="name" wx:if="{{userInfo.nickName}}">{{userInfo.nickName}}</text>
       <button class='userInfo_btn' size="mini" wx:if="{{!userInfo.nickName}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo">点击获取头像昵称</button>
     </view>
     <view class="menu_list">
-      <view class="menu_list_item">
+      <view class="menu_list_item" bindtap='toExchange'>
         <image class="item_icon" src="../../images/exchange.png"></image>
         <text>兑换码购课</text>
         <image class="arrow_right" src="../../images/jiantouyou.png"></image>

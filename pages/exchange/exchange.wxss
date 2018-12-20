@@ -18,9 +18,9 @@
 
 .exchange_from_cell .primary {
   width: 100%;
-  margin-bottom: 40rpx;
-  height: 80rpx;
-  line-height: 80rpx;
+  margin-bottom: 20px;
+  height: 40px;
+  line-height: 40px;
   padding: 0 24rpx;
   font-size: 30rpx;
   color: #666;
@@ -40,8 +40,8 @@
 
 .exchange_from_cell .code_image {
   margin-left: 15rpx;
-  height: 80rpx;
-  width: 200rpx;
+  height: 40px;
+  width: 100px;
 }
 
 .exchange_from_cell .exchange_btn {

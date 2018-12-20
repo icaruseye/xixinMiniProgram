@@ -83,5 +83,10 @@ Page({
     wx.navigateTo({
       url: `../courseDetail/courseDetail?id=${e.currentTarget.dataset.id}`
     })
+  },
+  toExchange () {
+    wx.navigateTo({
+      url: `../exchange/exchange`
+    })
   }
 })

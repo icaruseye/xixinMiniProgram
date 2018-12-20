@@ -2,17 +2,17 @@
   <view class="tips">输入兑换码可兑换相应课程</view>
   <view class="exchange_from">
     <view class="exchange_from_cell">
-      <input class="primary" type="number" placeholder="请输入卡号" />
+      <input class="primary" type="number" placeholder="请输入卡号" bindinput="getInputCodeKey" value="{{codeKey}}"/>
     </view>
     <view class="exchange_from_cell">
-      <input class="primary" type="number" placeholder="请输入卡密" />
-    </view>
-    <view class="exchange_from_cell" wx:if="{{isNeedAuth}}">
-      <input class="primary code" type="text" placeholder="请输入验证码" />
-      <image class="code_image" />
+      <input class="primary" type="number" placeholder="请输入卡密" bindinput="getInputPwd" value="{{pwd}}" />
     </view>
     <view class="exchange_from_cell">
-      <button class="exchange_btn">兑换</button>
+      <input class="primary code" type="text" placeholder="请输入验证码" bindinput="getInputCaptcha" value="{{captcha}}"/>
+      <image class="code_image" src="{{codeImage}}" bindtap='getNewCodeIamge'/>
+    </view>
+    <view class="exchange_from_cell">
+      <button class="exchange_btn" bindtap="submit">兑换</button>
     </view>
   </view>
 </view>

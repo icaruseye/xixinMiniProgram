@@ -1,5 +1,5 @@
-const baseUrl = 'https://test-api.xixincloud.com/api'
-// const baseUrl = 'https://lan-test.xixincloud.com/api'
+// const baseUrl = 'https://test-api.xixincloud.com/api'
+const baseUrl = 'https://lan-test.xixincloud.com/api'
 
 const http = ({ url = '', param = {}, ...other } = {}) => {
   wx.showLoading({
@@ -29,6 +29,7 @@ const http = ({ url = '', param = {}, ...other } = {}) => {
               icon: 'none',
               duration: 1500
             })
+            reject(res)
           }
         } else {
           if (res.data.Code === 100010) {
