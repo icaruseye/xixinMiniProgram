@@ -17,6 +17,7 @@ Page({
   onLoad(options) {
     wx.setStorageSync('localUrl', this.route)
     console.log(app.globalData)
+    console.log('sdf')
     if (options.isMine) {
       this.setData({
         current: 'courseMine'

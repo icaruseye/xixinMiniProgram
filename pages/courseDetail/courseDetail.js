@@ -14,16 +14,25 @@ Page({
     IsPurchased: true,
     proxyCourseID: '',
     activityID:'',
+    referrerViewID: '',
+    referrerType: '',
+    servantViewID: wx.getStorageSync('servantViewID') || '',
   },
 
   onShareAppMessage: function (res) {
-    if (res.from === 'button') {
-      // 来自页面内转发按钮
-      console.log(res.target)
+    let myReferrerViewID = wx.getStorageSync('myReferrerViewID')
+    let referrerType = 1      //推荐人类型1为用户,2位服务人员,0为不推荐
+    let servantViewID = this.data.servantViewID
+    if (myReferrerViewID) {   //之前已经赋初值了
+    } else if (servantViewID) {
+      referrerType = 2
+      myReferrerViewID = servantViewID
+    } else {
+      referrerType = 0
     }
     return {
       title: this.data.courseInfo.ShopProxyCourseName,
-      path: `/pages/courseDetail/courseDetail?id=${this.data.proxyCourseID}&userID=${wx.getStorageSync('userID')}`
+      path: `/pages/courseDetail/courseDetail?id=${this.data.proxyCourseID}&referrerViewID=${myReferrerViewID}&referrerType=${referrerType}`
     }
   },
 
@@ -100,9 +109,9 @@ Page({
   async preOrder(packageID) {
     const res = await api._post(`/SPUser/PreOrder`, {
       packageID: packageID,
-      OrderType: 2,
-      refereeType: '2',
-      refereeViewID: wx.getStorageSync('servantViewID'),
+      OrderType: 6,
+      RefereeType: this.data.referrerType,
+      RefereeViewID: this.data.referrerViewID,
     })
     if (res.Code === 100000) {
       return res.Data
