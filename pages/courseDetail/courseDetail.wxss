@@ -29,6 +29,7 @@ page {
 }
 
 .preview_wrap .title_info {
+  position: relative;
   padding: 20rpx;
   background: #fff;
   border-bottom: 1rpx solid #F2F4F5;

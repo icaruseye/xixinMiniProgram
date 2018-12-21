@@ -12,6 +12,9 @@
       <view>
         <text class="price">￥{{filter.priceTrans(courseInfo.Price)}}</text>
       </view>
+      <button open-type='share' class='share_btn'>
+        <image class='icon' src='../../images/share-icon.png'></image>
+      </button>
     </view>
   </view>
   <view class="grid-var">
