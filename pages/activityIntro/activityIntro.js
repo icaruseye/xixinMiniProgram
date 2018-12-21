@@ -12,7 +12,9 @@ Page({
     show: false,
     pageReady: false,
     activityId: '',
-    servantViewID: wx.getStorageSync('servantViewID') || ''
+    servantViewID: wx.getStorageSync('servantViewID') || '',
+    referrerViewID: '',
+    referrerType: '',
   },
 
   onShareAppMessage: function (res) {
@@ -32,7 +34,7 @@ Page({
     }
     return {
       title: this.data.info.ActivityName,
-      path: `/pages/activityIntro/activityIntro?id=${this.data.activityId}&userID=${myReferrerViewID}`
+      path: `/pages/activityIntro/activityIntro?id=${this.data.activityId}&referrerViewID=${myReferrerViewID}&referrerType=${referrerType}`
     }
   },
 
@@ -42,7 +44,9 @@ Page({
   onLoad (options) {
     wx.setStorageSync('localUrl', `${this.route}?id=${options.id}`)
     this.setData({
-      activityId: options.id
+      activityId: options.id,
+      referrerViewID: options.referrerViewID||'',
+      refereeType: options.referrerType||0,
     })
     this.getActivityDetail(this.data.activityId)
   },
@@ -72,8 +76,8 @@ Page({
     const res = await api._post(`/SPUser/PreOrder`, {
       packageID: packageID,
       OrderType: 4,
-      refereeType: '2',
-      refereeViewID: this.data.servantViewID,
+      RefereeType: this.data.referrerType,
+      RefereeViewID: this.data.referrerViewID,
     })
     if (res.Code === 100000) {
       return res.Data
