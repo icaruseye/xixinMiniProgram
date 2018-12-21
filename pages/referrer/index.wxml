@@ -1,0 +1,28 @@
+<view class="container">
+  <block wx:if="{{myReferrerViewID}}">
+    <view class="">
+      <view class="state_icon"><icon type="success" size="{{60}}" /></view>
+      <view class="state_text">恭喜您已经成功绑定推广账号！</view>
+    </view>
+    <view class="text">查看推广奖励请进入公众号进行查看，进入方法请参考下图流程。</view>
+  </block>
+  <block wx:else>
+    <view class="">
+      <view class="state_icon"><icon type="warn" size="{{60}}" /></view>
+      <view class="state_text">您的推广账号还未绑定成功，请按照以下步骤进行操作：</view>
+    </view>
+    <view class="text">
+      1，您的小程序绑定手机号为：{{filter.phoneHide(mobile)}}
+    </view>
+    <view class="text">
+     2，按照下图流程查看公众号，同时完成关注公众号动作。
+    </view>
+    <view class="text">
+      3，然后进入公众号个人中心->手机认证，以小程序认证的手机号进行手机认证。
+    </view>
+    <view class="text">
+      4，认证成功绑定完成。
+    </view>
+  </block>
+  <image class='guide_img' src='../../images/guide.png'></image>
+</view>

@@ -210,3 +210,61 @@
 .userInfo_btn::after {
   border: 0;
 }
+
+
+
+.userinfo_wrap {
+  margin: 50rpx 50rpx 0;
+  padding: 80rpx 0;
+  box-shadow: 0 0 10rpx #f1f1f1;
+  text-align: center;
+  border-radius: 10rpx;
+}
+
+.userinfo_wrap .avatar {
+  display: block;
+  margin: 0 auto 20rpx;
+  width: 100rpx;
+  height: 100rpx;
+  background: #e1e1e1;
+  border-radius: 50%;
+}
+
+.userinfo_wrap .name {
+  font-size: 24rpx;
+  color: #333;
+  font-weight: bold;
+}
+
+.menu_list {
+  box-shadow: 0 -6rpx 10rpx rgba(241, 241, 241, .4);
+  background: #fff;
+  padding: 0 50rpx;
+}
+
+.menu_list_item {
+  display: flex;
+  align-items: center;
+  padding: 30rpx 0;
+  border-bottom: 1px solid rgba(241, 241, 241, .5);
+}
+
+.menu_list_item:last-child {
+  border: 0;
+}
+
+.menu_list_item text {
+  padding: 0 10rpx;
+  flex: 1;
+  font-size: 28rpx;
+}
+
+.menu_list_item .item_icon {
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.menu_list_item .arrow_right {
+  width: 30rpx;
+  height: 30rpx;
+}
