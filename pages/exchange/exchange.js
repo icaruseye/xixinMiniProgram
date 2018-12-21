@@ -10,7 +10,7 @@ Page({
     codeKey: '',
     pwd: '',
     captcha: '',
-    codeImage: `https://lan-test.xixincloud.com/api/SPUser/VerificationCode?codeType=1&width=100&height=40&token=${wx.getStorageSync('token')}`
+    codeImage: `${api.baseUrl}/SPUser/VerificationCode?codeType=1&width=100&height=40&token=${wx.getStorageSync('token')}`
   },
 
   /**

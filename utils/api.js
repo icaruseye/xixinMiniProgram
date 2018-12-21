@@ -1,5 +1,5 @@
-// const baseUrl = 'https://test-api.xixincloud.com/api'
-const baseUrl = 'https://lan-test.xixincloud.com/api'
+const baseUrl = 'https://test-api.xixincloud.com/api'
+// const baseUrl = 'https://lan-test.xixincloud.com/api'
 
 const http = ({ url = '', param = {}, ...other } = {}) => {
   wx.showLoading({
