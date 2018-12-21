@@ -17,7 +17,6 @@ Page({
   onLoad(options) {
     wx.setStorageSync('localUrl', this.route)
     console.log(app.globalData)
-    console.log('sdf')
     if (options.isMine) {
       this.setData({
         current: 'courseMine'
@@ -84,7 +83,7 @@ Page({
   //事件处理函数
   toDetail: function (e) {
     wx.navigateTo({
-      url: `../courseDetail/courseDetail?id=${e.currentTarget.dataset.id}`
+      url: `../courseDetail/courseDetail?id=${e.currentTarget.dataset.id}&shopProxyCourse=${e.currentTarget.dataset.shopproxycourse}`
     })
   },
   toExchange () {

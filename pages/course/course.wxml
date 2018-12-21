@@ -9,7 +9,8 @@
       wx:for="{{list}}"
       wx:key='{{index}}'
       bindtap="toDetail"
-      data-id="{{item.ProxyCourseID}}">
+      data-id="{{item.ServantProxyCourseID}}"
+      data-shopProxyCourse="{{item.ProxyCourseID}}">
       <image class='poster' lazy-load='{{ true }}' mode='aspectFit' src='{{filter.transformImgUrl(item.Img)}}'></image>
       <view class='content'>
         <view class='name'>{{item.ProxyCourseName}} </view>
