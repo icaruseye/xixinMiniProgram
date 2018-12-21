@@ -27,10 +27,9 @@ Page({
       userInfo: wx.getStorageSync('userInfo'),
       mobile: wx.getStorageSync('mobile')
     })
-    this.getcourseList()
-    this.getMyList()
   },
   onShow() {
+    this.init()
   },
   // 课程列表
   getcourseList() {
@@ -64,12 +63,15 @@ Page({
         pageReady: false,
         current: detail.key
       })
-      if (detail.key === 'course') {
-        this.getcourseList()
-      }
-      if (detail.key === 'courseMine') {
-        this.getMyList()
-      }
+      this.init()
+    }
+  },
+  init() {
+    if (this.data.current === 'course') {
+      this.getcourseList()
+    }
+    if (this.data.current === 'courseMine') {
+      this.getMyList()
     }
   },
   getUserInfo: function (e) {
