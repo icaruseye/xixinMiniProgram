@@ -56,6 +56,25 @@
       </view>
     </view>
   </view>
+  <view  class="mine_container" wx:if="{{current === 'mine' }}">
+    <view class="userinfo_wrap">
+      <image class="avatar" src="{{userInfo.avatarUrl}}"></image>
+      <text class="name" wx:if="{{userInfo.nickName}}">{{userInfo.nickName}}</text>
+      <button class='userInfo_btn' size="mini" wx:if="{{!userInfo.nickName}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo">点击获取头像昵称</button>
+    </view>
+    <view class="menu_list">
+      <view class="menu_list_item" bindtap='toExchange'>
+        <image class="item_icon" src="../../images/exchange.png"></image>
+        <text>兑换码购课</text>
+        <image class="arrow_right" src="../../images/jiantouyou.png"></image>
+      </view>
+      <view class="menu_list_item" bindtap='redirectToPage' data-url="/pages/referrer/index">
+        <image class="item_icon" src="../../images/exchange.png"></image>
+        <text>推荐奖励</text>
+        <image class="arrow_right" src="../../images/jiantouyou.png"></image>
+      </view>
+    </view>
+  </view>
   <i-tab-bar current="{{ current }}" bindchange="handleChange" color="#36C5C5" fixed>
     <i-tab-bar-item
       key="activity"
@@ -68,6 +87,12 @@
       img="../../../images/tabbar2-1.png"
       current-img="../../../images/tabbar2-2.png"
       title="我的活动">
+    </i-tab-bar-item>
+    <i-tab-bar-item
+      key="mine"
+      img="../../../images/tabbar4-1.png"
+      current-img="../../../images/tabbar4-2.png"
+      title="我的">
     </i-tab-bar-item>
     <!-- <i-tab-bar-item
       key="activityHelp" 

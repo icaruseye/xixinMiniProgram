@@ -23,11 +23,11 @@ Page({
     }
   },
   onShow() {
-    this.getActivityList()
     this.setData({
       userInfo: wx.getStorageSync('userInfo'),
       mobile: wx.getStorageSync('mobile')
     })
+    this.init()
   },
   // 活动列表
   getActivityList () {
@@ -65,12 +65,15 @@ Page({
         pageReady: false,
         current: detail.key
       })
-      if (detail.key === 'activity') {
-        this.getActivityList()
-      }
-      if (detail.key === 'activityMine') {
-        this.getMyList()
-      }
+      this.init()
+    }
+  },
+  init() {
+    if (this.data.current === 'activity') {
+      this.getActivityList()
+    }
+    if (this.data.current === 'activityMine') {
+      this.getMyList()
     }
   },
   getUserInfo: function (e) {
@@ -97,6 +100,17 @@ Page({
   toDetail: function(e) {
     wx.navigateTo({
       url: `../activityIntro/activityIntro?id=${e.currentTarget.dataset.id}`
+    })
+  },
+  toExchange () {
+    wx.navigateTo({
+      url: `../exchange/exchange`
+    })
+  },
+  redirectToPage (option) {
+    console.log(option)
+    wx.navigateTo({
+      url: option.currentTarget.dataset.url,
     })
   }
 })

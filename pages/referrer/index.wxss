@@ -1,0 +1,27 @@
+/* pages/activityGuide/activityGuide.wxss */
+.container {
+  padding: 24rpx;
+}
+.state_icon
+{
+  text-align: center;
+  margin-bottom: 20rpx;
+}
+.state_text
+{
+  text-align: center;
+  font-size: 24rpx;
+  color: #999;
+  margin-bottom: 40rpx;
+}
+.text {
+  font-size: 24rpx;
+  color: #333;
+  line-height: 1.8;
+  margin-bottom: 10rpx 
+}
+
+.guide_img {
+  width: 700rpx;
+  height: 3212rpx;
+}
