@@ -15,8 +15,8 @@ Page({
     mobile: ''
   },
   onLoad(options) {
-    wx.setStorageSync('servantViewID', options.servantViewID)
     wx.setStorageSync('localUrl', this.route)
+    console.log(app.globalData)
     if (options.isMine) {
       this.setData({
         current: 'courseMine'
@@ -33,7 +33,7 @@ Page({
   },
   // 课程列表
   getcourseList() {
-    api._get(`/User/CourseList?page=${this.data.page}`, ).then(res => {
+    api._get(`/User/CourseList?page=${this.data.page}&servantViewID=${app.globalData.servantViewID}`, ).then(res => {
       this.setData({
         pageReady: true,
         list: res.Data.proxyCourseResponseList || []

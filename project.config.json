@@ -37,7 +37,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 7,
+			"current": 4,
 			"list": [
 				{
 					"id": 1,
@@ -67,7 +67,7 @@
 					"id": 4,
 					"name": "course",
 					"pathName": "pages/course/course",
-					"query": "id=1"
+					"query": "id=17&servantViewID=123"
 				},
 				{
 					"id": -1,

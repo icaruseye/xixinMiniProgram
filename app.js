@@ -2,6 +2,8 @@
 //app.js
 App({
   onLaunch: function (options) {
+    console.log(options)
+    this.globalData.servantViewID = options.query.servantViewID
     var userInfo = wx.getStorageSync('userInfo') || null
     if (userInfo) {
       if (userInfo.servantViewID) {
