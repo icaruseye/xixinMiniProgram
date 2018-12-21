@@ -73,6 +73,7 @@ Page({
                       wx.setStorageSync('token', res.Data.token)
                       wx.setStorageSync('userID', res.Data.userID)
                       wx.setStorageSync('mobile', that.data.phone)
+                      wx.setStorageSync('myReferrerViewID', res.Data.referrerViewID)
                       wx.showToast({
                         title: '登录成功',
                         duration: 1500,

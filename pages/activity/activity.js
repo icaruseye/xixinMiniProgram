@@ -24,7 +24,6 @@ Page({
   },
   onShow() {
     this.getActivityList()
-    this.getMyList()
     this.setData({
       userInfo: wx.getStorageSync('userInfo'),
       mobile: wx.getStorageSync('mobile')

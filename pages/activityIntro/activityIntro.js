@@ -16,13 +16,23 @@ Page({
   },
 
   onShareAppMessage: function (res) {
-    if (res.from === 'button') {
-      // 来自页面内转发按钮
-      console.log(res.target)
+    // if (res.from === 'button') {
+    //   // 来自页面内转发按钮
+    //   console.log(res.target)
+    // }
+    let myReferrerViewID = wx.getStorageSync('myReferrerViewID')
+    let referrerType = 1      //推荐人类型1为用户,2位服务人员,0为不推荐
+    let servantViewID = this.data.servantViewID
+    if (myReferrerViewID) {   //之前已经赋初值了
+    } else if (servantViewID) {
+      referrerType = 2
+      myReferrerViewID = servantViewID
+    } else {
+      referrerType = 0
     }
     return {
       title: this.data.info.ActivityName,
-      path: `/pages/activityIntro/activityIntro?id=${this.data.activityId}&userID=${wx.getStorageSync('userID')}`
+      path: `/pages/activityIntro/activityIntro?id=${this.data.activityId}&userID=${myReferrerViewID}`
     }
   },
 
