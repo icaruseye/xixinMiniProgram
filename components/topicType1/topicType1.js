@@ -1,4 +1,4 @@
-import { NumToLetter } from '../../utils/util.js'
+import util from '../../utils/util.js'
 import { watch, computed } from '../../utils/vuefy.js' 
 
 Component({
@@ -74,7 +74,7 @@ Component({
         this.triggerEvent('setCourseRightNums', {})
       }
       this.setData({
-        NumToLetter: NumToLetter(this.data.data.IntRightKey),
+        NumToLetter: util.NumToLetter(this.data.data.IntRightKey),
         correctInner: this.data.data.IntRightKey
       })
       this.setStorage(this.data.answerInner)

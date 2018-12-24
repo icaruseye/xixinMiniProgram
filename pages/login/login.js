@@ -25,7 +25,7 @@ Page({
     wx.login({
       success(res) {
         api._get(`/SPUser/GetSessionKey`, {
-          servantViewID: wx.getStorageSync('servantViewID'),
+          servantViewID: app.globalData.servantViewID,
           code: res.code,
         }).then(res => {   //将ViewID缓存
           wx.setStorageSync('sessionToken', res.Data)     //存下来等获取OpenID时使用
@@ -46,7 +46,7 @@ Page({
     if (e.detail.errMsg === 'getPhoneNumber:ok') {
       wx.login({
         success(res) {
-          api._get(`/SPUser/GetMobile?servantViewID=${that.data.viewID}`, {
+          api._get(`/SPUser/GetMobile?servantViewID=${app.globalData.servantViewID}`, {
             mobileString: e.detail.encryptedData,
             iv: e.detail.iv,
             sessionToken: that.data.sessionToken,
@@ -67,7 +67,7 @@ Page({
                     vCode: '',
                     mobileToken: that.data.mobileToken,
                     sessionToken: wx.getStorageSync('sessionToken'),
-                    servantViewID: wx.getStorageSync('servantViewID')
+                    servantViewID: app.globalData.servantViewID
                   }).then(res => {
                     if (res.Code === 100000) {
                       wx.setStorageSync('token', res.Data.token)
@@ -126,7 +126,7 @@ Page({
       vCode: this.data.captcha,
       mobileToken: '',
       sessionToken: wx.getStorageSync('sessionToken'),
-      servantViewID: wx.getStorageSync('servantViewID')
+      servantViewID: app.globalData.servantViewID
     }).then(res => {
       if (res.Code === 100000) {
         wx.setStorageSync('token', res.Data.token)

@@ -1,5 +1,6 @@
 import regeneratorRuntime from '../../libs/regenerator-runtime/runtime.js'
 import api from '../../utils/api.js'
+import util from '../../utils/util.js'
 
 const app = getApp()
 
@@ -14,8 +15,8 @@ Page({
     mobile: ''
   },
   onLoad(options) {
-    wx.setStorageSync('servantViewID', options.servantViewID)
     wx.setStorageSync('localUrl', this.route)
+    console.log('onLoad')
     if (options.isMine) {
       this.setData({
         current: 'activityMine'
@@ -23,17 +24,23 @@ Page({
     }
   },
   onShow() {
+    console.log('onShow')
     this.setData({
       userInfo: wx.getStorageSync('userInfo'),
       mobile: wx.getStorageSync('mobile')
     })
-    this.init()
+    if (util.getQueryString('isMine', this.route)) {
+      this.setData({
+        current: 'activityMine'
+      })
+    }
+    this.init(this.data.current)
   },
   // 活动列表
   getActivityList () {
-    api._get('/SPUser/Activity-List', {
-      viewId: wx.getStorageSync('servantViewID')
-    }).then(res => {
+    const servantViewID = app.globalData.servantViewID || ''
+    const url = servantViewID ? `/SPUser/Activity-List?viewId=${servantViewID}` : '/SPUser/Activity/List/All'
+    api._get(url).then(res => {
       this.setData({
         pageReady: true,
         list: res.Data || []
@@ -46,9 +53,9 @@ Page({
   },
   // 我的活动
   getMyList() {
-    api._get('/SPUser/Activity-My-List', {
-      viewId: wx.getStorageSync('servantViewID')
-    }).then(res => {
+    const servantViewID = app.globalData.servantViewID || ''
+    const url = servantViewID ? `/SPUser/Activity-My-List?viewId=${servantViewID}` : `/SPUser/Activity-My-List-All`
+    api._get(url).then(res => {
       this.setData({
         pageReady: true,
         mineList: res.Data || []
@@ -65,14 +72,14 @@ Page({
         pageReady: false,
         current: detail.key
       })
-      this.init()
+      this.init(detail.key)
     }
   },
-  init() {
-    if (this.data.current === 'activity') {
+  init(key) {
+    if (key === 'activity') {
       this.getActivityList()
     }
-    if (this.data.current === 'activityMine') {
+    if (key === 'activityMine') {
       this.getMyList()
     }
   },

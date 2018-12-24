@@ -1,6 +1,6 @@
 import Dialog from '../dist/vant/dialog/dialog'
 
-export const isLogin = () => {
+const isLogin = () => {
   if (!wx.getStorageSync('token')) {
     Dialog.alert({
       title: '提示',
@@ -17,7 +17,7 @@ export const isLogin = () => {
   return true
 } 
 
-export const NumToLetter = (index = 0) => {
+const NumToLetter = (index = 0) => {
   const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
   if (typeof index === 'number') {
     index = Math.abs(index)
@@ -29,4 +29,19 @@ export const NumToLetter = (index = 0) => {
   } else {
     console.error('Parameter is not a number！')
   }
+}
+
+const getQueryString = (name, url) => {
+  var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i')
+  var r = url.match(reg)
+  if (r != null) {
+    return unescape(r[2])
+  }
+  return null;
+}
+
+module.exports = {
+  isLogin,
+  NumToLetter,
+  getQueryString
 }

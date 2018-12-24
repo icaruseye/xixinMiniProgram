@@ -14,7 +14,6 @@ Page({
     mobile: ''
   },
   onLoad(options) {
-    wx.setStorageSync('servantViewID', options.servantViewID)
     wx.setStorageSync('localUrl', this.route)
     if (options.isMine) {
       this.setData({
@@ -23,7 +22,6 @@ Page({
     }
   },
   onShow() {
-    this.getActivityList()
     //this.getMyList()
     this.setData({
       userInfo: wx.getStorageSync('userInfo'),
@@ -45,7 +43,7 @@ Page({
   },
   // 获取我的活动
   getMyList() {
-    const servantViewID = wx.getStorageSync('servantViewID') || ''
+    const servantViewID = app.globalData.servantViewID || ''
     const _url = servantViewID ? `/SPUser/Activity-My-List${servantViewID}` : '/SPUser/Activity-My-List-All'
     api._get(_url).then(res => {
       this.setData({

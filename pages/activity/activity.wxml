@@ -40,7 +40,7 @@
       </view>
     </view>
     <view class='acMine_content'>
-      <view class='acMine_list' wx:if='{{list.length > 0}}'>
+      <view class='acMine_list' wx:if='{{mineList.length > 0}}'>
         <view class='acMine_list_item' wx:for='{{mineList}}' wx:key='index' bindtap='toGuide' data-index="{{index}}">
           <image class='acMine_list_item_icon' src='{{filter.transformImgUrl(item.CoverPhoto)}}'></image>
           <view class='acMine_list_item_content'>

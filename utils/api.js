@@ -1,5 +1,5 @@
-const baseUrl = 'https://test-api.xixincloud.com/api'
-// const baseUrl = 'https://lan-test.xixincloud.com/api'
+// const baseUrl = 'https://test-api.xixincloud.com/api'
+const baseUrl = 'https://lan-test.xixincloud.com/api'
 
 const http = ({ url = '', param = {}, ...other } = {}) => {
   wx.showLoading({
@@ -21,7 +21,7 @@ const http = ({ url = '', param = {}, ...other } = {}) => {
         wx.hideLoading()
         if (res.statusCode >= 200 && res.statusCode < 300) {
           if (res.data.Code === 100000) {
-            resolve(res.data)            
+            resolve(res.data)
           } else {
             const localUrl = wx.getStorageSync('localUrl')
             wx.showToast({

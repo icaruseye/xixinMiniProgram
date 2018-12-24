@@ -1,6 +1,8 @@
 import regeneratorRuntime from '../../libs/regenerator-runtime/runtime.js'
 import api from '../../utils/api.js'
 
+const app = getApp()
+
 Page({
 
   /**
@@ -57,44 +59,40 @@ Page({
     }
   },
   // 创建订单
-  async createOrder (orderID, openID, servantViewID) {
-    const res = await api._post(`/SPUser/CreateOrder?orderID=${orderID}&openID=${openID}&servantViewID=${servantViewID}`)
+  async createOrder (orderID, openID) {
+    const res = await api._post(`/SPUser/CreateOrder?orderID=${orderID}&openID=${openID}`)
     if (res.Code === 100000) {
       return res.Data
     }
   },
   backIndex () {
-    if (this.data.OrderType === '2') {
-      wx.redirectTo({
-        url: '/pages/course/course',
-      })
-    }
-    if (this.data.OrderType === '4' && wx.getStorageSync('servantViewID')) {
-      wx.redirectTo({
-        url: '/pages/activity/activity',
-      })
-    }
-    if (this.data.OrderType === '4' && !wx.getStorageSync('servantViewID')) {
-      wx.redirectTo({
-        url: '/pages/activityCom/activityCom',
-      })
+    const key = this.data.OrderType
+    switch (key) {
+      case '2':
+        wx.redirectTo({
+          url: '/pages/course/course',
+        })
+        break;
+      case '4':
+        wx.redirectTo({
+          url: '/pages/activity/activity',
+        })
+        break;
     }
   },
   backMine () {
-    if (this.data.OrderType === '2') {
-      wx.redirectTo({
-        url: '/pages/course/course?isMine=1',
-      })
-    }
-    if (this.data.OrderType === '4' && wx.getStorageSync('servantViewID')) {
-      wx.redirectTo({
-        url: '/pages/activity/activity?isMine=1',
-      })
-    }
-    if (this.data.OrderType === '4' && !wx.getStorageSync('servantViewID')) {
-      wx.redirectTo({
-        url: '/pages/activityCom/activityCom?isMine=1',
-      })
+    const key = this.data.OrderType
+    switch (key) {
+      case '2':
+        wx.redirectTo({
+          url: '/pages/course/course?isMine=1',
+        })
+        break;
+      case '4':
+        wx.redirectTo({
+          url: '/pages/activity/activity?isMine=1',
+        })
+        break;
     }
   }
 })

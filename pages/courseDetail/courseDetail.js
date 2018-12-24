@@ -15,15 +15,14 @@ Page({
     proxyCourseID: '',
     activityID:'',
     referrerViewID: '',
-    referrerType: '',
-    servantViewID: wx.getStorageSync('servantViewID') || '',
+    referrerType: ''
   },
 
   onShareAppMessage: function (res) {
     let myReferrerViewID = wx.getStorageSync('myReferrerViewID')
-    let referrerType = 1      //推荐人类型1为用户,2位服务人员,0为不推荐
-    let servantViewID = this.data.servantViewID
-    if (myReferrerViewID) {   //之前已经赋初值了
+    let referrerType = 1 //推荐人类型1为用户,2位服务人员,0为不推荐
+    let servantViewID = app.globalData.servantViewID || ''
+    if (myReferrerViewID) { //之前已经赋初值了
     } else if (servantViewID) {
       referrerType = 2
       myReferrerViewID = servantViewID
