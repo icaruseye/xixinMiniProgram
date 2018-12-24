@@ -162,6 +162,7 @@
 .acMine_list_item {
   padding: 50rpx 24rpx;
   display: flex;
+  align-items: center;
   border-bottom: 1px solid #eee;
 }
 
@@ -193,6 +194,7 @@
 }
 
 .acMine_list_item_content_price {
+  padding: 0 20rpx;
   font-size: 24rpx;
   color: #666;
 }

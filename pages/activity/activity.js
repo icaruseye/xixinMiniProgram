@@ -16,7 +16,6 @@ Page({
   },
   onLoad(options) {
     wx.setStorageSync('localUrl', this.route)
-    console.log('onLoad')
     if (options.isMine) {
       this.setData({
         current: 'activityMine'
@@ -24,7 +23,6 @@ Page({
     }
   },
   onShow() {
-    console.log('onShow')
     this.setData({
       userInfo: wx.getStorageSync('userInfo'),
       mobile: wx.getStorageSync('mobile')
@@ -60,6 +58,11 @@ Page({
         pageReady: true,
         mineList: res.Data || []
       })
+      if (this.checkMineOrder(res.Data)) {
+        setTimeout(() => {
+          this.getMyList()
+        }, 1000 * 10)
+      }
     }).catch(e => {
       this.setData({
         pageReady: true
@@ -90,8 +93,16 @@ Page({
       hasUserInfo: true
     })
   },
-  toGuide (e) {
+  toMineDetail (e) {
     const _data = this.data.mineList[e.currentTarget.dataset.index]
+    if (_data.OrderState === 1) {
+      wx.showToast({
+        title: '该订单付款确认中',
+        icon: 'none',
+        duration: 1000
+      })
+      return false
+    }
     if (_data.CommodityType === 1) {
       wx.navigateTo({
         url: '/pages/activityGuide/activityGuide',
@@ -103,7 +114,6 @@ Page({
       })
     }
   },
-  //事件处理函数
   toDetail: function(e) {
     wx.navigateTo({
       url: `../activityIntro/activityIntro?id=${e.currentTarget.dataset.id}`
@@ -115,9 +125,17 @@ Page({
     })
   },
   redirectToPage (option) {
-    console.log(option)
     wx.navigateTo({
       url: option.currentTarget.dataset.url,
     })
+  },
+  checkMineOrder (list = []) {
+    let flag = false
+    list.map(item => {
+      if(item.OrderState === 1) {
+        flag = true
+      }
+    })
+    return flag
   }
 })

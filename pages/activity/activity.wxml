@@ -41,13 +41,13 @@
     </view>
     <view class='acMine_content'>
       <view class='acMine_list' wx:if='{{mineList.length > 0}}'>
-        <view class='acMine_list_item' wx:for='{{mineList}}' wx:key='index' bindtap='toGuide' data-index="{{index}}">
+        <view class='acMine_list_item' wx:for='{{mineList}}' wx:key='index' bindtap='toMineDetail' data-index="{{index}}">
           <image class='acMine_list_item_icon' src='{{filter.transformImgUrl(item.CoverPhoto)}}'></image>
           <view class='acMine_list_item_content'>
             <view class='acMine_list_item_content_name'>{{item.ActivityName}}</view>
             <view class='acMine_list_item_content_desc'>{{item.ActivityDescribe}}</view>
           </view>
-          <!-- <view class='acMine_list_item_content_price'>￥{{filter.priceTrans(item.PresentPrice)}}</view> -->
+          <view class='acMine_list_item_content_price' wx:if="{{item.OrderState === 1}}">待确认</view>
         </view>
       </view>
       <view wx:else class='empty_box'>
