@@ -41,8 +41,7 @@ Page({
   onLoad: function (options) {
     wx.setStorageSync('localUrl', this.route)
     this.setData({
-      proxyCourseID: options.shopProxyCourse,
-      activityID: options.activityID || -1
+      proxyCourseID: options.shopProxyCourse
     })
   },
 
@@ -69,7 +68,6 @@ Page({
   async getLicenceCheck () {
     const res = await api._get('/SPUser/Course/Licence/Check', {
       shopProxyCourseID: this.data.proxyCourseID,
-      activityID: this.data.activityID || 0,
     })
     this.setData({IsPurchased: res.Data})
   },

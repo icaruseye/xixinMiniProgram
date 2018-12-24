@@ -110,7 +110,7 @@ Page({
     }
     if (_data.CommodityType === 2) {
       wx.navigateTo({
-        url: `/pages/courseDetail/courseDetail?id=${_data.CommodityID}&activityID=${_data.ID}`,
+        url: `/pages/courseDetail/courseDetail?shopProxyCourse=${_data.CommodityID}&activityID=${_data.ID}`,
       })
     }
   },

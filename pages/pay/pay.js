@@ -16,7 +16,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  async onLoad (options) {
+  async onLoad(options) {
     const that = this
     const res = await this.getPayShopInfo(options.orderID)
     this.setData({
@@ -59,13 +59,13 @@ Page({
     }
   },
   // 创建订单
-  async createOrder (orderID, openID) {
+  async createOrder(orderID, openID) {
     const res = await api._post(`/SPUser/CreateOrder?orderID=${orderID}&openID=${openID}`)
     if (res.Code === 100000) {
       return res.Data
     }
   },
-  backIndex () {
+  backIndex() {
     const key = this.data.OrderType
     switch (key) {
       case '2':
@@ -74,13 +74,14 @@ Page({
         })
         break;
       case '4':
-        wx.redirectTo({
-          url: '/pages/activity/activity',
-        })
+        if (wx.getStorageInfoSync())
+          wx.redirectTo({
+            url: '/pages/activity/activity',
+          })
         break;
     }
   },
-  backMine () {
+  backMine() {
     const key = this.data.OrderType
     switch (key) {
       case '2':
@@ -89,9 +90,16 @@ Page({
         })
         break;
       case '4':
-        wx.redirectTo({
-          url: '/pages/activity/activity?isMine=1',
-        })
+        if (app.globalData.servantViewID) {
+          wx.redirectTo({
+            url: '/pages/activity/activity?isMine=1',
+          })
+        } else {
+          wx.redirectTo({
+            url: '/pages/activityCom/activityCom?isMine=1',
+          })
+        }
+        
         break;
     }
   }

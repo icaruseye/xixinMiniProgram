@@ -27,6 +27,7 @@ Page({
       userInfo: wx.getStorageSync('userInfo'),
       mobile: wx.getStorageSync('mobile')
     })
+    this.getActivityList()
   },
   // 活动列表
   async getActivityList() {
@@ -89,7 +90,7 @@ Page({
     }
     if (_data.CommodityType === 2) {
       wx.navigateTo({
-        url: `/pages/courseDetail/courseDetail?id=${_data.CommodityID}&activityID=${_data.ID}`,
+        url: `/pages/courseDetail/courseDetail?shopProxyCourse=${_data.CommodityID}&activityID=${_data.ID}`,
       })
     }
   },
