@@ -8,9 +8,8 @@
       class='index_list_item'
       wx:for="{{list}}"
       wx:key='{{index}}'
-      bindtap="toDetail"
-      data-id="{{item.ServantProxyCourseID}}"
-      data-shopProxyCourse="{{item.ProxyCourseID}}">
+      data-index="{{index}}"
+      bindtap="toDetail">
       <image class='poster' lazy-load='{{ true }}' mode='aspectFit' src='{{filter.transformImgUrl(item.Img)}}'></image>
       <view class='content'>
         <view class='name'>{{item.ProxyCourseName}} </view>
@@ -32,7 +31,7 @@
       <view class='acMine_userinfo_content'>
         <view class='acMine_userinfo_content_name' wx:if="{{userInfo.nickName}}">{{userInfo.nickName}}</view>
         <button class='userInfo_btn' size="mini" wx:if="{{!userInfo.nickName}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo">获取头像昵称</button>
-        <view class='acMine_userinfo_content_id'>手机： {{ mobile }}</view>
+        <view class='acMine_userinfo_content_id'>手机： {{ filter.phoneHide(mobile) }}</view>
       </view>
     </view>
     <view class='acMine_content'>

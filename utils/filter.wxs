@@ -37,7 +37,7 @@ var priceTrans = function (val) {
  * 手机号遮蔽
 */
 var phoneHide = function (val) {
-  val = val.substr(0, 3) + '****' + val.substr(7, 4)
+  return val.substring(0, 3) + '****' + val.substring(7, 11)
 }
 
 /**
@@ -55,7 +55,6 @@ var numberToAlp = function (index) {
 }
 
 var wxIncludes = function (arr, target) {
-  console.log(arr)
   return arr.indexOf(target)
 }
 

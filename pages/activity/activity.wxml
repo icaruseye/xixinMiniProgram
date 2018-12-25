@@ -36,7 +36,7 @@
       <view class='acMine_userinfo_content'>
         <view class='acMine_userinfo_content_name' wx:if="{{userInfo.nickName}}">{{userInfo.nickName}}</view>
         <button class='userInfo_btn' size="mini" wx:if="{{!userInfo.nickName}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo">获取头像昵称</button>
-        <view class='acMine_userinfo_content_id'>手机： {{ mobile }}</view>
+        <view class='acMine_userinfo_content_id'>手机： {{ filter.phoneHide(mobile) }}</view>
       </view>
     </view>
     <view class='acMine_content'>

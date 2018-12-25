@@ -1,28 +1,34 @@
-<wxs module='filter' src='../../utils/filter.wxs'></wxs>
+<wxs module="filter" src="../../utils/filter.wxs"></wxs>
 <view class="grid-box">
   <!-- 视频预览/封面 -->
-  <view class='preview_wrap'>
+  <view class="preview_wrap">
     <video
-      class='preview_vedio'
-      style="width: 100%; height: 200px"  src='{{ courseInfo.PreViewContent }}'
+      wx:if="{{courseInfo.PreViewType !== 2}}"
+      class="preview_vedio"
+      style="width: 100%; height: 200px"  src="{{ courseInfo.PreViewContent }}"
       autoplay="{{true}}">
     </video>
+    <image class="preview_img" wx:if="{{courseInfo.PreViewType == 2 && !courseInfo.Img}}" src="../../images/course-default.png"></image>
+    <image class="preview_img" wx:if="{{courseInfo.PreViewType == 2 && courseInfo.Img}}" src="{{courseInfo.Img}}"></image>
     <view class="title_info">
       <view class="title">{{ courseInfo.ShopProxyCourseName }}</view>
       <view>
         <text class="price">￥{{filter.priceTrans(courseInfo.Price)}}</text>
       </view>
-      <button open-type='share' class='share_btn'>
-        <image class='icon' src='../../images/share-icon.png'></image>
+      <button open-type="share" class="share_btn">
+        <image class="icon" src="../../images/share-icon.png"></image>
       </button>
     </view>
   </view>
-  <view class="grid-var">
+  <view class="grid-var {{!IsPurchased ? 'grid-var' : 'grid-var-nobtn'}}">
     <scroll-view class="content" scroll-y="true">
       <!-- 课程详情 -->
       <view class="course_info">
         <view class="servant-panel_title"><i class="icon icon-2"></i>课程详情</view>
         <view class="content">{{ courseInfo.Desctiption }}</view>
+        <view class="imgs">
+          <image wx:for="{{courseInfo.Img}}" wx:key="{{index}}" src="{{filter.transformImgUrl(item)}}"></image>
+        </view>
       </view>
       <!-- 课程/习题 Tabbar -->
       <i-tabs current="{{ current }}" color="#3ecccc" bindchange="handleChange" class="tabbar">
@@ -42,4 +48,4 @@
   </view>
 </view>
 <!-- 购买按钮 -->
-<button class='buy_btn' bindtap='topay' wx:if="{{!IsPurchased}}">购买课程</button>
+<button class="buy_btn" bindtap="topay" wx:if="{{!IsPurchased}}">购买课程</button>

@@ -12,6 +12,7 @@ App({
     }
   },
   onShow: function () {
+    console.log(wx.getLaunchOptionsSync())
     if (wx.getLaunchOptionsSync() === 1089) {
       wx.redirectTo({
         url: '/pages/activity/activity'

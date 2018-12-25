@@ -43,7 +43,7 @@
 					"id": 0,
 					"name": "courseDetail",
 					"pathName": "pages/courseDetail/courseDetail",
-					"query": "id=6"
+					"query": "shopProxyCourse=21"
 				},
 				{
 					"id": 3,
@@ -58,10 +58,10 @@
 					"query": "id=17"
 				},
 				{
-					"id": 4,
+					"id": 3,
 					"name": "course",
 					"pathName": "pages/course/course",
-					"query": "id=17&servantViewID=b9f71c5e482246ab98fe7803235eb670"
+					"query": "servantViewID=3f7b1c958a5640b486a7647866cd7a3f"
 				},
 				{
 					"id": -1,
@@ -82,7 +82,7 @@
 					"query": "id=1"
 				},
 				{
-					"id": -1,
+					"id": 7,
 					"name": "服务人员activity",
 					"pathName": "pages/activity/activity",
 					"query": "servantViewID=b9f71c5e482246ab98fe7803235eb670"

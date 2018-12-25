@@ -15,7 +15,8 @@ Page({
     proxyCourseID: '',
     activityID:'',
     referrerViewID: '',
-    referrerType: ''
+    referrerType: '',
+    type: 1, // 接口标识是否有servantViewID
   },
 
   onShareAppMessage: function (res) {
@@ -40,8 +41,11 @@ Page({
    */
   onLoad: function (options) {
     wx.setStorageSync('localUrl', this.route)
+    const proxyCourseID = app.globalData.servantViewID ? options.ServantShopProxyCourseID : options.ShopProxyCourseID
+    const type = app.globalData.servantViewID ? 1 : 2
     this.setData({
-      proxyCourseID: options.shopProxyCourse
+      proxyCourseID: proxyCourseID,
+      type: type
     })
   },
 
@@ -58,15 +62,19 @@ Page({
    */
   async getCourseInfo () {
     const res = await api._get('/User/ShopProxyCourseDetails', {
-      proxyCourseID: this.data.proxyCourseID
+      proxyCourseID: this.data.proxyCourseID,
+      Type: this.data.type
     })
+    if (res.Data.Img) {
+      res.Data.Img = res.Data.Img.split(',')
+    }
     this.setData({
       courseInfo: res.Data
     })
   },
 
   async getLicenceCheck () {
-    const res = await api._get('/SPUser/Course/Licence/Check', {
+    const res = await api._get('/User/Course/Licence/Check', {
       shopProxyCourseID: this.data.proxyCourseID,
     })
     this.setData({IsPurchased: res.Data})
@@ -82,7 +90,8 @@ Page({
       activityID: this.data.activityID
     })
     this.setData({
-      'courseInfo.PreViewContent': res.Data
+      'courseInfo.PreViewContent': res.Data,
+      'courseInfo.PreViewType': 1
     })
   },
 

@@ -4,7 +4,7 @@
   <view class="topic_item topic_item_jianda" wx:if="{{data.TestPaperSubtitleName}}">
     <view class="topic_title"><text class="tag">简答题</text>{{index + 1}}.{{data.QuestionTitle}}</view>
     <view wx:if="{{correctInner === ''}}">
-      <textarea class="textarea" value="{{answerInner}}" bindblur="bindinput"></textarea>
+      <textarea class="textarea" value="{{answerInner}}" bindinput="bindinput"></textarea>
       <button class="submit" wx:if="{{paperType}}" bindtap="submitAnswer">提交</button>
     </view>
     <view wx:else>

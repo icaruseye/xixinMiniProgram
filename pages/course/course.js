@@ -16,7 +16,6 @@ Page({
   },
   onLoad(options) {
     wx.setStorageSync('localUrl', this.route)
-    console.log(app.globalData)
     if (options.isMine) {
       this.setData({
         current: 'courseMine'
@@ -32,10 +31,10 @@ Page({
   },
   // 课程列表
   getcourseList() {
-    api._get(`/User/CourseList?page=${this.data.page}&servantViewID=${app.globalData.servantViewID}`, ).then(res => {
+    api._get(`/User/ServantCourseList?page=${this.data.page}&servantViewID=${app.globalData.servantViewID}`, ).then(res => {
       this.setData({
         pageReady: true,
-        list: res.Data.proxyCourseResponseList || []
+        list: res.Data.CourseInfoResponseList || []
       })
     }).catch(e => {
       this.setData({
@@ -82,8 +81,10 @@ Page({
   },
   //事件处理函数
   toDetail: function (e) {
+    const index = e.currentTarget.dataset.index
+    const item = this.data.list[index]
     wx.navigateTo({
-      url: `../courseDetail/courseDetail?id=${e.currentTarget.dataset.id}&shopProxyCourse=${e.currentTarget.dataset.shopproxycourse}`
+      url: `../courseDetail/courseDetail?ServantShopProxyCourseID=${item.ServantShopProxyCourseID}&ShopProxyCourseID=${item.ShopProxyCourseID}`
     })
   },
   toExchange () {
