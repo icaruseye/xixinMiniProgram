@@ -37,19 +37,13 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 6,
+			"current": 7,
 			"list": [
 				{
 					"id": 0,
 					"name": "courseDetail",
 					"pathName": "pages/courseDetail/courseDetail",
 					"query": "id=6"
-				},
-				{
-					"id": 2,
-					"name": "activityCom",
-					"pathName": "pages/activityCom/activityCom",
-					"query": "shopID=1"
 				},
 				{
 					"id": 3,
@@ -76,8 +70,8 @@
 					"query": "id=17"
 				},
 				{
-					"id": 6,
-					"name": "activity",
+					"id": 5,
+					"name": "机构activity",
 					"pathName": "pages/activity/activity",
 					"query": ""
 				},
@@ -86,6 +80,12 @@
 					"name": "exchange",
 					"pathName": "pages/exchange/exchange",
 					"query": "id=1"
+				},
+				{
+					"id": -1,
+					"name": "服务人员activity",
+					"pathName": "pages/activity/activity",
+					"query": "servantViewID=b9f71c5e482246ab98fe7803235eb670"
 				}
 			]
 		}

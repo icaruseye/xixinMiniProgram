@@ -90,16 +90,9 @@ Page({
         })
         break;
       case '4':
-        if (app.globalData.servantViewID) {
-          wx.redirectTo({
-            url: '/pages/activity/activity?isMine=1',
-          })
-        } else {
-          wx.redirectTo({
-            url: '/pages/activityCom/activityCom?isMine=1',
-          })
-        }
-        
+        wx.redirectTo({
+          url: '/pages/activity/activity?isMine=1',
+        })
         break;
     }
   }

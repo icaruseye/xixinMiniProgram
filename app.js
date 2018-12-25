@@ -14,7 +14,7 @@ App({
   onShow: function () {
     if (wx.getLaunchOptionsSync() === 1089) {
       wx.redirectTo({
-        url: '/pages/activityCom/activityCom'
+        url: '/pages/activity/activity'
       })
     }
   },
