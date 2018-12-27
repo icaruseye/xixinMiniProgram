@@ -3,7 +3,8 @@ import api from '../../utils/api.js'
 
 Component({
   properties: {
-    proxyCourseID: Number
+    proxyCourseID: Number,
+    type: Number
   },
   data: {
     lessonList: [],
@@ -22,7 +23,8 @@ Component({
     async getLessonList() {
       const res = await api._get(`/User/ShopProxyCourseLessonList`, {
         page: this.data.pageIndex,
-        proxyCourseID: this.data.proxyCourseID
+        proxyCourseID: this.data.proxyCourseID,
+        Type: this.data.type
       })
       this.setData({
         lessonList: res.Data
@@ -33,7 +35,6 @@ Component({
      * 选择章节
      */
     selectLesson (e) {
-      console.log(e)
       this.setData({
         curr: e.currentTarget.dataset.id
       })

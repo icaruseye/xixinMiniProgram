@@ -9,10 +9,12 @@
       wx:for="{{list}}"
       wx:key='{{index}}'
       data-index="{{index}}"
+      data-isMine="0"
       bindtap="toDetail">
-      <image class='poster' lazy-load='{{ true }}' mode='aspectFit' src='{{filter.transformImgUrl(item.Img)}}'></image>
+      <image class='poster' wx:if="{{item.Img}}" lazy-load='{{ true }}' mode='aspectFit' src='{{filter.transformImgUrl(item.Img)}}'></image>
+      <image class='poster' wx:if="{{!item.Img}}" lazy-load='{{ true }}' mode='aspectFit' src='../../images/course_bg.png'></image>
       <view class='content'>
-        <view class='name'>{{item.ProxyCourseName}} </view>
+        <view class='name'>{{item.ShopProxyCourseName}} </view>
         <view class='desc'>{{item.Description}}</view>
         <view class='price'>
           <text class='saleprice'>￥{{filter.priceTrans(item.Price)}}</text>
@@ -36,8 +38,15 @@
     </view>
     <view class='acMine_content'>
       <view class='acMine_list' wx:if='{{mineList.length > 0}}'>
-        <view class='acMine_list_item' wx:for='{{mineList}}' wx:key='index' bindtap='toDetail' data-shopProxyCourse="{{item.CourseId}}">
-          <image class='acMine_list_item_icon' src='{{filter.transformImgUrl(item.Image)}}'></image>
+        <view
+          class='acMine_list_item'
+          wx:for='{{mineList}}'
+          wx:key='index'
+          bindtap="toDetail"
+          data-index="{{index}}"
+          data-isMine="1">
+          <image class='acMine_list_item_icon' wx:if="{{item.Image}}" src='{{filter.transformImgUrl(item.Image)}}'></image>
+          <image class='acMine_list_item_icon' wx:if="{{!item.Image}}" src='../../images/course_bg.png'></image>
           <view class='acMine_list_item_content'>
             <view class='acMine_list_item_content_name'>{{item.Title}}</view>
             <view class='acMine_list_item_content_desc'>{{item.Discription}}</view>

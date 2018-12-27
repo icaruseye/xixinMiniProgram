@@ -3,7 +3,8 @@ import api from '../../utils/api.js'
 
 Component({
   properties: {
-    proxyCourseID: Number
+    proxyCourseID: Number,
+    type: Number
   },
   data: {
     topicList: [],
@@ -23,7 +24,8 @@ Component({
     async getTopicList() {
       const res = await api._get(`/User/ShopProxyCourseTestPaperList`, {
         page: this.data.pageIndex,
-        proxyCourseID: this.data.proxyCourseID
+        proxyCourseID: this.data.proxyCourseID,
+        Type: this.data.type
       })
       this.setData({
         topicList: res.Data.shopProxyCourseTestPaper
@@ -31,7 +33,11 @@ Component({
     },
 
     async getCouldExam(id) {
-      const res = await api._get(`/User/CouldExam?testPaperID=${id}&proxyCourseID=${this.data.proxyCourseID}`)
+      const res = await api._get(`/User/CouldExam`, {
+        testPaperID: id,
+        proxyCourseID: this.data.proxyCourseID,
+        Type: this.data.type
+      })
       if (res.Data) {
         wx.navigateTo({
           url: `/pages/topic/topic?id=${id}&recordID=${res.Data}`,

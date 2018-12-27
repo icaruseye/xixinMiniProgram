@@ -16,7 +16,7 @@ Page({
     activityID:'',
     referrerViewID: '',
     referrerType: '',
-    type: 1, // 接口标识是否有servantViewID
+    type: app.globalData.servantViewID ? 1 : 2, // 接口标识是否有servantViewID
   },
 
   onShareAppMessage: function (res) {
@@ -41,11 +41,8 @@ Page({
    */
   onLoad: function (options) {
     wx.setStorageSync('localUrl', this.route)
-    const proxyCourseID = app.globalData.servantViewID ? options.ServantShopProxyCourseID : options.ShopProxyCourseID
-    const type = app.globalData.servantViewID ? 1 : 2
     this.setData({
-      proxyCourseID: proxyCourseID,
-      type: type
+      proxyCourseID: options.proxyCourseID
     })
   },
 
@@ -76,6 +73,7 @@ Page({
   async getLicenceCheck () {
     const res = await api._get('/User/Course/Licence/Check', {
       shopProxyCourseID: this.data.proxyCourseID,
+      Type: this.data.type
     })
     this.setData({IsPurchased: res.Data})
   },
@@ -87,7 +85,8 @@ Page({
     const res = await api._get('/User/CouldWatchingVideo', {
       lessonID: e.detail,
       proxyCourseID: this.data.proxyCourseID,
-      activityID: this.data.activityID
+      activityID: this.data.activityID,
+      Type: this.data.type
     })
     this.setData({
       'courseInfo.PreViewContent': res.Data,

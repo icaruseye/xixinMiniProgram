@@ -40,10 +40,15 @@
         wx-if="{{current === 'course'}}"
         proxyCourseID="{{proxyCourseID}}"
         bind:selectLesson="selectLesson"
+        type="{{type}}"
         >
       </lesson-list>
       <!-- 习题列表 -->
-      <topic-list wx-if="{{ current === 'topic' }}" proxy-courseID="{{ proxyCourseID }}"></topic-list>
+      <topic-list
+        wx-if="{{ current === 'topic' }}"
+        proxy-courseID="{{ proxyCourseID }}"
+        type="{{type}}">
+      </topic-list>
     </scroll-view>
   </view>
 </view>

@@ -172,8 +172,8 @@
 
 .acMine_list_item_icon {
   margin-right: 24rpx;
-  width: 150rpx;
-  height: 150rpx;
+  width: 280rpx;
+  height: 160rpx;
   border-radius: 4rpx;
 }
 

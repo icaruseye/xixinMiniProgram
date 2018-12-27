@@ -44,7 +44,7 @@ Page({
   },
   // 我的课程
   getMyList() {
-    api._get('/User/Proxy-Course-List').then(res => {
+    api._get('/User/MyCourseList').then(res => {
       this.setData({
         pageReady: true,
         mineList: res.Data || []
@@ -81,10 +81,12 @@ Page({
   },
   //事件处理函数
   toDetail: function (e) {
+    const ismine = e.currentTarget.dataset.ismine
     const index = e.currentTarget.dataset.index
-    const item = this.data.list[index]
+    const item = ismine === '1' ? this.data.mineList[index] : this.data.list[index]
+    const proxyCourseID = app.globalData.servantViewID ? item.ServantShopProxyCourseID : item.ShopProxyCourseID
     wx.navigateTo({
-      url: `../courseDetail/courseDetail?ServantShopProxyCourseID=${item.ServantShopProxyCourseID}&ShopProxyCourseID=${item.ShopProxyCourseID}`
+      url: `../courseDetail/courseDetail?proxyCourseID=${proxyCourseID}`
     })
   },
   toExchange () {
