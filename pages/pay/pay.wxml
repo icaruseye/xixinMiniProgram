@@ -4,7 +4,7 @@
   <view class='pay_status_doing' wx:if='{{ status === 0 }}'>
     <view class='pay_icon_wrap'>
       <image class='pay_icon_img' src='../../images/ic_paying.png'></image>
-      <text class='pay_icon_text'>支付中...</text>
+      <text class='pay_icon_text'>确认支付中...</text>
     </view>
     <view class='pay_title_bar'>
       <view class='pay_title_shop'>{{info.ShopName}}</view>
@@ -22,7 +22,7 @@
       <text class='pay_icon_text'>购买成功！</text>
     </view>
     <view class='pay_btn_bar'>
-      <view class='btn' bindtap='backIndex'>首页</view>    
+      <view class='btn' bindtap='backIndex'>首页</view>
       <view class='btn green' bindtap='backMine'>我的</view>
     </view>
   </view>

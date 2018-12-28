@@ -1,11 +1,13 @@
- const baseUrl = 'https://test-api.xixincloud.com/api'
-// const baseUrl = 'https://lan-test.xixincloud.com/api'
+//  const baseUrl = 'https://test-api.xixincloud.com/api'
+const baseUrl = 'https://lan-test.xixincloud.com/api'
 
-const http = ({ url = '', param = {}, ...other } = {}) => {
-  wx.showLoading({
-    title: '请求中..',
-    mask: true
-  })
+const http = ({ url = '', param = {}, ...other } = {}, opt = {}) => {
+  if (!opt.isNotShowloading) {
+    wx.showLoading({
+      title: '请求中..',
+      mask: true
+    })
+  }
   //param.shopID = 1
   return new Promise((resolve, reject) => {
     wx.request({
@@ -18,7 +20,9 @@ const http = ({ url = '', param = {}, ...other } = {}) => {
       },
       ...other,
       complete: (res) => {
-        wx.hideLoading()
+        if (!opt.isNotShowloading) {
+          wx.hideLoading()
+        }
         if (res.statusCode >= 200 && res.statusCode < 300) {
           if (res.data.Code === 100000) {
             resolve(res.data)
@@ -63,11 +67,11 @@ const getUrl = (url) => {
 }
 
 // get方法
-const _get = (url, param = {}) => {
+const _get = (url, param = {}, opt = {}) => {
   return http({
     url,
     param
-  })
+  }, opt)
 }
 
 const _post = (url, param = {}) => {

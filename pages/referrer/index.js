@@ -1,4 +1,6 @@
-// pages/referrer/index.js
+import regeneratorRuntime from '../../libs/regenerator-runtime/runtime.js'
+import api from '../../utils/api.js'
+
 Page({
 
   /**
@@ -6,14 +8,15 @@ Page({
    */
   data: {
     myReferrerViewID: null,
-    mobile: ''
+    mobile: '',
+    OacName: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getOacName()
   },
 
   /**
@@ -33,6 +36,18 @@ Page({
     })
   },
 
+  async getOacName () {
+    const res = await api._get('/SPUser/OacName')
+    this.setData({
+      OacName: res.Data
+    })
+  },
+
+  setClipboardData () {
+    wx.setClipboardData({
+      data: this.data.OacName
+    })
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */

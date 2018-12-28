@@ -37,7 +37,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 3,
+			"current": 7,
 			"list": [
 				{
 					"id": 0,
@@ -85,7 +85,7 @@
 					"id": 7,
 					"name": "服务人员activity",
 					"pathName": "pages/activity/activity",
-					"query": "servantViewID=b9f71c5e482246ab98fe7803235eb670"
+					"query": "servantViewID="
 				}
 			]
 		}

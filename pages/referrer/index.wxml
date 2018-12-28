@@ -16,8 +16,9 @@
       1，您的小程序绑定手机号为：{{filter.phoneHide(mobile)}}
     </view>
     <view class="text">
-     2，按照下图流程查看公众号，同时完成关注公众号动作。
+     2，按照下图流程查看公众号，公众号名称为：<text class="oacname">{{OacName}}</text>，同时完成关注公众号动作。
     </view>
+    <button size="mini" class="copy_btn" bindtap="setClipboardData">复制公众号名称到剪贴板</button>
     <view class="text">
       3，然后进入公众号个人中心->手机认证，以小程序认证的手机号进行手机认证。
     </view>

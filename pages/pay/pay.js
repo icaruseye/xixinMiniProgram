@@ -33,10 +33,14 @@ Page({
         signType: 'MD5',
         paySign: orderInfo.paySign,
         success(res) {
-          api._post(`/User/PagePaySuccess?orderID=${options.orderID}`)
-          that.setData({
-            status: 1
+          wx.showLoading({
+            title: '确认支付中...',
           })
+          that.checkOrderState(options.orderID)
+          // api._post(`/User/PagePaySuccess?orderID=${options.orderID}`)
+          // that.setData({
+          //   status: 1
+          // })
         },
         fail(res) {
           wx.navigateBack({
@@ -49,6 +53,24 @@ Page({
       that.setData({
         status: 1
       })
+    }
+  },
+  // 校验支付状态
+  async checkOrderState (orderID) {
+    const res = await api._get(`/SPUser/Order?orderID=${orderID}`, {}, {
+      isNotShowloading: true
+    })
+    if (res.Code === 100000) {
+      if (res.Data === 'False') {
+        setTimeout(() => {
+          this.checkOrderState(orderID)
+        }, 1000 * 10)
+      } else {
+        wx.hideLoading()
+        this.setData({
+          status: 1
+        })
+      }
     }
   },
   // 获取订单信息接口

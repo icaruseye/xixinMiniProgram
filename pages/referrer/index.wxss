@@ -25,3 +25,12 @@
   width: 700rpx;
   height: 3212rpx;
 }
+
+.oacname {
+  color: #3ecccc
+}
+
+.copy_btn {
+  color: #fff;
+  background: #3ecccc;
+}

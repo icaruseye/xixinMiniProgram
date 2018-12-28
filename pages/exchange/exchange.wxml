@@ -2,10 +2,10 @@
   <view class="tips">输入兑换码可兑换相应课程</view>
   <view class="exchange_from">
     <view class="exchange_from_cell">
-      <input class="primary" type="number" placeholder="请输入卡号" bindinput="getInputCodeKey" value="{{codeKey}}"/>
+      <input class="primary" type="text" placeholder="请输入卡号" bindinput="getInputCodeKey" value="{{codeKey}}"/>
     </view>
     <view class="exchange_from_cell">
-      <input class="primary" type="number" placeholder="请输入卡密" bindinput="getInputPwd" value="{{pwd}}" />
+      <input class="primary" type="text" placeholder="请输入卡密" bindinput="getInputPwd" value="{{pwd}}" />
     </view>
     <view class="exchange_from_cell">
       <input class="primary code" type="text" placeholder="请输入验证码" bindinput="getInputCaptcha" value="{{captcha}}"/>

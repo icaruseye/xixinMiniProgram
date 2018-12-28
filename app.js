@@ -2,7 +2,6 @@
 //app.js
 App({
   onLaunch: function (options) {
-    console.log(options)
     this.globalData.servantViewID = options.query.servantViewID
     var userInfo = wx.getStorageSync('userInfo') || null
     if (userInfo) {
@@ -12,8 +11,7 @@ App({
     }
   },
   onShow: function () {
-    console.log(wx.getLaunchOptionsSync())
-    if (wx.getLaunchOptionsSync() === 1089) {
+    if (wx.getLaunchOptionsSync().scene === 1089) {
       wx.redirectTo({
         url: '/pages/activity/activity'
       })

@@ -49,6 +49,11 @@ Page({
         pageReady: true,
         mineList: res.Data || []
       })
+      if (this.checkMineOrder(res.Data)) {
+        setTimeout(() => {
+          this.getMyList()
+        }, 1000 * 10)
+      }
     }).catch(e => {
       this.setData({
         pageReady: true
@@ -93,5 +98,14 @@ Page({
     wx.navigateTo({
       url: `../exchange/exchange`
     })
+  },
+  checkMineOrder (list = []) {
+    let flag = false
+    list.map(item => {
+      if(item.OrderState === 1) {
+        flag = true
+      }
+    })
+    return flag
   }
 })
