@@ -42,8 +42,7 @@ Page({
   onLoad: function (options) {
     wx.setStorageSync('localUrl', this.route)
     this.setData({
-      proxyCourseID: options.proxyCourseID,
-      activityID: options.activityID
+      proxyCourseID: options.proxyCourseID
     })
   },
 
@@ -86,7 +85,6 @@ Page({
     const res = await api._get('/User/CouldWatchingVideo', {
       lessonID: e.detail,
       proxyCourseID: this.data.proxyCourseID,
-      activityID: this.data.activityID,
       Type: this.data.type
     })
     this.setData({
