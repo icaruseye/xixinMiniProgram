@@ -107,5 +107,19 @@ Page({
       }
     })
     return flag
+  },
+  binderrorImage (e) {
+    const index = e.currentTarget.dataset.index
+    if (this.data.current === 'course') {
+      this.data.list[index].Img = ''
+      this.setData({
+        list: this.data.list
+      })
+    } else {
+      this.data.mineList[index].Img = ''
+      this.setData({
+        mineList: this.data.mineList
+      })
+    }
   }
 })

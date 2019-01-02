@@ -8,7 +8,7 @@
       style="width: 100%; height: 200px"  src="{{ courseInfo.PreViewContent }}"
       autoplay="{{true}}">
     </video>
-    <image class="preview_img" wx:if="{{courseInfo.PreViewType == 2 && !courseInfo.Img}}" src="../../images/course-default.png"></image>
+    <image class="preview_img" wx:if="{{courseInfo.PreViewType == 2 && !courseInfo.Img}}" src="../../images/course-default.png" binderror="binderrorImage"></image>
     <image class="preview_img" wx:if="{{courseInfo.PreViewType == 2 && courseInfo.Img}}" src="{{courseInfo.Img}}"></image>
     <view class="title_info">
       <view class="title">{{ courseInfo.ShopProxyCourseName }}</view>

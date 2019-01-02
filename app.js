@@ -10,12 +10,12 @@ App({
       }
     }
   },
-  onShow: function () {
-    if (wx.getLaunchOptionsSync().scene === 1089) {
-      wx.redirectTo({
-        url: '/pages/activity/activity'
-      })
-    }
+  onShow: function (options) {
+    // if (options.scene === 1089) {
+    //   wx.redirectTo({
+    //     url: '/pages/activity/activity'
+    //   })
+    // }
   },
   globalData: {
     userInfo: null

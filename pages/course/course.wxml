@@ -11,7 +11,7 @@
       data-index="{{index}}"
       data-isMine="0"
       bindtap="toDetail">
-      <image class='poster' wx:if="{{item.Img}}" lazy-load='{{ true }}' mode='aspectFit' src='{{filter.transformImgUrl(item.Img)}}'></image>
+      <image class='poster' wx:if="{{item.Img}}" lazy-load='{{ true }}' mode='aspectFit' src='{{filter.transformImgUrl(item.Img)}}' binderror="binderrorImage" data-index="{{index}}"></image>
       <image class='poster' wx:if="{{!item.Img}}" lazy-load='{{ true }}' mode='aspectFit' src='../../images/course_bg.png'></image>
       <view class='content'>
         <view class='name'>{{item.ShopProxyCourseName}} </view>

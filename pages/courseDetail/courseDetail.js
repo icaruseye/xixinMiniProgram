@@ -42,7 +42,8 @@ Page({
   onLoad: function (options) {
     wx.setStorageSync('localUrl', this.route)
     this.setData({
-      proxyCourseID: options.proxyCourseID
+      proxyCourseID: options.proxyCourseID,
+      activityID: options.activityID
     })
   },
 
@@ -137,5 +138,10 @@ Page({
     this.setData({
       current: detail.key
     });
+  },
+  binderrorImage () {
+    this.setData({
+      'courseInfo.Img': ''
+    })
   }
 })
