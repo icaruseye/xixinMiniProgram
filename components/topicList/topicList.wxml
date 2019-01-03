@@ -1,5 +1,5 @@
 <view class="container">
-  <view class="topic_list">
+  <view class="topic_list" wx:if="{{topicList.length > 0}}">
     <view
       class="item"
       wx:for="{{topicList}}"
@@ -9,5 +9,5 @@
       <view class="btn" data-id="{{item.TestPaperID}}" bindtap="toTopic">去做题</view>
     </view>
   </view>
-  <!-- <view class="empty-box">暂无习题</view> -->
+  <view wx:else class="empty_box">暂无习题</view>
 </view>

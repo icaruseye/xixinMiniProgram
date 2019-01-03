@@ -43,7 +43,7 @@ Page({
     wx.setStorageSync('localUrl', this.route)
     this.setData({
       proxyCourseID: options.proxyCourseID,
-      activityID: options.activityID
+      activityID: options.activityID || ''
     })
   },
 

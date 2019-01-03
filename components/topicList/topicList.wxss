@@ -1,4 +1,10 @@
-/* components/topicList/topicList.wxss */
+@import '../../app.wxss';
+.container {
+  min-height: 150px;
+  position: relative;
+  background: #fff;
+  padding: 40rpx 30rpx;
+}
 .topic_list {
   background: #fff;
   padding: 0 24rpx;

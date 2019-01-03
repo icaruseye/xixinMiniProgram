@@ -38,11 +38,13 @@ Component({
   methods: {
     init (index) {
       const answerList = wx.getStorageSync('userAnswerList')
-      this.setData({
-        answerInner: answerList[index].Answer !== -1 ? answerList[index].Answer : -1,
-        correctInner: answerList[index].Answer !== -1 ? this.data.data.IntRightKey : -1,
-        NumToLetter: ''
-      })
+      if (answerList) {
+        this.setData({
+          answerInner: answerList[index].Answer !== -1 ? answerList[index].Answer : -1,
+          correctInner: answerList[index].Answer !== -1 ? this.data.data.IntRightKey : -1,
+          NumToLetter: ''
+        })
+      }
     },
     handleChange({ detail = {} }) {
       this.setData({
