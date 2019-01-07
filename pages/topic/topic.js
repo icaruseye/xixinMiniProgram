@@ -156,6 +156,7 @@ Page({
       arr.push(Object.assign({
         Answer: [2, 4, 5].indexOf(questionList[index].QuestionType) === -1 ? -1 : '',
         correct: [2, 4, 5].indexOf(questionList[index].QuestionType) === -1 ? questionList[index].IntRightKey : questionList[index].StrRightKey,
+        UserTestPaperAnswerParam: questionList[index].TestPaperSubtitleQuestionID,
         TestPaperSubtitleQuestionID: questionList[index].TestPaperSubtitleQuestionID,
         index: index,
         type: questionList[index].QuestionType,
