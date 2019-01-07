@@ -1,5 +1,5 @@
 <view class="container">
-  <view class='acGuide_text'> 1.按照以下步骤进入公众号后，点击“我的”->“个人中心”->“我的活动”，进行相 关操作</view>
+  <view class='text'> 1.按照以下步骤进入公众号后，点击“我的”->“个人中心”->“我的活动”，进行相 关操作</view>
   <view class="text">
     2，按照下图流程查看公众号，公众号名称为：<text class="oacname">{{OacName}}</text>，同时完成关注公众号动作。
   </view>
