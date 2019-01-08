@@ -32,7 +32,7 @@ Page({
     }
     return {
       title: this.data.courseInfo.ShopProxyCourseName,
-      path: `/pages/courseDetail/courseDetail?id=${this.data.proxyCourseID}&referrerViewID=${myReferrerViewID}&referrerType=${referrerType}`
+      path: `/pages/courseDetail/courseDetail?proxyCourseID=${this.data.proxyCourseID}&referrerViewID=${myReferrerViewID}&referrerType=${referrerType}`
     }
   },
 
@@ -43,8 +43,13 @@ Page({
     wx.setStorageSync('localUrl', this.route)
     this.setData({
       proxyCourseID: options.proxyCourseID,
-      activityID: options.activityID || ''
+      activityID: options.activityID || '',
+      referrerType: options.referrerType || 0,
+      referrerViewID: options.referrerViewID || ''
     })
+    console.log(options)
+    console.log(options.referrerType)
+    console.log(options.referrerViewID)
   },
 
   /**

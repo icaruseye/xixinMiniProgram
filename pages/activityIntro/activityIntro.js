@@ -45,7 +45,7 @@ Page({
     this.setData({
       activityId: options.id,
       referrerViewID: options.referrerViewID||'',
-      refereeType: options.referrerType||0,
+      referrerType: options.referrerType||0,
     })
     this.getActivityDetail(this.data.activityId)
   },
