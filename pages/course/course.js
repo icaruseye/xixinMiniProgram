@@ -9,6 +9,7 @@ Page({
     hasUserInfo: false,
     pageReady: false,
     page: 1,
+    totalNumber: 0,
     list: [],
     mineList: [],
     userInfo: {},
@@ -29,12 +30,19 @@ Page({
   onShow() {
     this.init()
   },
+  loadMore () {
+    this.setData({
+      page: this.data.page + 1
+    })
+    this.getcourseList()
+  },
   // 课程列表
   getcourseList() {
     api._get(`/User/ServantCourseList?page=${this.data.page}&servantViewID=${app.globalData.servantViewID}`, ).then(res => {
       this.setData({
         pageReady: true,
-        list: res.Data.CourseInfoResponseList || []
+        totalNumber: res.Data.Total,
+        list: [...this.data.list, ...res.Data.CourseInfoResponseList]
       })
     }).catch(e => {
       this.setData({

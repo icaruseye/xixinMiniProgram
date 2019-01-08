@@ -21,6 +21,7 @@
         </view>
       </view>
     </view>
+    <view wx:if="{{totalNumber > list.length}}" bindtap="loadMore" class="loading_more_btn">加载更多</view>
     <view wx:if="{{list.length === 0}}" class='empty_box'>
       <image class='icon' src='../../images/empty_icon.png' mode='aspectFit'></image>
       <view class='text'>暂无课程</view>

@@ -266,3 +266,10 @@
   width: 30rpx;
   height: 30rpx;
 }
+.loading_more_btn
+{
+  text-align: center;
+  margin-top: 10rpx;
+  font-size: 24rpx;
+  padding: 20rpx 0;
+}
