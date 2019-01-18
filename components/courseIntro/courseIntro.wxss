@@ -1,0 +1,25 @@
+/* components/courseIntro/courseIntro.wxss */
+.course_info
+{
+  padding: 20rpx;
+  background-color: #fff;
+}
+.content
+{
+  font-size: 28rpx;
+  color: #5d5d5d;
+  text-align: justify;
+  line-height: 50rpx
+}
+.imgs
+{
+  display: block;
+  width: 100%;
+  margin-top: 20rpx;
+}
+.imgs image
+{
+  display: block;
+  border-radius: 10rpx;
+  width: 100%;
+}

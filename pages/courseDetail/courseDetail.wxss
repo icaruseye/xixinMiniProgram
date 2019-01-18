@@ -16,28 +16,35 @@ page {
     flex-direction: column;
 }
 .grid-var{
-  height: calc(100vh - 610rpx);
+  height: calc(100vh - 720rpx);
 }
 
 .grid-var-nobtn {
-  height: calc(100vh - 510rpx);
+  height: calc(100vh - 620rpx);
 }
 
 .content{height: 100%;}
 
 .preview_wrap {
-  height: 500rpx;
+  height: 530rpx;
   width: 100%;
   background: #fff;
   z-index: 999;
 }
-
+.preview_vedio
+{
+  display: block;
+  width: 100%;
+  height: 400rpx;
+}
 .preview_wrap .title_info {
   position: relative;
   padding: 20rpx;
+  height: 130rpx;
   background: #fff;
   border-bottom: 1rpx solid #F2F4F5;
   overflow: hidden;
+  box-sizing: border-box;
 }
 
 .preview_img {
@@ -55,38 +62,8 @@ page {
   font-size: 30rpx;
 }
 
-.course_info {
-  padding: 20rpx 0;
-  margin: 20rpx 0;
-  background: #fff;
-}
-
-.course_info .servant-panel_title {
-  padding: 0 20rpx 20rpx;
-  border-bottom: 1rpx solid #F2F4F5;
-  font-size: 32rpx;
-  color: #333;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-}
-
-.course_info .content {
-  padding: 30rpx;
-  font-size: 24rpx;
-  color: #4A4A4A;
-}
-
-.course_info .imgs {
-  text-align: center;
-}
-
-.course_info .imgs image {
-  margin-bottom: 20rpx;
-}
-
 .tabbar {
-  margin-top: 20rpx;
+  height: 90rpx;
 }
 
 .buy_btn {

@@ -18,7 +18,8 @@
     "components/topicType5/topicType5",
     "pages/course/course",
     "pages/exchange/exchange",
-    "pages/referrer/index"
+    "pages/referrer/index",
+    "pages/coursewareDetail/coursewareDetail"
   ],
   "usingComponents": {
     "i-modal": "./dist/iview/modal/index",

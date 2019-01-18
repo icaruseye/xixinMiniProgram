@@ -1,0 +1,89 @@
+.courseware_detail_contianer
+{
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+.page_tag_btn
+{
+  position: absolute;
+  right: 20rpx;
+  top: 20rpx;
+  font-size: 28rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  padding: 0 20rpx;
+  color: #fff;
+  background-color: rgba(0,0,0,.5);
+  z-index: 10
+}
+.courseware_detail_swiper
+{
+  width: 100vw;
+  height: 100vh;
+}
+.swiper_items_container
+{
+  position: relative;
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  align-items: center;
+}
+.courseware_img
+{
+  width: 100%;
+  height: 100vh
+}
+
+.image_menus_fixed_container
+{
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 1111;
+  background-color: rgba(255,255,255,.9);
+}
+.menu_scroll_view
+{
+  height: calc(100vh - 100rpx)
+}
+.menu_list_warp
+{
+  padding: 60rpx;
+  display: flex;
+  flex-flow: wrap;
+  align-items: center;
+  justify-content: flex-start;
+}
+.menu_list_btn
+{
+  width: 80rpx;
+  height:80rpx;
+  border-radius: 50%;
+  box-sizing: border-box;
+  border:2px solid #ddd;
+  margin: 10rpx;
+  font-size: 28rpx;
+  color: #999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.menu_list_btn.active
+{
+  border-color: #3AC7F5;
+  color: #fff;
+  background-color: #3AC7F5
+}
+.closeBtn
+{
+  height: 100rpx;
+  text-align: center;
+  line-height: 100rpx;
+  font-size: 32rpx;
+  background-color: rgba(0,0,0,.4);
+  color: #fff;
+}

@@ -1,0 +1,14 @@
+<view class="courseware_list_container">
+  <block wx:if="{{shopProxyCourseEnclosureList.length > 0}}">
+    <view class="coursewareItems_container"
+      wx:for="{{shopProxyCourseEnclosureList}}"
+      data-id="{{item.CourseEnclosureID}}"
+      bindtap='redirectToDetail'
+    >
+      {{item.Name}}
+    </view>
+  </block>
+  <view class="empty_box" wx:else>
+    当前课程暂未上传课件
+  </view>
+</view>

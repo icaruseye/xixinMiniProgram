@@ -4,6 +4,8 @@
     "i-tabs": "../../dist/iview/tabs/index",
     "i-tab": "../../dist/iview/tab/index",
     "lesson-list": "../../components/lessonList/lessonList",
-    "topic-list": "../../components/topicList/topicList"
+    "topic-list": "../../components/topicList/topicList",
+    "courseware-list": "../../components/coursewareList/coursewareList",
+    "course-intro": "../../components/courseIntro/courseIntro"
   }
 }

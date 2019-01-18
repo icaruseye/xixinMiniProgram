@@ -1,0 +1,26 @@
+<wxs module="filter" src="../../utils/filter.wxs"></wxs>
+<view class='courseware_detail_contianer'>
+  <cover-view class='page_tag_btn' bindtap='openMenuDialog'>{{currentIndex + 1}}/{{imgList.length}}</cover-view>
+  <swiper current="{{currentIndex}}" class='courseware_detail_swiper' bindchange="swiperChange">
+    <block wx:for="{{imgList}}" wx:key="{{index}}">
+      <swiper-item>
+        <view class='swiper_items_container'>
+          <image lazy-load="true"	 class='courseware_img' src="{{item.RemotePath}}" mode="aspectFit"/>
+        </view>
+      </swiper-item>
+    </block>
+  </swiper>
+</view>
+
+<view wx:if="{{showMenuDialog}}"  class='image_menus_fixed_container'>
+  <scroll-view scroll-y="{{true}}" class='menu_scroll_view'>
+    <view class='menu_list_warp'>
+      <view wx:for="{{imgList.length}}" class='menu_list_btn {{currentIndex === item ? "active": ""}}' wx:key="{{index}}" bindtap='changeSwiperCurrent' data-index="{{item}}">
+        {{item + 1}}
+      </view>
+    </view>
+  </scroll-view>
+  <view class="closeBtn" bindtap='closeMenuDialog'>
+    关闭
+  </view>
+</view>

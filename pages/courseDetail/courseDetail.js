@@ -9,7 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    current: 'course',
+    current: 'intro',
     courseInfo: {},
     IsPurchased: true,
     proxyCourseID: '',
@@ -47,9 +47,6 @@ Page({
       referrerType: options.referrerType || 0,
       referrerViewID: options.referrerViewID || ''
     })
-    console.log(options)
-    console.log(options.referrerType)
-    console.log(options.referrerViewID)
   },
 
   /**

@@ -79,6 +79,9 @@ Page({
   },
   init() {
     if (this.data.current === 'course') {
+      this.setData({
+        list: []
+      })
       this.getcourseList()
     }
     if (this.data.current === 'courseMine') {

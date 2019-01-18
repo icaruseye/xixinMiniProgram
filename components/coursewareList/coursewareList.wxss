@@ -1,0 +1,14 @@
+@import '../../app.wxss';
+.coursewareItems_container{
+  background-color: #fff;
+  line-height: 40rpx;
+  display: flex;
+  justify-content: left;
+  flex-flow: nowrap;
+  align-items: center;
+  padding: 40rpx 20rpx;
+  color: #5d5d5d;
+  text-align: justify;
+  font-size: 28rpx;
+  border-bottom: 1rpx solid #f6f6f6;
+}
