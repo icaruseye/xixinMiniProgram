@@ -18,12 +18,27 @@
             <view
               class="sub_item_title {{curr === subItem.LessonID && 'active'}}"
               bindtap="selectLesson"
+              data-type="{{subItem.ContentType}}"
+              data-contentid="{{subItem.Content}}"
               data-id="{{subItem.LessonID}}">
               <span class="name">{{subItem.LessonName}}</span>
-              <span class="tag">录播</span>
+              <span class="tag">
+                <block wx:if="{{subItem.ContentType === 1}}">
+                  录播
+                </block>
+                <block wx:if="{{subItem.ContentType === 2}}">
+                  PPT
+                </block>
+                <block wx:if="{{subItem.ContentType === 3}}">
+                  音频
+                </block>
+                <block wx:if="{{subItem.ContentType === 4}}">
+                  试卷
+                </block>
+              </span>
               <image class='play_icon' src="../../images/course_play.png"></image>
             </view>
-            <view class="sub_item_time">{{subItem.VideoMinute}}分钟</view>
+            <view wx:if="{{subItem.ContentType === 1}}" class="sub_item_time">{{subItem.VideoMinute}}分钟</view>
           </view>
           <view class="sub_item" wx:if="{{item.lessonResponse.length === 0}}">
             <view class="sub_item_title">暂无小节内容</view>
