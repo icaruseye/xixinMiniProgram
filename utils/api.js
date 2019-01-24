@@ -1,5 +1,6 @@
- const baseUrl = 'https://test-api.xixincloud.com/api'
+const baseUrl = 'https://test-api.xixincloud.com/api'
 // const baseUrl = 'https://lan-test.xixincloud.com/api'
+const logger = wx.getLogManager({ level: 1 })
 
 const http = ({ url = '', param = {}, ...other } = {}, opt = {}) => {
   if (!opt.isNotShowloading) {
@@ -23,10 +24,16 @@ const http = ({ url = '', param = {}, ...other } = {}, opt = {}) => {
         if (!opt.isNotShowloading) {
           wx.hideLoading()
         }
+        // 请求正常
         if (res.statusCode >= 200 && res.statusCode < 300) {
           if (res.data.Code === 100000) {
             resolve(res.data)
           } else {
+            logger.info({
+              err: res,
+              url: url,
+              param: param
+            }, '接口非正确返回')
             const localUrl = wx.getStorageSync('localUrl')
             wx.showToast({
               title: res.data.Msg,
@@ -36,6 +43,8 @@ const http = ({ url = '', param = {}, ...other } = {}, opt = {}) => {
             reject(res)
           }
         } else {
+          // 请求出错：登录失效、服务器错误
+          logger.warn({ err: res, url: url }, '接口请求错误日志')
           if (res.data.Code === 100010) {
             wx.showModal({
               title: '提示',
@@ -52,6 +61,7 @@ const http = ({ url = '', param = {}, ...other } = {}, opt = {}) => {
             })
           } else {
             wx.showToast({
+              icon: 'none',
               title: '出错了',
             })
             reject(res)

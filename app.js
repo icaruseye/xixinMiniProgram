@@ -17,6 +17,11 @@ App({
     }
     
   },
+  // 监听错误
+  onError: function (err) {
+    const logger = wx.getLogManager({level: 1})
+    // logger.warn({ err: err }, '全局错误日志')
+  },
   globalData: {
     userInfo: null,
     servantViewID: null

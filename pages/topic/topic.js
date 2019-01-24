@@ -11,7 +11,7 @@ Page({
     recordID: '',
     isOver: false, // 完成所有题目
     isShowCard: false, // 显示答题卡
-    answerIndex: 0, // 当前显示题目索引,
+    answerIndex: null, // 当前显示题目索引,
     IsNeedAnswer: false,
     TestPaperName: '',
     questionList: [],
@@ -54,6 +54,9 @@ Page({
       TestPaperName: res.Data.TestPaperName,
     })
     this.setAnswerList()
+    this.setData({
+      answerIndex: 0
+    })
   },
 
   /**
