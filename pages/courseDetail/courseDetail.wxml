@@ -26,18 +26,18 @@
     <i-tab key="topic" title="习题"></i-tab>
     <i-tab key="courseware" title="课件"></i-tab>
   </i-tabs>
-  <view v-if="courseInfo" class="grid-var {{!IsPurchased ? 'grid-var' : 'grid-var-nobtn'}}">
+  <view wx:if="{{courseInfo}}" class="grid-var {{!IsPurchased ? 'grid-var' : 'grid-var-nobtn'}}">
     <scroll-view class="content" scroll-y="true">
       <!-- 课程简介 -->
       <course-intro
-        wx-if="{{current === 'intro'}}"
+        wx:if="{{current === 'intro'}}"
         Desctiption="{{courseInfo.Desctiption}}"
         Img="{{courseInfo.DescriptionImg}}"
       >
       </course-intro>
       <!-- 课程目录 -->
       <lesson-list
-        wx-if="{{current === 'course'}}"
+        wx:if="{{current === 'course'}}"
         proxyCourseID="{{proxyCourseID}}"
         bind:selectLesson="selectLesson"
         type="{{type}}"
@@ -45,13 +45,13 @@
       </lesson-list>
       <!-- 习题列表 -->
       <topic-list
-        wx-if="{{ current === 'topic' }}"
+        wx:if="{{ current === 'topic' }}"
         proxy-courseID="{{ proxyCourseID }}"
         type="{{type}}">
       </topic-list>
       <!-- 课件列表 -->
       <courseware-list
-        wx-if="{{ current === 'courseware' }}"
+        wx:if="{{ current === 'courseware' }}"
         proxy-courseID="{{ proxyCourseID }}"
         type="{{type}}"
       >

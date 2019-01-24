@@ -10,7 +10,7 @@ Page({
    */
   data: {
     current: 'intro',
-    courseInfo: {},
+    courseInfo: null,
     IsPurchased: true,
     proxyCourseID: '',
     activityID:'',
