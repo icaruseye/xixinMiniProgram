@@ -2,7 +2,7 @@
 //app.js
 App({
   onLaunch: function (options) {
-    wx.setStorageSync('servantViewID', servantViewID)
+    wx.setStorageSync('servantViewID', options.query.servantViewID)
   },
   onShow: function (options) {
     let servantViewID = options.query.servantViewID
