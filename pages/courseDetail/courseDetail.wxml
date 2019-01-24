@@ -7,8 +7,8 @@
       class="preview_vedio"  src="{{ courseInfo.PreViewContent }}"
       autoplay="{{true}}">
     </video>
-    <image class="preview_img" wx:if="{{courseInfo.PreViewType == 2 && !courseInfo.Img}}" src="../../images/course-default.png" binderror="binderrorImage"></image>
-    <image class="preview_img" mode="aspectFit" wx:if="{{courseInfo.PreViewType == 2 && courseInfo.Img}}" src="{{filter.transformImgUrl(courseInfo.Img)}}"></image>
+    <image class="preview_img" wx:if="{{courseInfo.PreViewType == 2 && !courseInfo.PreViewContent}}" src="../../images/course-default.png" binderror="binderrorImage"></image>
+    <image class="preview_img" mode="aspectFit" wx:if="{{courseInfo.PreViewType == 2 && courseInfo.PreViewContent}}" src="{{filter.transformImgUrl(courseInfo.PreViewContent)}}"></image>
     <view class="title_info">
       <view class="title">{{ courseInfo.ShopProxyCourseName }}</view>
       <view>
@@ -26,13 +26,13 @@
     <i-tab key="topic" title="习题"></i-tab>
     <i-tab key="courseware" title="课件"></i-tab>
   </i-tabs>
-  <view class="grid-var {{!IsPurchased ? 'grid-var' : 'grid-var-nobtn'}}">
+  <view v-if="courseInfo" class="grid-var {{!IsPurchased ? 'grid-var' : 'grid-var-nobtn'}}">
     <scroll-view class="content" scroll-y="true">
       <!-- 课程简介 -->
       <course-intro
         wx-if="{{current === 'intro'}}"
         Desctiption="{{courseInfo.Desctiption}}"
-        Img="{{courseInfo.Img}}"
+        Img="{{courseInfo.DescriptionImg}}"
       >
       </course-intro>
       <!-- 课程目录 -->

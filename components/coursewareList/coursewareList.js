@@ -29,7 +29,7 @@ Component({
     redirectToDetail (e) {
       let id = e.currentTarget.dataset.id
       wx.navigateTo({
-        url: `/pages/coursewareDetail/coursewareDetail?proxyCourseID=${this.data.proxyCourseID}&id=${id}`,
+        url: `/pages/coursewareDetail/coursewareDetail?proxyCourseID=${this.data.proxyCourseID}&id=${id}`
       })
     },
     async getCourseEnclosureList () {

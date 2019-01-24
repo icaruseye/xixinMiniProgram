@@ -2,7 +2,7 @@
 <!-- 课程详情 -->
 <view class="course_info">
   <view class="content">{{ Desctiption }}</view>
-  <view class="imgs" wx:for="{{Img}}" wx:key="{{index}}">
+  <view class="imgs" wx:for="{{imgList}}" wx:key="{{index}}">
     <image src="{{filter.transformImgUrl(item)}}" mode='widthFix'></image>
   </view>
 </view>

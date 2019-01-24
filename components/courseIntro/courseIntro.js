@@ -5,16 +5,22 @@ Component({
    */
   properties: {
     Desctiption: String,
-    Img: Array
+    Img: String
   },
 
   /**
    * 组件的初始数据
    */
   data: {
-
+    imgList: []
   },
-
+  lifetimes: {
+    ready() {
+      this.setData({
+        imgList: this.data.Img.split(',')
+      })
+    }
+  },
   /**
    * 组件的方法列表
    */
