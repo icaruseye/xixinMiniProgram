@@ -1,5 +1,5 @@
-//  const baseUrl = 'https://test-api.xixincloud.com/api'
-const baseUrl = 'https://lan-test.xixincloud.com/api'
+ const baseUrl = 'https://test-api.xixincloud.com/api'
+// const baseUrl = 'https://lan-test.xixincloud.com/api'
 
 const http = ({ url = '', param = {}, ...other } = {}, opt = {}) => {
   if (!opt.isNotShowloading) {
@@ -51,6 +51,9 @@ const http = ({ url = '', param = {}, ...other } = {}, opt = {}) => {
               }
             })
           } else {
+            wx.showToast({
+              title: '出错了',
+            })
             reject(res)
           }
         }

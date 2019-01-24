@@ -2,22 +2,23 @@
 //app.js
 App({
   onLaunch: function (options) {
-    this.globalData.servantViewID = options.query.servantViewID
-    var userInfo = wx.getStorageSync('userInfo') || null
-    if (userInfo) {
-      if (userInfo.servantViewID) {
-        this.globalData.userInfo = userInfo
-      }
-    }
+    wx.setStorageSync('servantViewID', servantViewID)
   },
   onShow: function (options) {
-    // if (options.scene === 1089) {
-    //   wx.redirectTo({
-    //     url: '/pages/activity/activity'
-    //   })
-    // }
+    let servantViewID = options.query.servantViewID
+    let userInfo = wx.getStorageSync('userInfo') || null
+    if (userInfo && userInfo.servantViewID) {
+      this.globalData.userInfo = userInfo
+    }
+    if (options.scene === 1089 && !servantViewID) {
+      this.globalData.servantViewID = wx.getStorageSync('servantViewID')
+    } else {
+      this.globalData.servantViewID = servantViewID
+    }
+    
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    servantViewID: null
   }
 })

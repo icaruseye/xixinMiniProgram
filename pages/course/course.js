@@ -26,9 +26,12 @@ Page({
       userInfo: wx.getStorageSync('userInfo'),
       mobile: wx.getStorageSync('mobile')
     })
+    this.init()
   },
   onShow() {
-    this.init()
+    if (this.data.current === 'courseMine') {
+      this.getMyList()
+    }
   },
   loadMore () {
     this.setData({
