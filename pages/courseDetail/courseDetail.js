@@ -17,6 +17,7 @@ Page({
     referrerViewID: '',
     referrerType: '',
     type: app.globalData.servantViewID ? 1 : 2, // 接口标识是否有servantViewID
+    lessonList: []
   },
 
   onShareAppMessage: function (res) {
@@ -55,6 +56,7 @@ Page({
   onShow: function () {
     this.getCourseInfo()
     this.getLicenceCheck()
+    this.getLessonList()
   },
 
   /**
@@ -73,6 +75,41 @@ Page({
     })
   },
 
+  /**
+   * 获取课程列表
+   */
+  async getLessonList() {
+    const res = await api._get(`/User/ShopProxyCourseLessonList`, {
+      page: 0,
+      proxyCourseID: this.data.proxyCourseID,
+      Type: this.data.type
+    })
+    this.setData({
+      lessonList: res.Data
+    })
+  },
+
+  // 播放第一个章节
+  playFirstLesson () {
+    console.log('playFirstLesson')
+    if (this.data.lessonList.length > 0) {
+      if (this.data.lessonList[0].lessonResponse.length >0) {
+        const detail = this.data.lessonList[0].lessonResponse[0]
+        if (detail.ContentType === 1) {
+          this.selectLesson({
+            detail: detail.LessonID,
+            proxyCourseID: this.data.proxyCourseID,
+            Type: this.data.type
+          })
+        }
+        if (detail.ContentType === 2) {
+          wx.navigateTo({
+            url: `/pages/coursewareDetail/coursewareDetail?proxyCourseID=${this.data.proxyCourseID}&id=${detail.Content}`
+          })
+        }
+      }
+    }
+  },
   async getLicenceCheck () {
     const res = await api._get('/User/Course/Licence/Check', {
       shopProxyCourseID: this.data.proxyCourseID,

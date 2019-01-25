@@ -12,7 +12,7 @@
 		"nodeModules": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.4.1",
+	"libVersion": "2.5.1",
 	"appid": "wx58f58b730a4451f3",
 	"projectname": "xixinMiniProgram",
 	"debugOptions": {

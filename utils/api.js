@@ -1,7 +1,9 @@
 const baseUrl = 'https://test-api.xixincloud.com/api'
 // const baseUrl = 'https://lan-test.xixincloud.com/api'
-const logger = wx.getLogManager({ level: 1 })
-
+let logger = null
+if (wx.canIUse('getLogManager')) {
+  logger = wx.getLogManager({ level: 1 })
+}
 const http = ({ url = '', param = {}, ...other } = {}, opt = {}) => {
   if (!opt.isNotShowloading) {
     wx.showLoading({
@@ -29,11 +31,13 @@ const http = ({ url = '', param = {}, ...other } = {}, opt = {}) => {
           if (res.data.Code === 100000) {
             resolve(res.data)
           } else {
-            logger.info({
-              err: res,
-              url: url,
-              param: param
-            }, '接口非正确返回')
+            if (wx.canIUse('getLogManager')) {
+              logger.info({
+                err: res,
+                url: url,
+                param: param
+              }, '接口非正确返回')
+            }
             const localUrl = wx.getStorageSync('localUrl')
             wx.showToast({
               title: res.data.Msg,
@@ -43,8 +47,10 @@ const http = ({ url = '', param = {}, ...other } = {}, opt = {}) => {
             reject(res)
           }
         } else {
-          // 请求出错：登录失效、服务器错误
-          logger.warn({ err: res, url: url }, '接口请求错误日志')
+          if (wx.canIUse('getLogManager')) {
+            // 请求出错：登录失效、服务器错误
+            logger.warn({ err: res, url: url }, '接口请求错误日志')
+          }
           if (res.data.Code === 100010) {
             wx.showModal({
               title: '提示',

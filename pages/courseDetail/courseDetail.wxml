@@ -2,13 +2,25 @@
 <view class="grid-box">
   <!-- 视频预览/封面 -->
   <view class="preview_wrap">
+    <!-- 视频模式 -->
     <video
-      wx:if="{{courseInfo.PreViewType !== 2}}"
-      class="preview_vedio"  src="{{ courseInfo.PreViewContent }}"
-      autoplay="{{true}}">
+      wx:if="{{courseInfo.PreViewType === 1}}"
+      class="preview_vedio"
+      src="{{ courseInfo.PreViewContent }}"
+      show-center-play-btn="{{true}}"
+      autoplay="{{true}}"
+      controls>
     </video>
-    <image class="preview_img" wx:if="{{courseInfo.PreViewType == 2 && !courseInfo.PreViewContent}}" src="../../images/course-default.png" binderror="binderrorImage"></image>
-    <image class="preview_img" mode="aspectFit" wx:if="{{courseInfo.PreViewType == 2 && courseInfo.PreViewContent}}" src="{{filter.transformImgUrl(courseInfo.PreViewContent)}}"></image>
+    <!-- 封面模式有图 -->
+    <view class='preview_img_wrap' wx:if="{{courseInfo.PreViewType === 2 && !courseInfo.PreViewContent}}">
+      <image class="preview_img" mode="scaleToFill" src="../../images/course-default.png" binderror="binderrorImage"></image>
+      <image class='coverimg' src='../../images/play-video.png' bindtap='playFirstLesson'></image>
+    </view>
+    <!-- 封面模式无图 -->
+    <view class='preview_img_wrap' wx:if="{{courseInfo.PreViewType === 2 && courseInfo.PreViewContent}}">
+      <image class="preview_img" mode="scaleToFill" src="{{filter.transformImgUrl(courseInfo.PreViewContent)}}"></image>
+      <image class='coverimg' src='../../images/play-video.png' bindtap='playFirstLesson'></image>
+    </view>
     <view class="title_info">
       <view class="title">{{ courseInfo.ShopProxyCourseName }}</view>
       <view>
@@ -21,10 +33,10 @@
   </view>
   <!-- Tabbar -->
   <i-tabs current="{{ current }}" color="#3ecccc" bindchange="handleChange" class="tabbar">
-    <i-tab key="intro" title="详情"></i-tab>
-    <i-tab key="course" title="目录"></i-tab>
-    <i-tab key="topic" title="习题"></i-tab>
-    <i-tab key="courseware" title="课件"></i-tab>
+    <i-tab key="intro" title="课程详情"></i-tab>
+    <i-tab key="course" title="章节目录"></i-tab>
+    <!-- <i-tab key="topic" title="习题"></i-tab>
+    <i-tab key="courseware" title="课件"></i-tab> -->
   </i-tabs>
   <view wx:if="{{courseInfo}}" class="grid-var {{!IsPurchased ? 'grid-var' : 'grid-var-nobtn'}}">
     <scroll-view class="content" scroll-y="true">
