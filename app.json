@@ -19,7 +19,8 @@
     "pages/course/course",
     "pages/exchange/exchange",
     "pages/referrer/index",
-    "pages/coursewareDetail/coursewareDetail"
+    "pages/coursewareDetail/coursewareDetail",
+    "components/audioPlayer/audioPlayer"
   ],
   "usingComponents": {
     "i-modal": "./dist/iview/modal/index",

@@ -17,7 +17,10 @@ Page({
     referrerViewID: '',
     referrerType: '',
     type: app.globalData.servantViewID ? 1 : 2, // 接口标识是否有servantViewID
-    lessonList: []
+    lessonList: [],
+    audioSrc: '',
+    lessonname: '',
+    chaptername: ''
   },
 
   onShareAppMessage: function (res) {
@@ -91,13 +94,15 @@ Page({
 
   // 播放第一个章节
   playFirstLesson () {
-    console.log('playFirstLesson')
     if (this.data.lessonList.length > 0) {
       if (this.data.lessonList[0].lessonResponse.length >0) {
         const detail = this.data.lessonList[0].lessonResponse[0]
         if (detail.ContentType === 1) {
           this.selectLesson({
-            detail: detail.LessonID,
+            detail: {
+              contentType: 1,
+              id: detail.LessonID
+            },
             proxyCourseID: this.data.proxyCourseID,
             Type: this.data.type
           })
@@ -107,7 +112,26 @@ Page({
             url: `/pages/coursewareDetail/coursewareDetail?proxyCourseID=${this.data.proxyCourseID}&id=${detail.Content}`
           })
         }
+        if (detail.ContentType === 3) {
+          this.selectLesson({
+            detail: {
+              contentType: 3,
+              id: detail.LessonID
+            },
+            proxyCourseID: this.data.proxyCourseID,
+            Type: 3
+          })
+        }
+        this.setData({
+          current: 'course'
+        })
       }
+    } else {
+      wx.showToast({
+        title: '章节暂无内容',
+        icon: 'none',
+        duration: 1500
+      })
     }
   },
   async getLicenceCheck () {
@@ -123,14 +147,24 @@ Page({
    */
   async selectLesson (e) {
     const res = await api._get('/User/CouldWatchingVideo', {
-      lessonID: e.detail,
+      lessonID: e.detail.id,
       proxyCourseID: this.data.proxyCourseID,
       Type: this.data.type
     })
-    this.setData({
-      'courseInfo.PreViewContent': res.Data,
-      'courseInfo.PreViewType': 1
-    })
+    if (e.detail.contentType === 1) {
+      this.setData({
+        'courseInfo.PreViewContent': res.Data,
+        'courseInfo.PreViewType': 1
+      })
+    }
+    if (e.detail.contentType === 3) {
+      this.setData({
+        audioSrc: res.Data,
+        lessonname: e.detail.lessonname,
+        chaptername: e.detail.chaptername,
+        'courseInfo.PreViewType': 3
+      })
+    }
   },
 
   async topay() {

@@ -11,15 +11,22 @@
       autoplay="{{true}}"
       controls>
     </video>
-    <!-- 封面模式有图 -->
-    <view class='preview_img_wrap' wx:if="{{courseInfo.PreViewType === 2 && !courseInfo.PreViewContent}}">
-      <image class="preview_img" mode="scaleToFill" src="../../images/course-default.png" binderror="binderrorImage"></image>
+    <!-- 封面模式 -->
+    <view class='preview_img_wrap' wx:if="{{courseInfo.PreViewType === 2}}">
+      <image class="preview_img" wx:if="{{courseInfo.PreViewContent}}" mode="scaleToFill" src="{{filter.transformImgUrl(courseInfo.PreViewContent)}}"></image>
+      <image class="preview_img" wx:else mode="scaleToFill" src="../../images/course-default.png" binderror="binderrorImage"></image>
       <image class='coverimg' src='../../images/play-video.png' bindtap='playFirstLesson'></image>
     </view>
-    <!-- 封面模式无图 -->
-    <view class='preview_img_wrap' wx:if="{{courseInfo.PreViewType === 2 && courseInfo.PreViewContent}}">
-      <image class="preview_img" mode="scaleToFill" src="{{filter.transformImgUrl(courseInfo.PreViewContent)}}"></image>
-      <image class='coverimg' src='../../images/play-video.png' bindtap='playFirstLesson'></image>
+    <!-- 音频 -->
+    <view class='preview_audio_wrap' wx:if="{{courseInfo.PreViewType === 3}}">
+      <audio
+        poster='{{filter.transformImgUrl(courseInfo.PreViewContent)}}'
+        name="{{chaptername}}"
+        author="{{lessonname}}"
+        src="{{audioSrc}}"
+        class="audioplayer"
+        controls
+      ></audio>
     </view>
     <view class="title_info">
       <view class="title">{{ courseInfo.ShopProxyCourseName }}</view>

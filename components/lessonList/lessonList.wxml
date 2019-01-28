@@ -20,6 +20,8 @@
               bindtap="selectLesson"
               data-type="{{subItem.ContentType}}"
               data-contentid="{{subItem.Content}}"
+              data-lessonname="{{subItem.LessonName}}"
+              data-chaptername="{{item.ChapterName}}"
               data-id="{{subItem.LessonID}}">
               <span class="name">{{subItem.LessonName}}</span>
               <span class="tag">

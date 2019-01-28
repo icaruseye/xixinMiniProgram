@@ -37,13 +37,14 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 0,
 			"list": [
 				{
 					"id": 0,
 					"name": "courseDetail",
 					"pathName": "pages/courseDetail/courseDetail",
-					"query": "proxyCourseID=37"
+					"query": "proxyCourseID=24",
+					"scene": null
 				},
 				{
 					"id": 1,

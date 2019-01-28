@@ -1,5 +1,5 @@
-const baseUrl = 'https://test-api.xixincloud.com/api'
-// const baseUrl = 'https://lan-test.xixincloud.com/api'
+// const baseUrl = 'https://test-api.xixincloud.com/api'
+const baseUrl = 'https://lan-test.xixincloud.com/api'
 let logger = null
 if (wx.canIUse('getLogManager')) {
   logger = wx.getLogManager({ level: 1 })
