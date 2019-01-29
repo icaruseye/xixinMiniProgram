@@ -4,11 +4,20 @@ import api from '../../utils/api.js'
 Component({
   properties: {
     proxyCourseID: Number,
-    type: Number
+    type: Number,
+    currentIndex: {
+      type: Number,
+      observer: function (newVal) {
+        this.setData({
+          curr: newVal
+        })
+      }
+    }
   },
   data: {
     lessonList: [],
-    pageIndex: 0
+    pageIndex: 0,
+    curr: null
   },
   lifetimes: {
     ready () {

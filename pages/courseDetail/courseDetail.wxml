@@ -19,14 +19,19 @@
     </view>
     <!-- 音频 -->
     <view class='preview_audio_wrap' wx:if="{{courseInfo.PreViewType === 3}}">
-      <audio
+      <audioPlayer
+        poster='{{filter.transformImgUrl(courseInfo.PreViewContent)}}'
+        src="{{audioSrc}}"
+        name="{{lessonname}}"
+      ></audioPlayer>
+      <!-- <audio
         poster='{{filter.transformImgUrl(courseInfo.PreViewContent)}}'
         name="{{chaptername}}"
         author="{{lessonname}}"
         src="{{audioSrc}}"
-        class="audioplayer"
+        id="audioplayer"
         controls
-      ></audio>
+      ></audio> -->
     </view>
     <view class="title_info">
       <view class="title">{{ courseInfo.ShopProxyCourseName }}</view>
@@ -58,6 +63,7 @@
       <lesson-list
         wx:if="{{current === 'course'}}"
         proxyCourseID="{{proxyCourseID}}"
+        currentIndex="{{currentIndex}}"
         bind:selectLesson="selectLesson"
         type="{{type}}"
         >

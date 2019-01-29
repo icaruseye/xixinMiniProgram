@@ -20,7 +20,8 @@ Page({
     lessonList: [],
     audioSrc: '',
     lessonname: '',
-    chaptername: ''
+    chaptername: '',
+    currentIndex: null
   },
 
   onShareAppMessage: function (res) {
@@ -123,7 +124,8 @@ Page({
           })
         }
         this.setData({
-          current: 'course'
+          current: 'course',
+          currentIndex: detail.LessonID
         })
       }
     } else {

@@ -38,7 +38,7 @@
                   试卷
                 </block>
               </span>
-              <image class='play_icon' src="../../images/course_play.png"></image>
+              <image wx:if="{{subItem.ContentType === 1}}" class='play_icon' src="../../images/course_play.png"></image>
             </view>
             <view wx:if="{{subItem.ContentType === 1}}" class="sub_item_time">{{subItem.VideoMinute}}分钟</view>
           </view>

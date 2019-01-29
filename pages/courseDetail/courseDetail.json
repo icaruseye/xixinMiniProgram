@@ -6,6 +6,7 @@
     "lesson-list": "../../components/lessonList/lessonList",
     "topic-list": "../../components/topicList/topicList",
     "courseware-list": "../../components/coursewareList/coursewareList",
-    "course-intro": "../../components/courseIntro/courseIntro"
+    "course-intro": "../../components/courseIntro/courseIntro",
+    "audioPlayer": "../../components/audioPlayer/audioPlayer"
   }
 }
