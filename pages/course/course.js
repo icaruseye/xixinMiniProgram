@@ -22,13 +22,13 @@ Page({
         current: 'courseMine'
       })
     }
+    this.init()
+  },
+  onShow() {
     this.setData({
       userInfo: wx.getStorageSync('userInfo'),
       mobile: wx.getStorageSync('mobile')
     })
-    this.init()
-  },
-  onShow() {
     if (this.data.current === 'courseMine') {
       this.getMyList()
     }

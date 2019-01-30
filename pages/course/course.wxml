@@ -75,7 +75,6 @@
         <image class="arrow_right" src="../../images/jiantouyou.png"></image>
       </view>
     </view>
-    <button open-type='feedback' size='mini'>上传日志</button>
   </view>
   <i-tab-bar current="{{ current }}" bindchange="handleChange" color="#36C5C5" fixed>
     <i-tab-bar-item
