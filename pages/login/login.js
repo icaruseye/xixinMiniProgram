@@ -20,15 +20,15 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     const that = this
     wx.login({
       success(res) {
         api._get(`/SPUser/GetSessionKey`, {
           servantViewID: app.globalData.servantViewID,
           code: res.code,
-        }).then(res => {   //将ViewID缓存
-          wx.setStorageSync('sessionToken', res.Data)     //存下来等获取OpenID时使用
+        }).then(res => { //将ViewID缓存
+          wx.setStorageSync('sessionToken', res.Data) //存下来等获取OpenID时使用
           that.setData({
             sessionToken: res.Data,
             pageReady: true
@@ -67,7 +67,9 @@ Page({
                     vCode: '',
                     mobileToken: that.data.mobileToken,
                     sessionToken: wx.getStorageSync('sessionToken'),
-                    servantViewID: app.globalData.servantViewID
+                    servantViewID: app.globalData.servantViewID,
+                    refereeType: wx.getStorageSync('referrerType') || 0,
+                    refereeViewID: wx.getStorageSync('referrerViewID') || '',
                   }).then(res => {
                     if (res.Code === 100000) {
                       wx.setStorageSync('token', res.Data.token)
@@ -126,7 +128,9 @@ Page({
       vCode: this.data.captcha,
       mobileToken: '',
       sessionToken: wx.getStorageSync('sessionToken'),
-      servantViewID: app.globalData.servantViewID
+      servantViewID: app.globalData.servantViewID,
+      refereeType: wx.getStorageSync('referrerType') || 0,
+      refereeViewID: wx.getStorageSync('referrerViewID') || '',
     }).then(res => {
       if (res.Code === 100000) {
         wx.setStorageSync('token', res.Data.token)
@@ -145,8 +149,8 @@ Page({
     })
   },
   /**
-    * 记录输入的手机号
-    */
+   * 记录输入的手机号
+   */
   getInputPhone(e) {
     this.setData({
       phone: e.detail
@@ -212,7 +216,7 @@ Page({
       }
     }, 1000)
   },
-  toggleLoginWay (e) {
+  toggleLoginWay(e) {
     this.setData({
       showForm: !this.data.showForm
     })

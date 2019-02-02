@@ -13,9 +13,9 @@ Page({
     courseInfo: null,
     IsPurchased: true,
     proxyCourseID: '',
-    activityID:'',
-    referrerViewID: '',
-    referrerType: '',
+    activityID: '',
+    // referrerViewID: '',
+    // referrerType: '',
     type: app.globalData.servantViewID ? 1 : 2, // 接口标识是否有servantViewID
     lessonList: [],
     audioSrc: '',
@@ -24,7 +24,7 @@ Page({
     currentIndex: null
   },
 
-  onShareAppMessage: function (res) {
+  onShareAppMessage: function(res) {
     let myReferrerViewID = wx.getStorageSync('myReferrerViewID')
     let referrerType = 1 //推荐人类型1为用户,2位服务人员,0为不推荐
     let servantViewID = app.globalData.servantViewID || ''
@@ -37,27 +37,32 @@ Page({
     }
     return {
       title: this.data.courseInfo.ShopProxyCourseName,
-      path: `/pages/courseDetail/courseDetail?proxyCourseID=${this.data.proxyCourseID}&referrerViewID=${myReferrerViewID}&referrerType=${referrerType}`
+      path: `/pages/courseDetail/courseDetail?proxyCourseID=${this.data.proxyCourseID}&referrerViewID=${myReferrerViewID}&referrerType=${referrerType}&servantViewID=${servantViewID}`
     }
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     wx.setStorageSync('localUrl', this.route)
     this.setData({
       proxyCourseID: options.proxyCourseID,
       activityID: options.activityID || '',
-      referrerType: options.referrerType || 0,
-      referrerViewID: options.referrerViewID || ''
+      // referrerType: options.referrerType || 0,
+      // referrerViewID: options.referrerViewID || ''
     })
+    wx.setStorageSync('referrerType', options.referrerType || 0)
+    wx.setStorageSync('referrerViewID', options.referrerViewID || '')
+    if (!app.globalData.servantViewID) { //若全局servantViewID为空,则从本页面获取下赋值
+      app.globalData.servantViewID = options.servantViewID
+    }
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
     this.getCourseInfo()
     this.getLicenceCheck()
     this.getLessonList()
@@ -66,7 +71,7 @@ Page({
   /**
    * 获取课程详情
    */
-  async getCourseInfo () {
+  async getCourseInfo() {
     const res = await api._get('/User/ShopProxyCourseDetails', {
       proxyCourseID: this.data.proxyCourseID,
       Type: this.data.type
@@ -94,9 +99,9 @@ Page({
   },
 
   // 播放第一个章节
-  playFirstLesson () {
+  playFirstLesson() {
     if (this.data.lessonList.length > 0) {
-      if (this.data.lessonList[0].lessonResponse.length >0) {
+      if (this.data.lessonList[0].lessonResponse.length > 0) {
         const detail = this.data.lessonList[0].lessonResponse[0]
         if (detail.ContentType === 1) {
           this.selectLesson({
@@ -136,18 +141,20 @@ Page({
       })
     }
   },
-  async getLicenceCheck () {
+  async getLicenceCheck() {
     const res = await api._get('/User/Course/Licence/Check', {
       shopProxyCourseID: this.data.proxyCourseID,
       Type: this.data.type
     })
-    this.setData({IsPurchased: res.Data})
+    this.setData({
+      IsPurchased: res.Data
+    })
   },
 
   /**
    * 选择课程
    */
-  async selectLesson (e) {
+  async selectLesson(e) {
     const res = await api._get('/User/CouldWatchingVideo', {
       lessonID: e.detail.id,
       proxyCourseID: this.data.proxyCourseID,
@@ -190,9 +197,11 @@ Page({
     const res = await api._post(`/SPUser/PreOrder`, {
       packageID: packageID,
       OrderType: 6,
-      RefereeType: this.data.referrerType,
-      RefereeViewID: this.data.referrerViewID,
+      RefereeType: wx.getStorageSync('referrerType') || 0,
+      RefereeViewID: wx.getStorageSync('referrerViewID') || '',
     })
+    console.log(wx.getStorageSync('referrerType'))
+    console.log(wx.getStorageSync('referrerViewID'))
     if (res.Code === 100000) {
       return res.Data
     }
@@ -201,19 +210,21 @@ Page({
   /**
    * 下拉刷新
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
     this.getCourseInfo()
   },
 
   /**
    * tabs切换
    */
-  handleChange({ detail }) {
+  handleChange({
+    detail
+  }) {
     this.setData({
       current: detail.key
     });
   },
-  binderrorImage () {
+  binderrorImage() {
     this.setData({
       'courseInfo.Img': ''
     })

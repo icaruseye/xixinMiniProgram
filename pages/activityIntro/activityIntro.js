@@ -16,12 +16,12 @@ Page({
     referrerType: '',
   },
 
-  onShareAppMessage: function (res) {
+  onShareAppMessage: function(res) {
     // if (res.from === 'button') {
     //   // 来自页面内转发按钮
     //   console.log(res.target)
     // }
-    let myReferrerViewID = wx.getStorageSync('myReferrerViewID')
+    let myReferrerViewID = wx.getStorageSync('myReferrerViewID') //分享人的ViewID
     let referrerType = 1 //推荐人类型1为用户,2位服务人员,0为不推荐
     let servantViewID = app.globalData.servantViewID
     if (myReferrerViewID) { //之前已经赋初值了
@@ -33,36 +33,40 @@ Page({
     }
     return {
       title: this.data.info.ActivityName,
-      path: `/pages/activityIntro/activityIntro?id=${this.data.activityId}&referrerViewID=${myReferrerViewID}&referrerType=${referrerType}`
+      path: `/pages/activityIntro/activityIntro?id=${this.data.activityId}&referrerViewID=${myReferrerViewID}&referrerType=${referrerType}&servantViewID=${servantViewID}`
     }
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad (options) {
+  onLoad(options) {
     wx.setStorageSync('localUrl', `${this.route}?id=${options.id}`)
     this.setData({
       activityId: options.id,
-      referrerViewID: options.referrerViewID||'',
-      referrerType: options.referrerType||0,
+      // referrerViewID: options.referrerViewID || '',
+      // referrerType: options.referrerType || 0,
     })
+    wx.setStorageSync('referrerType', options.referrerType || 0)
+    wx.setStorageSync('referrerViewID', options.referrerViewID || '')
     this.getActivityDetail(this.data.activityId)
+    if (!app.globalData.servantViewID) { //若全局servantViewID为空,则从本页面获取下赋值
+      app.globalData.servantViewID = options.servantViewID
+    }
   },
-  onShow () {
-  },
-  getActivityDetail (activityId) {
+  onShow() {},
+  getActivityDetail(activityId) {
     const that = this
     api._get(`/SPUser/Activity-Detail?activityId=${activityId}`)
       .then(res => {
-      res.Data.ActivityIntroductionImg = res.Data.ActivityIntroductionImg.split(',')
-      this.setData({
-        pageReady: true,
-        info: res.Data
+        res.Data.ActivityIntroductionImg = res.Data.ActivityIntroductionImg.split(',')
+        this.setData({
+          pageReady: true,
+          info: res.Data
+        })
       })
-    })
   },
-  async topay () {
+  async topay() {
     const resPreOrder = await this.preOrder(this.data.activityId)
     const resOpenID = await this.getUserOpenID()
     if (resPreOrder.OrderID && resOpenID) {
@@ -75,8 +79,8 @@ Page({
     const res = await api._post(`/SPUser/PreOrder`, {
       packageID: packageID,
       OrderType: 4,
-      RefereeType: this.data.referrerType,
-      RefereeViewID: this.data.referrerViewID,
+      RefereeType: wx.getStorageSync('referrerType') || 0,
+      RefereeViewID: wx.getStorageSync('referrerViewID') || '',
     })
     if (res.Code === 100000) {
       return res.Data
@@ -88,12 +92,12 @@ Page({
       return res.Data
     }
   },
-  toDetail (e) {
+  toDetail(e) {
     this.setData({
       show: true
     })
   },
-  onClose () {
+  onClose() {
     this.setData({
       show: false
     })
