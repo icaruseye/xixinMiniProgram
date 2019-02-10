@@ -75,6 +75,7 @@ Page({
     if (detail.key !== this.data.current) {
       this.setData({
         pageReady: false,
+        page: 1,
         current: detail.key
       })
       this.init()
