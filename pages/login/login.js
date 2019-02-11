@@ -25,9 +25,9 @@ Page({
     const that = this
     wx.login({
       success(res) {
-        api._get(`/SPUser/ShopLogo`).then(res=> {
+        api._get(`/SPUser/ShopLogo`).then(logoRes=> {
           that.setData({
-            logoUrl: res.Data
+            logoUrl: logoRes.Data
           })
           api._get(`/SPUser/GetSessionKey`, {
             servantViewID: app.globalData.servantViewID,
