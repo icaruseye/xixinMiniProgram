@@ -1,9 +1,10 @@
 <!--pages/login/login.wxml-->
+<wxs module='filter' src='../../utils/filter.wxs'></wxs>
 <view class='container' wx:if="pageReady">
   <view class='logo_wrap'>
     <!-- <image class='left' src='https://tva4.sinaimg.cn/crop.0.0.750.750.180/883d794fjw8evemld5qqwj20ku0ku3zz.jpg'></image>
     <image class='mid' src='../../images/login-mid.png'></image> -->
-    <image class='right' src='../../images/logo.png'></image>
+    <image class='right' src='{{ filter.transformImgUrl(logoUrl) }}'></image>
   </view>
   <view class="button_wrap" wx:if='{{ !showForm }}'>
     <button class='wx' type='primary' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">微信快捷登录</button>
@@ -11,27 +12,10 @@
   </view>
   <view class="input_cell" wx:else>
     <van-cell-group>
-      <van-field
-        value="{{ phone }}"
-        center
-        clearable
-        type="number"
-        label="手机号码"
-        placeholder="请输入手机号码"
-        use-button-slot
-        bind:input="getInputPhone"
-        >
+      <van-field value="{{ phone }}" center clearable type="number" label="手机号码" placeholder="请输入手机号码" use-button-slot bind:input="getInputPhone">
         <van-button slot="button" size="small" bind:click="getCaptcha" disabled='{{ captchaDisabled }}'>{{ captchaText }}</van-button>
       </van-field>
-      <van-field
-        value="{{ captcha }}"
-        center
-        clearable
-        type="number"
-        label="验证码"
-        placeholder="请输入手机验证码"
-        bind:input="getInputCaptcha"
-        />
+      <van-field value="{{ captcha }}" center clearable type="number" label="验证码" placeholder="请输入手机验证码" bind:input="getInputCaptcha" />
     </van-cell-group>
     <button class='login_in' bindtap='login'>登录</button>
     <view class='login_tips' bindtap='toggleLoginWay'>微信手机号授权登录</view>

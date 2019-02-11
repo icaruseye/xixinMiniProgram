@@ -15,7 +15,8 @@ Page({
     captchaText: '发送验证码',
     captchaDisabled: false,
     sessionToken: '',
-    mobileToken: ''
+    mobileToken: '',
+    logoUrl: '',
   },
   /**
    * 生命周期函数--监听页面加载
@@ -24,16 +25,22 @@ Page({
     const that = this
     wx.login({
       success(res) {
-        api._get(`/SPUser/GetSessionKey`, {
-          servantViewID: app.globalData.servantViewID,
-          code: res.code,
-        }).then(res => { //将ViewID缓存
-          wx.setStorageSync('sessionToken', res.Data) //存下来等获取OpenID时使用
+        api._get(`/SPUser/ShopLogo`).then(res=> {
           that.setData({
-            sessionToken: res.Data,
-            pageReady: true
+            logoUrl: res.Data
+          })
+          api._get(`/SPUser/GetSessionKey`, {
+            servantViewID: app.globalData.servantViewID,
+            code: res.code,
+          }).then(res => { //将ViewID缓存
+            wx.setStorageSync('sessionToken', res.Data) //存下来等获取OpenID时使用
+            that.setData({
+              sessionToken: res.Data,
+              pageReady: true
+            })
           })
         })
+        
       }
     })
   },
