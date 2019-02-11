@@ -1,5 +1,5 @@
 <wxs module="filter" src="../../utils/filter.wxs"></wxs>
-<view class="grid-box">
+<view class="grid_box">
   <!-- 视频预览/封面 -->
   <view class="preview_wrap">
     <!-- 视频模式 -->
@@ -50,7 +50,7 @@
     <!-- <i-tab key="topic" title="习题"></i-tab>
     <i-tab key="courseware" title="课件"></i-tab> -->
   </i-tabs>
-  <view wx:if="{{courseInfo}}" class="grid-var {{!IsPurchased ? 'grid-var' : 'grid-var-nobtn'}}">
+  <view wx:if="{{courseInfo}}" class="grid_content {{IsPurchased ? '' : 'hasbtn'}}">
     <scroll-view class="content" scroll-y="true">
       <!-- 课程简介 -->
       <course-intro

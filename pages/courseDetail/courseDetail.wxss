@@ -9,18 +9,19 @@ page {
   box-sizing: border-box;
 }
 
-.grid-box{
+.grid_box{
     width: 100%;
     height: 100vh;
     display: flex;
     flex-direction: column;
 }
-.grid-var{
-  height: calc(100vh - 720rpx);
+.grid_content{
+  flex: 1;
+  overflow:scroll;
 }
 
-.grid-var-nobtn {
-  height: calc(100vh - 620rpx);
+.grid_content.hasbtn {
+  padding-bottom: 110rpx;
 }
 
 .content{height: 100%;}
