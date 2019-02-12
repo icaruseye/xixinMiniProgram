@@ -188,8 +188,13 @@
 }
 
 .acMine_list_item_content_desc {
+  width: 100%;
   font-size: 24rpx;
   color: #999;
+  display: -webkit-box;    
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
 }
 
 .acMine_list_item_content_price {
