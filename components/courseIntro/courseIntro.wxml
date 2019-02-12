@@ -1,7 +1,7 @@
 <wxs module="filter" src="../../utils/filter.wxs"></wxs>
 <!-- 课程详情 -->
 <view class="course_info">
-  <text class="content">{{ Desctiption }}</text>
+  <text class="content">{{ Desctiption }}http://user.t.vcmps.com/servicehttp://user.t.vcmps.com/servicehttp://user.t.vcmps.com/servicehttp://user.t.vcmps.com/service</text>
   <view wx:if="{{imgList}}" class="imgs" wx:for="{{imgList}}" wx:key="{{index}}">
     <image src="{{filter.transformImgUrl(item)}}" mode='widthFix'></image>
   </view>

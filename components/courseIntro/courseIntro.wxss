@@ -9,7 +9,8 @@
   font-size: 28rpx;
   color: #5d5d5d;
   text-align: justify;
-  line-height: 50rpx
+  line-height: 50rpx;
+  word-break:break-all;
 }
 .imgs
 {

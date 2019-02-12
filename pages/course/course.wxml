@@ -50,7 +50,7 @@
           <image class='acMine_list_item_icon' wx:if="{{!item.Image}}" src='../../images/course_bg.png'></image>
           <view class='acMine_list_item_content'>
             <view class='acMine_list_item_content_name'>{{item.Title}}</view>
-            <view class='acMine_list_item_content_desc'>{{item.Discription}}</view>
+            <text class='acMine_list_item_content_desc'>{{item.Discription}}</text>
           </view>
           <view class='acMine_list_item_content_price' wx:if="{{item.OrderState === 1}}">等待支付到账</view>
         </view>
