@@ -42,6 +42,7 @@
   margin-left: 15rpx;
   height: 40px;
   width: 100px;
+  background: #ccc;
 }
 
 .exchange_from_cell .exchange_btn {
