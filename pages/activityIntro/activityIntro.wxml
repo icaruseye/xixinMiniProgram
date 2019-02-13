@@ -15,9 +15,7 @@
       <view class='section'>
         {{info.ActivityDescribe}}
       </view>
-      <view wx:for='{{info.ActivityIntroductionImg}}' wx:key='index'>
-        <image class='section_image' wx:if="{{item}}" src='{{filter.transformImgUrl(item)}}' mode='aspectFit'></image>
-      </view>
+      <image wx:for='{{info.ActivityIntroductionImg}}' wx:key='index' class='section_image' wx:if="{{item}}" src='{{filter.transformImgUrl(item)}}' mode='widthFix'></image>
     </view>
     <view class='activityDetail_goods'>
       <view class='item' bindtap='toDetail' data-id='{{info.CommodityID}}'>
