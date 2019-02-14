@@ -12,9 +12,9 @@
     </view>
     <view class='activityDetail_intro'>
       <view class='title'>活动介绍</view>
-      <view class='section'>
+      <text class='section'>
         {{info.ActivityDescribe}}
-      </view>
+      </text>
       <image wx:for='{{info.ActivityIntroductionImg}}' wx:key='index' class='section_image' wx:if="{{item}}" src='{{filter.transformImgUrl(item)}}' mode='widthFix'></image>
     </view>
     <view class='activityDetail_goods'>
