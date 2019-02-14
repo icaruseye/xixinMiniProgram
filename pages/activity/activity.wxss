@@ -57,6 +57,11 @@
   margin-bottom: 15rpx;
   font-size: 28rpx;
   color: #999;
+  display: -webkit-box;    
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  word-break:break-all;
 }
 
 .index_list_item .content .price {
