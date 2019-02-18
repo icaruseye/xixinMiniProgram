@@ -12,6 +12,7 @@ Component({
         this.setData({
           playUrl: newVal
         })
+        this.listenerButtonPlay()
       }
     },
     poster: String,
@@ -48,8 +49,8 @@ Component({
         // bgMusic.duration 总时长
         // bgMusic.currentTime 当前进度
         var duration = bgMusic.duration
-        var offset = bgMusic.currentTime
-        var currentTime = parseInt(bgMusic.currentTime)
+        var offset = Math.floor(bgMusic.currentTime)
+        var currentTime = offset
         var min = "0" + parseInt(currentTime / 60)
         var max = parseInt(bgMusic.duration)
         var sec = currentTime % 60
@@ -68,7 +69,8 @@ Component({
       //播放结束
       bgMusic.onEnded(() => {
         that.setData({
-          isOpen: false
+          isOpen: false,
+          offset: this.data.max
         })
       })
       bgMusic.play()

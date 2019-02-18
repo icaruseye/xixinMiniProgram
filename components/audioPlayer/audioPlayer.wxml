@@ -6,7 +6,7 @@
       <image class='play-icon' src="../../images/playing-2.png" />
     </view>
     <view class='slid'>
-      <slider bindchange="sliderChange"  block-size="12px" step="2" value="{{offset}}" max="{{max}}" selected-color="#3ecccc" />
+      <slider bindchange="sliderChange"  block-size="12px" step="1" value="{{offset}}" max="{{max}}" selected-color="#3ecccc" />
       <view>
         <text class='times'>{{starttime}}</text> <!-- 进度时长 -->
        
