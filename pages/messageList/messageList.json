@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "mail-list-item": "../../components/mailListItem/mailListItem"
+  }
+}

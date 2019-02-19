@@ -109,9 +109,14 @@ Page({
       url: `../courseDetail/courseDetail?proxyCourseID=${proxyCourseID}`
     })
   },
-  toExchange () {
+  toExchange() {
     wx.navigateTo({
       url: `../exchange/exchange`
+    })
+  },
+  toMessage() {
+    wx.navigateTo({
+      url: `../message/message`
     })
   },
   checkMineOrder (list = []) {

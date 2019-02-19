@@ -1,0 +1,16 @@
+<wxs module='filter' src='../../utils/filter.wxs'></wxs>
+<view class="container">
+  <mail-list-item
+    wx:for="{{ list }}"
+    wx:key="idx"
+    wx:for-item="item" 
+    ID="{{item.ID}}"
+    msgType="{{item.Type}}"
+    createTime="{{item.CreateTime}}"
+    count="{{item.State}}"
+    title="{{item.Title}}"
+  >
+    {{filter.xxTextTruncateFilter(item.Message, 5)}}
+  </mail-list-item>
+  <view wx:if="{{list.length === 0}}" class="empty_box">暂无消息</view>
+</view>

@@ -1,0 +1,22 @@
+
+<wxs module='filter' src='../../utils/filter.wxs'></wxs>
+<view class="main_item_container" bindtap="redirectToList">
+  <view class="left">
+    <image class='icon' src="{{filter.xxSiteNoticeIconFilter(msgType)}}"></image>
+  </view>
+  <view class="right">
+    <view class="title text-overflow-1">
+      {{filter.xxSiteNoticeTypeTitleFilter(msgType)}}
+    </view>
+    <view class="desc text-overflow-1" wx:if="{{UnreadCount > 0}}">
+      {{Title}}
+    </view>
+    <view class="desc text-overflow-1" wx:else>
+      没有未读的{{filter.xxSiteNoticeTypeTitleFilter(msgType)}}
+    </view>
+    <view class="time" wx:if="{{UnreadCount > 0}}">
+      {{CreateTime}}
+    </view>
+    <text class="mail_num_icon" wx:if="{{UnreadCount > 0}}">{{UnreadCount}}</text>
+  </view>
+</view>

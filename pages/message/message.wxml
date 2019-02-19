@@ -1,0 +1,11 @@
+<view class="container">
+  <mail-group-item
+    msgType="{{ 1 }}"
+  ></mail-group-item>
+  <mail-group-item
+    msgType="{{ 2 }}"
+  ></mail-group-item>
+  <mail-group-item
+    msgType="{{ 4 }}"
+  ></mail-group-item>
+</view>

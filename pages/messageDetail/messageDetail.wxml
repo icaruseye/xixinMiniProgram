@@ -1,0 +1,20 @@
+<wxs module='filter' src='../../utils/filter.wxs'></wxs>
+<import src="../../libs/wxParse/wxParse.wxml"/>
+<view wx:if="{{detail}}">
+  <!-- <view class="detail_toview_container">
+    {{filter.xxSiteNoticeTypeTitleFilter(detail.Tyviewe)}}
+  </view> -->
+  <view class="detail_content_bg">
+    <view class="detail_Title_contianer">
+      <view class="detaile_title">
+        {{detail.Title}}
+      </view>
+      <view class="create_time">
+        {{detail.CreateTime}}
+      </view>
+    </view>
+    <view class="detail_message_container">
+      <template is="wxParse" data="{{wxParseData:message.nodes}}"/>
+    </view>
+  </view>
+</view>

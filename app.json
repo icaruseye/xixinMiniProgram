@@ -16,11 +16,16 @@
     "components/topicCard/topicCard",
     "components/topicType4/topicType4",
     "components/topicType5/topicType5",
+    "components/mailGroupItem/mailGroupItem",
+    "components/mailListItem/mailListItem",
     "pages/course/course",
     "pages/exchange/exchange",
     "pages/referrer/index",
     "pages/coursewareDetail/coursewareDetail",
-    "components/audioPlayer/audioPlayer"
+    "components/audioPlayer/audioPlayer",
+    "pages/message/message",
+    "pages/messageList/messageList",
+    "pages/messageDetail/messageDetail"
   ],
   "usingComponents": {
     "i-modal": "./dist/iview/modal/index",

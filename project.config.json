@@ -37,7 +37,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 9,
 			"list": [
 				{
 					"id": 1,
@@ -46,20 +46,20 @@
 					"query": "servantViewID=b9f71c5e482246ab98fe7803235eb670",
 					"scene": null
 				},
-        {
-          "id": 3,
-          "name": "course本地",
-          "pathName": "pages/course/course",
-          "query": "servantViewID=3f7b1c958a5640b486a7647866cd7a3f",
-          "scene": null
-        },
-        {
-          "id": 0,
-          "name": "courseDetail",
-          "pathName": "pages/courseDetail/courseDetail",
-          "query": "proxyCourseID=24",
-          "scene": null
-        },
+				{
+					"id": 3,
+					"name": "course本地",
+					"pathName": "pages/course/course",
+					"query": "servantViewID=3f7b1c958a5640b486a7647866cd7a3f",
+					"scene": null
+				},
+				{
+					"id": 0,
+					"name": "courseDetail",
+					"pathName": "pages/courseDetail/courseDetail",
+					"query": "proxyCourseID=24",
+					"scene": null
+				},
 				{
 					"id": 3,
 					"name": "topic",
@@ -78,12 +78,12 @@
 					"pathName": "pages/activity/activity",
 					"query": ""
 				},
-        {
-          "id": 7,
-          "name": "服务人员activity",
-          "pathName": "pages/activity/activity",
-          "query": "servantViewID="
-        },
+				{
+					"id": 7,
+					"name": "服务人员activity",
+					"pathName": "pages/activity/activity",
+					"query": "servantViewID="
+				},
 				{
 					"id": -1,
 					"name": "exchange",
@@ -95,6 +95,13 @@
 					"name": "本地课件详情",
 					"pathName": "pages/coursewareDetail/coursewareDetail",
 					"query": "proxyCourseID=20&id=15"
+				},
+				{
+					"id": -1,
+					"name": "站内信",
+					"pathName": "pages/message/message",
+					"query": "",
+					"scene": null
 				}
 			]
 		}

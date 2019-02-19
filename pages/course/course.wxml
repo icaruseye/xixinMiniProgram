@@ -74,6 +74,11 @@
         <text>兑换码购课</text>
         <image class="arrow_right" src="../../images/jiantouyou.png"></image>
       </view>
+      <view class="menu_list_item" bindtap='toMessage'>
+        <image class="item_icon" src="../../images/message.png"></image>
+        <text>站内信</text>
+        <image class="arrow_right" src="../../images/jiantouyou.png"></image>
+      </view>
     </view>
   </view>
   <i-tab-bar current="{{ current }}" bindchange="handleChange" color="#36C5C5" fixed>

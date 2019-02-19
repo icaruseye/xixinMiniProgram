@@ -1,0 +1,14 @@
+<wxs module='filter' src='../../utils/filter.wxs'></wxs>
+<view class="main_item_container" bindtap="redirectToDetail" data-id="{{ID}}">
+  <view class="left">
+    <image class='icon' src="{{filter.xxSiteNoticeIconFilter(msgType)}}"></image>
+  </view>
+  <view class="right">
+    <view class="title text-overflow-1">
+      {{filter.xxTextTruncateFilter(title, 5)}}
+    </view>
+    <view class="desc text-overflow-1"><slot name="desc"></slot></view>
+    <view class="time">{{filter.formatTime(createTime)}}</view>
+    <view class="mail_num_icon" wx:if="{{count === 0}}">未读</view>
+  </view>
+</view>
