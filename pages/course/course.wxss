@@ -13,6 +13,23 @@
   border-radius: 11rpx;
 }
 
+.classify_bar {
+  padding: 0 24rpx;
+  margin-bottom: 20rpx;
+  display: flex;
+}
+
+.classify_bar .classify_item {
+  flex: 1;
+  font-size: 36rpx;
+  color: #333;
+}
+
+.classify_bar .classify_item.active {
+  color: #3ecccc;
+  /* font-weight: bold; */
+}
+
 .index_list_wrap {
   padding: 0 32rpx;
 }

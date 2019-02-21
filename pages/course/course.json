@@ -1,7 +1,9 @@
 {
-  "navigationBarTitleText": "课程",
+  "navigationBarTitleText": "课程首页",
   "usingComponents": {
     "i-tab-bar": "../../dist/iview/tab-bar/index",
-    "i-tab-bar-item": "../../dist/iview/tab-bar-item/index"
+    "i-tab-bar-item": "../../dist/iview/tab-bar-item/index",
+    "van-popup": "../../dist/vant/popup/index",
+    "van-tree-select": "../../dist/vant/tree-select/index"
   }
 }

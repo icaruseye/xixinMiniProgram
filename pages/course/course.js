@@ -13,7 +13,33 @@ Page({
     list: [],
     mineList: [],
     userInfo: {},
-    mobile: ''
+    mobile: '',
+    showPopup: false,
+    classifyBarIndex: 0, // 分类栏选中索引
+    mainActiveIndex: null, //当前所选一级分类
+    activeClassifyId: null, //当前分类id
+    activeClassifyName: '精品课程',
+    items: [
+      {
+        // 导航名称
+        text: '所有城市',
+        // 禁用选项
+        disabled: false,
+        // 该导航下所有的可选项
+        children: [
+          {
+            // 名称
+            text: '大师课程',
+            // id，作为匹配选中状态的标识
+            id: 11,
+          },
+          {
+            text: 'IT培训',
+            id: 22
+          }
+        ]
+      }
+    ]
   },
   onLoad(options) {
     wx.setStorageSync('localUrl', this.route)
@@ -127,6 +153,41 @@ Page({
       }
     })
     return flag
+  },
+  // 选择一级分类
+  onClickNav({ detail = {} }) {
+    this.setData({
+      mainActiveIndex: detail.index || 0
+    });
+  },
+  // 选择二级分类
+  onClickItem({ detail = {} }) {
+    console.log(detail)
+    this.setData({
+      activeClassifyId: detail.id,
+      classifyBarIndex: 0,
+      showPopup: false,
+      activeClassifyName: detail.text
+    });
+  },
+  // 显示分类弹层
+  showPopup () {
+    this.setData({
+      showPopup: true
+    })
+  },
+  // 关闭分类弹层
+  onClose () {
+    this.setData({
+      showPopup: false
+    })
+  },
+  // 分类栏点击事件
+  changeClassify (e) {
+    this.setData({
+      activeClassifyId: Number(e.currentTarget.dataset.id),
+      classifyBarIndex: Number(e.currentTarget.dataset.index)
+    })
   },
   binderrorImage (e) {
     const index = e.currentTarget.dataset.index
