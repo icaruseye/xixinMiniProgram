@@ -34,7 +34,7 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "悉心",
+    "navigationBarTitleText": "我的站内信",
     "navigationBarTextStyle": "black"
   },
   "disableScroll": true,
