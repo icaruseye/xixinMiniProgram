@@ -9,37 +9,18 @@ Page({
     hasUserInfo: false,
     pageReady: false,
     page: 1,
+    pageSize: 8,
     totalNumber: 0,
     list: [],
     mineList: [],
     userInfo: {},
     mobile: '',
     showPopup: false,
-    classifyBarIndex: 0, // 分类栏选中索引
     mainActiveIndex: null, //当前所选一级分类
     activeClassifyId: null, //当前分类id
-    activeClassifyName: '精品课程',
-    items: [
-      {
-        // 导航名称
-        text: '所有城市',
-        // 禁用选项
-        disabled: false,
-        // 该导航下所有的可选项
-        children: [
-          {
-            // 名称
-            text: '大师课程',
-            // id，作为匹配选中状态的标识
-            id: 11,
-          },
-          {
-            text: 'IT培训',
-            id: 22
-          }
-        ]
-      }
-    ]
+    activeClassifyName: '',
+    typeList: [], // 默认分类
+    items: [] //下拉一二级分类数据
   },
   onLoad(options) {
     wx.setStorageSync('localUrl', this.route)
@@ -59,24 +40,76 @@ Page({
       this.getMyList()
     }
   },
-  loadMore () {
-    this.setData({
-      page: this.data.page + 1
+  //  初始化
+  async init() {
+    if (this.data.current === 'course') {
+      this.setData({
+        list: []
+      })
+      await this.getCourseType()
+      await this.getCourseTypeFirst()
+      await this.getcourseList()
+    }
+    if (this.data.current === 'courseMine') {
+      this.getMyList()
+    }
+  },
+  // 获取所有一级课程分类
+  async getCourseTypeFirst () {
+    let _arr = []
+    const res = await api._get('/User/CourseType/First')
+    res.Data.map(item => {
+      _arr.push(Object.assign({}, {
+        text: item.label,
+        id: item.value
+      }))
     })
-    this.getcourseList()
+    console.log(_arr)
+    this.setData({
+      items: _arr
+    })
+    this.getCourseTypeSecond(_arr[0].id, 0)
+  },
+  // 获取二级菜单
+  async getCourseTypeSecond (courseTypeID, index) {
+    let _arr = [] 
+    const res = await api._get(`/User/CourseType/Second?courseTypeID=${courseTypeID}`)
+    res.Data.map(item => {
+      _arr.push(Object.assign({}, {
+        text: item.label,
+        id: item.value
+      }))
+    })
+    this.data.items[index].children = _arr
+    this.setData({
+      items: this.data.items
+    })
+  },
+  // 获取顶部默认分类
+  async getCourseType () {
+    const res = await api._get('/User/CourseType/List')
+    console.log(res)
+    this.setData({
+      typeList: res.Data,
+      activeClassifyId: res.Data[0].value,
+      activeClassifyName: res.Data[0].label
+    })
   },
   // 课程列表
-  getcourseList() {
-    api._get(`/User/ServantCourseList?page=${this.data.page}&servantViewID=${app.globalData.servantViewID}`, ).then(res => {
-      this.setData({
-        pageReady: true,
-        totalNumber: res.Data.Total,
-        list: [...this.data.list, ...res.Data.CourseInfoResponseList]
-      })
-    }).catch(e => {
-      this.setData({
-        pageReady: true
-      })
+  async getcourseList() {
+    const res = await api._get(`/User/CourseTyp/Course?page=${this.data.page}&pageSize=${this.data.pageSize}&courseTypeID=${this.data.activeClassifyId}&servantViewID=${app.globalData.servantViewID}`)
+    this.setData({
+      pageReady: true,
+      totalNumber: res.Data.Count,
+      list: res.Data.List
+    })
+  },
+  // 课程列表分页
+  async getcourseListMore() {
+    const res = await api._get(`/User/CourseTyp/Course?page=${this.data.page}&pageSize=${this.data.pageSize}&courseTypeID=${this.data.activeClassifyId}&servantViewID=${app.globalData.servantViewID}`)
+    this.setData({
+      pageReady: true,
+      list: [...this.data.list, ...res.Data.List]
     })
   },
   // 我的课程
@@ -97,6 +130,12 @@ Page({
       })
     })
   },
+  loadMore() {
+    this.setData({
+      page: this.data.page + 1
+    })
+    this.getcourseListMore()
+  },
   handleChange({ detail }) {
     if (detail.key !== this.data.current) {
       this.setData({
@@ -105,17 +144,6 @@ Page({
         current: detail.key
       })
       this.init()
-    }
-  },
-  init() {
-    if (this.data.current === 'course') {
-      this.setData({
-        list: []
-      })
-      this.getcourseList()
-    }
-    if (this.data.current === 'courseMine') {
-      this.getMyList()
     }
   },
   getUserInfo: function (e) {
@@ -158,17 +186,19 @@ Page({
   onClickNav({ detail = {} }) {
     this.setData({
       mainActiveIndex: detail.index || 0
-    });
+    })
+    this.getCourseTypeSecond(this.data.items[detail.index].id, detail.index)
   },
   // 选择二级分类
   onClickItem({ detail = {} }) {
     console.log(detail)
     this.setData({
       activeClassifyId: detail.id,
-      classifyBarIndex: 0,
       showPopup: false,
-      activeClassifyName: detail.text
-    });
+      activeClassifyName: detail.text,
+      page: 1
+    })
+    this.getcourseList()
   },
   // 显示分类弹层
   showPopup () {
@@ -184,10 +214,12 @@ Page({
   },
   // 分类栏点击事件
   changeClassify (e) {
+    if (Number(e.currentTarget.dataset.id) === this.data.activeClassifyId) return false
     this.setData({
       activeClassifyId: Number(e.currentTarget.dataset.id),
-      classifyBarIndex: Number(e.currentTarget.dataset.index)
+      activeClassifyName: e.currentTarget.dataset.name
     })
+    this.getcourseList()
   },
   binderrorImage (e) {
     const index = e.currentTarget.dataset.index

@@ -21,8 +21,31 @@
 
 .classify_bar .classify_item {
   flex: 1;
-  font-size: 36rpx;
-  color: #333;
+  font-size: 28rpx;
+  color: #666;
+  display:-webkit-box;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:1;
+  overflow:hidden;
+  word-break:break-all;
+}
+
+.classify_item_more {
+  width: 90rpx;
+  font-size: 28rpx;
+  color: #666;
+  text-align: right;
+}
+
+.classify_bar .classify_item_first {
+  width: 200rpx;
+  font-size: 28rpx;
+  color: #3ecccc;
+  display:-webkit-box;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:1;
+  overflow:hidden;
+  word-break:break-all;
 }
 
 .classify_bar .classify_item.active {

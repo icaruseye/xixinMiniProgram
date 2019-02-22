@@ -4,29 +4,23 @@
 </view> -->
 <view class="classify_bar">
   <view
-    class="classify_item {{classifyBarIndex === 0 ? 'active' : ''}}"
-    bindtap='changeClassify'
+    class="classify_item_first active"
     data-id="{{activeClassifyId}}"
     data-index="0"
-  >{{activeClassifyName}}</view>
+  >当前:{{activeClassifyName}}</view>
   <view
-    class="classify_item {{classifyBarIndex === 1 ? 'active' : ''}}"
+    wx:for="{{ typeList }}"
+    wx:key="{{index}}"
+    class="classify_item"
     bindtap='changeClassify'
-    data-id="1"
-    data-index="1"
-  >医生课程</view>
-  <view
-    class="classify_item {{classifyBarIndex === 2 ? 'active' : ''}}"
-    bindtap='changeClassify'
-    data-id="2"
-    data-index="2"
-  >护士课程</view>
-  <view class='classify_item' bindtap='showPopup'>更多分类></view>
+    data-id="{{item.value}}"
+    data-name="{{item.label}}"
+  >{{item.label}}</view>
+  <view class='classify_item_more' bindtap='showPopup'>更多></view>
 </view>
 <view class='container'>
   <!-- 课程首页 -->
   <view class='index_list_wrap' wx:if="{{ pageReady && current === 'course'}}">
-    <!-- <view class='index_list_title'>热门课程</view> -->
     <view
       class='index_list_item'
       wx:for="{{list}}"
