@@ -14,13 +14,15 @@
 }
 
 .classify_bar {
+  position: relative;
   padding: 0 24rpx;
   margin-bottom: 20rpx;
   display: flex;
 }
 
 .classify_bar .classify_item {
-  flex: 1;
+  margin-right: 10rpx;
+  max-width: 200rpx;
   font-size: 28rpx;
   color: #666;
   display:-webkit-box;
@@ -31,6 +33,8 @@
 }
 
 .classify_item_more {
+  position: absolute;
+  right: 24rpx;
   width: 90rpx;
   font-size: 28rpx;
   color: #666;
@@ -38,7 +42,7 @@
 }
 
 .classify_bar .classify_item_first {
-  width: 200rpx;
+  width: 400rpx;
   font-size: 28rpx;
   color: #3ecccc;
   display:-webkit-box;
@@ -51,6 +55,10 @@
 .classify_bar .classify_item.active {
   color: #3ecccc;
   /* font-weight: bold; */
+}
+
+.tree-select {
+  font-size: 24rpx;
 }
 
 .index_list_wrap {

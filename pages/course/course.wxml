@@ -4,11 +4,6 @@
 </view> -->
 <view class="classify_bar">
   <view
-    class="classify_item_first active"
-    data-id="{{activeClassifyId}}"
-    data-index="0"
-  >当前:{{activeClassifyName}}</view>
-  <view
     wx:for="{{ typeList }}"
     wx:key="{{index}}"
     class="classify_item"
@@ -17,6 +12,13 @@
     data-name="{{item.label}}"
   >{{item.label}}</view>
   <view class='classify_item_more' bindtap='showPopup'>更多></view>
+</view>
+<view class='classify_bar'>
+  <view
+    class="classify_item_first active"
+    data-id="{{activeClassifyId}}"
+    data-index="0"
+  >当前：{{activeClassifyName}}</view>
 </view>
 <view class='container'>
   <!-- 课程首页 -->
@@ -127,6 +129,7 @@
   bind:close="onClose">
   <view>
     <van-tree-select
+      class="tree_select_left"
       items="{{ items }}"
       main-active-index="{{ mainActiveIndex }}"
       active-id="{{ activeClassifyId }}"
