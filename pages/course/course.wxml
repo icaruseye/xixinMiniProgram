@@ -2,27 +2,27 @@
 <!-- <view class='index_banner'>
   <image class='index_banner_img' src="https://img.mukewang.com/5c6d3e4e0001946418720632.jpg"></image>
 </view> -->
-<view class="classify_bar">
-  <view
-    wx:for="{{ typeList }}"
-    wx:key="{{index}}"
-    class="classify_item"
-    bindtap='changeClassify'
-    data-id="{{item.value}}"
-    data-name="{{item.label}}"
-  >{{item.label}}</view>
-  <view class='classify_item_more' bindtap='showPopup'>更多></view>
-</view>
-<view class='classify_bar'>
-  <view
-    class="classify_item_first active"
-    data-id="{{activeClassifyId}}"
-    data-index="0"
-  >当前：{{activeClassifyName}}</view>
-</view>
 <view class='container'>
   <!-- 课程首页 -->
   <view class='index_list_wrap' wx:if="{{ pageReady && current === 'course'}}">
+    <view class="classify_bar">
+      <view
+        wx:for="{{ typeList }}"
+        wx:key="{{index}}"
+        class="classify_item"
+        bindtap='changeClassify'
+        data-id="{{item.value}}"
+        data-name="{{item.label}}"
+      >{{item.label}}</view>
+      <view class='classify_item_more' bindtap='showPopup'>更多></view>
+    </view>
+    <view class='classify_bar'>
+      <view
+        class="classify_item_first active"
+        data-id="{{activeClassifyId}}"
+        data-index="0"
+      >当前：{{activeClassifyName}}</view>
+    </view>
     <view
       class='index_list_item'
       wx:for="{{list}}"

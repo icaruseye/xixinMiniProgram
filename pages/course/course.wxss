@@ -15,7 +15,6 @@
 
 .classify_bar {
   position: relative;
-  padding: 0 24rpx;
   margin-bottom: 20rpx;
   display: flex;
 }
