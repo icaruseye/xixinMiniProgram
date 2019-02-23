@@ -55,24 +55,26 @@ Page({
     }
   },
   // 获取所有一级课程分类
-  async getCourseTypeFirst () {
+  async getCourseTypeFirst() {
     let _arr = []
     const res = await api._get('/User/CourseType/First')
-    res.Data.map(item => {
-      _arr.push(Object.assign({}, {
-        text: item.label,
-        id: item.value
-      }))
-    })
-    console.log(_arr)
-    this.setData({
-      items: _arr
-    })
-    this.getCourseTypeSecond(_arr[0].id, 0)
+    if (res.data) {
+      res.Data.map(item => {
+        _arr.push(Object.assign({}, {
+          text: item.label,
+          id: item.value
+        }))
+      })
+      console.log(_arr)
+      this.setData({
+        items: _arr
+      })
+      this.getCourseTypeSecond(_arr[0].id, 0)
+    }
   },
   // 获取二级菜单
-  async getCourseTypeSecond (courseTypeID, index) {
-    let _arr = [] 
+  async getCourseTypeSecond(courseTypeID, index) {
+    let _arr = []
     const res = await api._get(`/User/CourseType/Second?courseTypeID=${courseTypeID}`)
     res.Data.map(item => {
       _arr.push(Object.assign({}, {
@@ -86,7 +88,7 @@ Page({
     })
   },
   // 获取顶部默认分类
-  async getCourseType () {
+  async getCourseType() {
     const res = await api._get('/User/CourseType/List')
     console.log(res)
     this.setData({
@@ -136,7 +138,9 @@ Page({
     })
     this.getcourseListMore()
   },
-  handleChange({ detail }) {
+  handleChange({
+    detail
+  }) {
     if (detail.key !== this.data.current) {
       this.setData({
         pageReady: false,
@@ -146,7 +150,7 @@ Page({
       this.init()
     }
   },
-  getUserInfo: function (e) {
+  getUserInfo: function(e) {
     wx.setStorageSync('userInfo', e.detail.userInfo)
     this.setData({
       userInfo: e.detail.userInfo,
@@ -154,7 +158,7 @@ Page({
     })
   },
   //事件处理函数
-  toDetail: function (e) {
+  toDetail: function(e) {
     const ismine = e.currentTarget.dataset.ismine
     const index = e.currentTarget.dataset.index
     const item = ismine === '1' ? this.data.mineList[index] : this.data.list[index]
@@ -173,24 +177,28 @@ Page({
       url: `../message/message`
     })
   },
-  checkMineOrder (list = []) {
+  checkMineOrder(list = []) {
     let flag = false
     list.map(item => {
-      if(item.OrderState === 1) {
+      if (item.OrderState === 1) {
         flag = true
       }
     })
     return flag
   },
   // 选择一级分类
-  onClickNav({ detail = {} }) {
+  onClickNav({
+    detail = {}
+  }) {
     this.setData({
       mainActiveIndex: detail.index || 0
     })
     this.getCourseTypeSecond(this.data.items[detail.index].id, detail.index)
   },
   // 选择二级分类
-  onClickItem({ detail = {} }) {
+  onClickItem({
+    detail = {}
+  }) {
     console.log(detail)
     this.setData({
       activeClassifyId: detail.id,
@@ -201,19 +209,19 @@ Page({
     this.getcourseList()
   },
   // 显示分类弹层
-  showPopup () {
+  showPopup() {
     this.setData({
       showPopup: true
     })
   },
   // 关闭分类弹层
-  onClose () {
+  onClose() {
     this.setData({
       showPopup: false
     })
   },
   // 分类栏点击事件
-  changeClassify (e) {
+  changeClassify(e) {
     if (Number(e.currentTarget.dataset.id) === this.data.activeClassifyId) return false
     this.setData({
       activeClassifyId: Number(e.currentTarget.dataset.id),
@@ -221,7 +229,7 @@ Page({
     })
     this.getcourseList()
   },
-  binderrorImage (e) {
+  binderrorImage(e) {
     const index = e.currentTarget.dataset.index
     if (this.data.current === 'course') {
       this.data.list[index].Img = ''
