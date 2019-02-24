@@ -58,7 +58,7 @@ Page({
   async getCourseTypeFirst() {
     let _arr = []
     const res = await api._get('/User/CourseType/First')
-    if (res.data) {
+    if (Array.isArray(res.Data) && res.Data.length > 0) {
       res.Data.map(item => {
         _arr.push(Object.assign({}, {
           text: item.label,
