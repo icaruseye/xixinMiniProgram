@@ -1,16 +1,8 @@
 /**index.wxss**/
 .container {
   padding-bottom: 120rpx;
-}
-
-.index_banner {
-  margin: 24rpx;
-}
-.index_banner_img {
-  width: 100%;
-  height: 250rpx;
-  background: #ccc;
-  border-radius: 11rpx;
+  min-height: 100vh;
+  background: #f8f6f9;
 }
 
 .index_list_wrap {
@@ -18,50 +10,51 @@
 }
 
 .index_list_wrap .index_list_title {
-  margin-bottom: 22rpx;
+  padding: 22rpx 0;
   font-size: 36rpx;
   color: #333;
   font-weight: bolder;
 }
 
 .index_list_wrap .index_list_item {
-  display: flex;
-  border-top: 1rpx solid RGBA(204, 240, 238, .5);
-  padding: 48rpx 0 30rpx;
-}
-
-.index_list_wrap .index_list_item:last-child {
-  border-bottom: 1rpx solid RGBA(204, 240, 238, .5);
+  position: relative;
+  padding: 0 0 30rpx 0;
+  background: #fff;
+  border-radius: 10rpx;
+  margin-bottom: 20rpx;
 }
 
 .index_list_wrap .index_list_item .poster {
-  width: 180rpx;
-  height: 120rpx;
+  position: relative;
+  width: 100%;
+  height: 300rpx;
   overflow: hidden;
-  border-radius: 8rpx;
+  border-radius: 8rpx 8rpx 0 0;
+  margin-bottom: 10rpx;
+}
+
+.index_list_wrap .index_list_item .poster .QuantityPerPerson {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0, .6);
+  color: #fff;
+  font-size: 24rpx;
+  padding: 4rpx 6rpx;
 }
 
 .index_list_wrap .index_list_item .content {
   flex: 1;
-  margin-left: 24rpx;
+  padding: 0 24rpx;
 }
 
 .index_list_item .content .name {
+  display: flex;
+  align-items: center;
   margin-bottom: 5rpx;
-  font-size: 36rpx;
+  font-size: 34rpx;
   color: #333;
   font-weight: bold;
-}
-
-.index_list_item .content .desc {
-  margin-bottom: 15rpx;
-  font-size: 28rpx;
-  color: #999;
-  display: -webkit-box;    
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 1;
-  overflow: hidden;
-  word-break:break-all;
 }
 
 .index_list_item .content .price {
@@ -69,28 +62,43 @@
   align-items: center;
 }
 
+.index_list_item .content .price .date {
+  font-size: 24rpx;
+  color: #666;
+}
+
 .index_list_item .content .tag {
   font-size: 20rpx;
-  color: #FF5F5F;
-  background: RGBA(255, 95, 95, .3);
+  background: #f6bb2f;
+  color: #fff;
   border-radius: 4rpx;
   padding: 2px 4px;
+  margin-right: 10rpx;
+  font-weight: normal;
+}
+
+.index_list_item .content .price {
+  display: flex;
+  justify-content: space-between;
 }
 
 .index_list_item .content .saleprice {
-  font-size: 36rpx;
+  font-size: 28rpx;
   color: #FF4C44;
+  font-weight: bold;
 }
 
-.index_list_item .content .elide {
-  display: flex;
-  justify-content: space-between;
+.index_list_item .content .sign {
+  width: 150rpx;
+  position: absolute;
   font-size: 24rpx;
-  color: #999;
-}
-
-.index_list_item .content .elide .showprice {
-  text-decoration:line-through;
+  top: 20rpx;
+  left: -15rpx;
+  background: rgba(34, 163, 236, 0.7);
+  border-radius: 4rpx;
+  padding: 8rpx 10rpx;
+  color: #fff;
+  text-align: center;
 }
 
 /* 我的活动 */

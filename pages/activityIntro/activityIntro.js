@@ -14,6 +14,7 @@ Page({
     activityId: '',
     referrerViewID: '',
     referrerType: '',
+    currentTabIndex: 0
   },
 
   onShareAppMessage: function(res) {
@@ -97,9 +98,9 @@ Page({
       show: true
     })
   },
-  onClose() {
+  handleTabChange ({detail}) {
     this.setData({
-      show: false
+      currentTabIndex: detail.key
     })
   }
 })

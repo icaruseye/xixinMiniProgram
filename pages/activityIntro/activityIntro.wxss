@@ -3,125 +3,116 @@
   padding-bottom: 140rpx;
 }
 
-.activityDetail_info {
+.container .poster {
+  display: block;
+  width: 100%;
+  height: 400rpx;
+}
+
+.container .timer_bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 40rpx 24rpx 24rpx 24rpx;
-  border-bottom: 1rpx solid #E9E9E9;
+  color: #fff;
+  padding: 10rpx 20rpx;
+  background: #3ECCCC; 
 }
 
-
-.activityDetail_info .title {
-  font-size: 30rpx;
-  color: #4A4A4A;
-}
-
-.activityDetail_info .count {
+.container .timer_bar_left {
   font-size: 24rpx;
-  color: #9B9B9B;
 }
 
-.activityDetail_intro {
-  padding: 0 24rpx;
-}
-
-.activityDetail_intro .title {
-  font-size: 30rpx;
-  color: #4A4A4A;
+.container .timer_bar_left .big {
+  margin-right: 10rpx;
+  font-size: 34rpx;
   font-weight: bold;
-  margin-top: 15rpx;
 }
 
-.activityDetail_intro .section {
-  font-size: 28rpx;
-  color: #999;
-  line-height: 48rpx;
-  margin-top: 16rpx;
+.container .timer_bar_right {
+  font-size: 24rpx;
 }
 
-.activityDetail_intro .section_image {
-  margin-top: 25rpx;
-  width: 100%;
-  border-radius: 8rpx;
-}
-
-.activityDetail_goods {
-  margin-top: 40rpx;
-  padding: 0 24rpx;
-}
-
-.activityDetail_goods .item {
+.container .title_bar {
+  position: relative;
   display: flex;
   align-items: center;
-  margin-bottom: 25rpx;
-  padding: 15rpx 0;
+  justify-content: space-between;
 }
 
-.activityDetail_goods .item:last-child {
-  margin-bottom: 0;
-}
-
-.activityDetail_goods .item .icon {
-  margin-right: 20rpx;
-  width: 58rpx;
-  height: 58rpx;
-  border-radius: 4rpx;
-}
-
-.activityDetail_goods .item .content {
+.container .title_bar .title {
   flex: 1;
-}
-
-.activityDetail_goods .item .content .name {
-  font-size: 30rpx;
-  color: #666;
-  font-weight: bold;
-}
-
-
-.activityDetail_goods .item .content .price {
-  font-size: 30rpx;
-  color: #FF5F5F;
-}
-
-.activityDetail_apply {
-  position: fixed;
-  bottom: 0;
-  left: 24rpx;
-  right: 24rpx;
-  padding: 24rpx 0;
-  background: #fff;
-}
-
-.activityDetail_apply .btn {
-  height: 90rpx;
-  line-height: 90rpx;
-  color: #fff;
-  font-size: 36rpx;
-  text-align: center;
-  border-radius: 8rpx;
-  background: #3ECCCC;
-}
-
-
-.activityDetail_apply .btn.finish {
-  background: RGBA(153, 153, 153, .5);
-}
-
-.activityDetail_apply .btn.notStarted {
-  background: RGBA(62, 204, 204, .5);
-}
-
-.item_popup_title {
-  padding: 24rpx;
-  font-size: 26rpx;
+  padding: 20rpx;
   color: #333;
+  font-size: 28rpx;
+}
+
+.container .title_bar .share_logo {
+  margin-right: 10rpx;
+  background:transparent;
+  width:50rpx;
+  height:50rpx;
+}
+
+.share_logo .icon {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.share_logo::after {
+  border: 0;
+}
+
+.container .data_bar {
+  padding: 0 20rpx 20rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.container .data_bar .price {
+  flex: 1;
+  font-size: 40rpx;
+  color: #ff1833;
   font-weight: bold;
 }
 
-.item_popup_content {
-  padding: 0 24rpx 80rpx;
+.container .data_bar .avatar_list {
+  display: flex;
+  align-items: center;
+}
+
+.container .data_bar .avatar_list .avatar{
+  margin-left: -20rpx;
+  width: 50rpx;
+  height: 50rpx;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.container .data_bar .avatar_list .arrow {
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.container .sale_date_bar {
+  padding: 5rpx 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   font-size: 24rpx;
-  color: #666;
+  color: #999;
+}
+
+.container .sale_date_bar .icon_item {
+  display: flex;
+  align-items: center;
+}
+
+.container .sale_date_bar .icon_item .icon {
+  margin-right: 5rpx;
+  width: 30rpx;
+  height: 30rpx;
 }

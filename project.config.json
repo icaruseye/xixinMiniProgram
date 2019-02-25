@@ -37,7 +37,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 9,
+			"current": 10,
 			"list": [
 				{
 					"id": 1,
@@ -101,6 +101,13 @@
 					"name": "站内信",
 					"pathName": "pages/message/message",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": 10,
+					"name": "活动详情",
+					"pathName": "pages/activityIntro/activityIntro",
+					"query": "id=17",
 					"scene": null
 				}
 			]

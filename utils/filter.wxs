@@ -5,7 +5,7 @@
 var transformImgUrl = function (val) {
   if (!val) return ''
   if (val.indexOf('http') === -1 && val.indexOf('Upload') === -1 && val.indexOf('base64') === -1) {
-    return 'http://image.xixinyun.com/File/GetImage/' + val 
+    return 'http://www.xixincloud.com:6883/File/GetImage/' + val 
   } else {
     return val
   }

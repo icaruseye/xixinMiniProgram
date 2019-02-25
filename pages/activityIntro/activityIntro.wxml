@@ -1,55 +1,73 @@
-<!--pages/activityIntro/activityIntro.wxml-->
 <wxs module='filter' src='../../utils/filter.wxs'></wxs>
 <view class='container'>
-  <button open-type='share' class='share_btn'>
-    <image class='icon' src='../../images/share-icon.png'></image>
-  </button>
-  <van-dialog id="van-dialog" />
-  <view wx:if="{{ pageReady }}">
-    <view class='activityDetail_info'>
-      <view class='title'>{{info.ActivityName}}</view>
-      <!-- <view class='count'>99人已购买</view> -->
+  <!-- 封面 -->
+  <image class='poster' mode='aspectFill' src="{{filter.transformImgUrl(info.CoverPhoto)}}"></image>
+  <!-- 倒计时 -->
+  <view class='timer_bar'>
+    <view class='timer_bar_left'>
+      <text class='big'>报名</text><text class='normal'>限时报名 超值低价</text>
     </view>
-    <view class='activityDetail_intro'>
-      <view class='title'>活动介绍</view>
-      <text class='section'>
-        {{info.ActivityDescribe}}
-      </text>
-      <image wx:for='{{info.ActivityIntroductionImg}}' wx:key='index' class='section_image' wx:if="{{item}}" src='{{filter.transformImgUrl(item)}}' mode='widthFix'></image>
-    </view>
-    <view class='activityDetail_goods'>
-      <view class='item' bindtap='toDetail' data-id='{{info.CommodityID}}'>
-        <image class='icon' src='{{filter.xxMissionTypeIconFilter(info.PackageType)}}'></image>
-        <view class='content'>
-          <view class='name'>{{info.CommodityName}}</view>
-          <view class='price'>￥{{filter.priceTrans(info.PresentPrice)}}元</view>
-        </view>
-      </view>
-    </view>
-    <view class='activityDetail_apply'>
-      <button class='btn' bindtap='topay'>报名</button>
+    <view class='timer_bar_right'>
+      <view class='text'>距开始仅剩</view>
+      <view class='timer'>倒计时</view>
     </view>
   </view>
-  <!-- <van-popup
-    custom-class="item_popup_wrap"
-    show="{{ show }}"
-    position="bottom"
-    bind:close="onClose">
-    <view>
-      <view class='activityDetail_goods'>
-        <view class='item'>
-          <image class='icon' src='{{filter.xxMissionTypeIconFilter(info.PackageType)}}'></image>
-          <view class='content'>
-            <view class='name'>{{info.CommodityName}}</view>
-            <view class='price'>￥{{info.PresentPrice}}元</view>
-          </view>
-        </view>
-      </view>
-      <view class='item_popup_title'>产品介绍</view>
-      <view class='item_popup_content'>
-      工作于急诊，擅长消化道危急重症，比如消化道出血，溃疡，黄疸，胰腺炎，胆囊炎，腹泻腹痛，发热等。其他像呼吸道，心血管急症。
-      </view>
+  <!-- 价格、参团列表 -->
+  <view class='title_bar'>
+    <view class='title'>{{info.ActivityName}}</view>
+    <button open-type='share' class='share_logo'>
+      <image class='icon' src='../../images/share-icon.png'></image>
+    </button>
+  </view>
+  <view class='data_bar'>
+    <view class='price'>免费</view>
+    <view class='avatar_list'>
+      <image
+        class='avatar'
+        mode='aspectFill'
+        src='https://tvax1.sinaimg.cn/crop.0.0.473.473.180/78258c21ly8ft5x6jpwepj20d50d5wec.jpg'>
+      </image>
+      <image
+        class='avatar'
+        mode='aspectFill'
+        src='https://tvax4.sinaimg.cn/crop.0.0.996.996.180/9d0d09ably8foq7clnhjwj20ro0ro3yv.jpg'>
+      </image>
+      <image
+        class='avatar'
+        mode='aspectFill'
+        src='https://tva1.sinaimg.cn/crop.0.0.179.179.180/771d5a55gw1emwpljaw12j2050050t8o.jpg'>
+      </image>
+      <image
+        class='avatar'
+        mode='aspectFill'
+        src='https://tvax1.sinaimg.cn/crop.0.0.360.360.180/0060fv5Fly8fgrw3vofbbj30a00a0wej.jpg'>
+      </image>
+      <image
+        class='arrow'
+        mode='aspectFill'
+        src='../../images/jiantouyou.png'>
+      </image>
     </view>
-  </van-popup> -->
+  </view>
+  <!-- 销售数据 -->
+  <view class='sale_date_bar'>
+    <view class='icon_item'>
+      <image class='icon' mode='aspectFill' src='../../images/remain.png'></image>
+      <text>剩余999份</text>
+    </view>
+    <view class='icon_item'>
+      <image class='icon' mode='aspectFill' src='../../images/person.png'></image>
+      <text>参与666人</text>
+    </view>
+  </view>
+  <!-- Tabbar -->
+  <i-tabs current="{{ currentTabIndex }}" color="#3ecccc" bindchange="handleTabChange" class="tabbar">
+    <i-tab key="0" title="活动介绍"></i-tab>
+    <i-tab key="1" title="活动规则"></i-tab>
+  </i-tabs>
+  <!-- 活动介绍 -->
+  <view class='introduce_wrap'></view>
+  <!-- 活动规则 -->
+  <view class='rules_wrap'></view>
 </view>
 

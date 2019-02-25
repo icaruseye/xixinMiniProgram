@@ -2,6 +2,8 @@
   "navigationBarTitleText": "活动详情",
   "usingComponents": {
     "van-popup": "../../dist/vant/popup/index",
-    "i-spin": "../../dist/iview/spin/index"
+    "i-spin": "../../dist/iview/spin/index",
+    "i-tabs": "../../dist/iview/tabs/index",
+    "i-tab": "../../dist/iview/tab/index"
   }
 }

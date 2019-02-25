@@ -10,18 +10,16 @@
       wx:key='{{index}}'
       bindtap="toDetail"
       data-id="{{item.ID}}">
-      <image class='poster' lazy-load='{{ true }}' mode='aspectFit' src='{{filter.transformImgUrl(item.CoverPhoto)}}'></image>
+      <image class='poster' lazy-load='{{ true }}' mode='aspectFit' src='{{filter.transformImgUrl(item.CoverPhoto)}}'>
+        <text class='QuantityPerPerson'>{{item.QuantityPerPerson}}人参加</text>
+      </image>
       <view class='content'>
-        <view class='name'>{{item.ActivityName}} </view>
-        <view class='desc'>{{item.ActivityDescribe}}</view>
+        <view class='name'><text class="tag tuan">团购</text>{{item.ActivityName}} </view>
         <view class='price'>
-          <text class='tag'>活动价</text>
+          <text class='date'>活动时间: {{filter.formatTime(item.StartTime, 'MM月dd日 hh:mm')}}至{{filter.formatTime(item.EndTime, 'MM月dd日 hh:mm')}}</text>
           <text class='saleprice'>￥{{filter.priceTrans(item.PresentPrice)}}</text>
         </view>
-        <view class='elide'>
-          <!-- <text class='showprice'>门市价：￥{{filter.priceTrans(item.OriginalPrice)}}</text> -->
-          <!-- <text class='count'>201人参加</text> -->
-        </view>
+        <view class='sign'>剩余:{{item.AvailableDuantity}}份</view>
       </view>
     </view>
     <view wx:if="{{list.length === 0}}" class='empty_box'>
