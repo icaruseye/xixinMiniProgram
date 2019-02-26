@@ -37,7 +37,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 10,
+			"current": 6,
 			"list": [
 				{
 					"id": 1,
@@ -79,10 +79,11 @@
 					"query": ""
 				},
 				{
-					"id": 7,
+					"id": 6,
 					"name": "服务人员activity",
 					"pathName": "pages/activity/activity",
-					"query": "servantViewID="
+					"query": "servantViewID=fa5ae362fb654419b0a856ef5d0fc87f",
+					"scene": null
 				},
 				{
 					"id": -1,
@@ -108,6 +109,13 @@
 					"name": "活动详情",
 					"pathName": "pages/activityIntro/activityIntro",
 					"query": "id=17",
+					"scene": null
+				},
+				{
+					"id": 11,
+					"name": "课程列表",
+					"pathName": "pages/course/course",
+					"query": "servantViewID=",
 					"scene": null
 				}
 			]

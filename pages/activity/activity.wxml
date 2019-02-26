@@ -26,6 +26,9 @@
       <image class='icon' src='../../images/empty_icon.png' mode='aspectFit'></image>
       <view class='text'>暂无活动</view>
     </view>
+    <view wx:if="{{list.length > 0}}" bindtap="loadMore" class="loading_more_btn">
+      {{list.length < totalNumber ? '加载更多' : '没有更多了'}}
+    </view>
   </view>
   <!-- 我的活动 -->
   <view wx:if="{{ pageReady && current === 'activityMine' }}" class="acMine_container">

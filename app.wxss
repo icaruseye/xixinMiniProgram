@@ -50,3 +50,12 @@
 .share_btn::after {
   border: 0;
 }
+
+.loading_more_btn
+{
+  text-align: center;
+  margin-top: 10rpx;
+  font-size: 24rpx;
+  padding: 20rpx 0;
+  color: #3ecccc;
+}

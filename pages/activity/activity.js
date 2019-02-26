@@ -7,6 +7,9 @@ const app = getApp()
 Page({
   data: {
     current: 'activity',
+    pageIndex: 1,
+    totalNumber: 0,
+    pageSize: 8,
     hasUserInfo: false,
     pageReady: false,
     list: [],
@@ -38,16 +41,27 @@ Page({
   getActivityList () {
     const servantViewID = app.globalData.servantViewID || ''
     const url = servantViewID ? `/SPUser/Activity-List?viewId=${servantViewID}` : '/SPUser/Activity/List/All'
-    api._get(url).then(res => {
+    api._get(url, {
+      size: this.data.pageSize,
+      index: this.data.pageIndex
+    }).then(res => {
       this.setData({
         pageReady: true,
-        list: res.Data || []
+        totalNumber: res.Data.Count,
+        list: [...this.data.list, ...res.Data.List]
       })
     }).catch(e => {
       this.setData({
         pageReady: true
       })
     })
+  },
+  loadMore() {
+    if (this.data.list.length >= this.data.totalNumber) return false
+    this.setData({
+      pageIndex: this.data.pageIndex + 1
+    })
+    this.getActivityList()
   },
   // 我的活动
   getMyList() {
