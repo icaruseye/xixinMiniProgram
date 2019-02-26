@@ -80,7 +80,7 @@ Page({
     }
     console.log(times)
     this.setData({
-      isStart: _StartTime > _now
+      isStart: _StartTime <= _now
     })
     wxTimerInterval = new timer({
       beginTime: times,
@@ -101,6 +101,7 @@ Page({
       })
   },
   async topay() {
+    if (!this.data.isStart) return
     const resPreOrder = await this.preOrder(this.data.activityId)
     const resOpenID = await this.getUserOpenID()
     if (resPreOrder.OrderID && resOpenID) {

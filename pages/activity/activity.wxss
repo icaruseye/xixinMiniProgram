@@ -94,7 +94,7 @@
   font-size: 24rpx;
   top: 20rpx;
   left: -15rpx;
-  background: rgba(34, 163, 236, 0.7);
+  background: rgba(62, 204, 204, 0.8);
   border-radius: 4rpx;
   padding: 8rpx 10rpx;
   color: #fff;

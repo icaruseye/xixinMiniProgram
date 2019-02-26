@@ -3,12 +3,12 @@
   <!-- 封面 -->
   <image class='poster' mode='aspectFill' src="{{filter.transformImgUrl(info.CoverPhoto)}}"></image>
   <!-- 倒计时 -->
-  <view class="timer_bar {{isStart ? 'start' : ''}}">
+  <view class="timer_bar {{isStart ? '' : 'start'}}">
     <view class="timer_bar_left">
       <text class='big'>报名</text><text class='normal'>限时报名 超值低价</text>
     </view>
     <view class='timer_bar_right' wx:if="{{!isEnd}}">
-      <view class='text'>距{{isStart ? '开始' : '结束'}}仅剩</view>
+      <view class='text'>距{{isStart ? '结束' : '开始'}}仅剩</view>
       <view class='timer'>
         <view class='time'>{{wxTimer.days}}</view>
         <view>天</view>
@@ -69,7 +69,7 @@
       <image class='icon' mode='' src='../../images/tabbar1-1.png'></image>
       <view>首页</view>
     </view>
-    <view class='purchase_btn' bindtap='topay'>我要报名</view>
+    <view class="purchase_btn {{isStart ? '' : 'disabled'}}" bindtap='topay'>{{isStart ? '我要报名' : '活动未开始'}}</view>
   </view>
 </view>
 
