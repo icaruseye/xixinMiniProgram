@@ -1,8 +1,9 @@
 import regeneratorRuntime from '../../libs/regenerator-runtime/runtime.js'
 import Dialog from '../../dist/vant/dialog/dialog'
 import api from '../../utils/api.js'
+import timer from '../../utils/wxTimer.js'
 const app = getApp()
-
+let wxTimerInterval = null
 Page({
   /**
    * 页面的初始数据
@@ -14,14 +15,15 @@ Page({
     activityId: '',
     referrerViewID: '',
     referrerType: '',
-    currentTabIndex: 0
+    currentTabIndex: 0,
+    wxTimer: '',
+    wxTimerSecond: '',
+    wxTimerList: [],
+    isStart: true,
+    isEnd: false
   },
 
   onShareAppMessage: function(res) {
-    // if (res.from === 'button') {
-    //   // 来自页面内转发按钮
-    //   console.log(res.target)
-    // }
     let myReferrerViewID = wx.getStorageSync('myReferrerViewID') //分享人的ViewID
     let referrerType = 1 //推荐人类型1为用户,2位服务人员,0为不推荐
     let servantViewID = app.globalData.servantViewID
@@ -44,18 +46,48 @@ Page({
   onLoad(options) {
     wx.setStorageSync('localUrl', `${this.route}?id=${options.id}`)
     this.setData({
-      activityId: options.id,
-      // referrerViewID: options.referrerViewID || '',
-      // referrerType: options.referrerType || 0,
+      activityId: options.id
     })
     wx.setStorageSync('referrerType', options.referrerType || 0)
     wx.setStorageSync('referrerViewID', options.referrerViewID || '')
-    this.getActivityDetail(this.data.activityId)
     if (!app.globalData.servantViewID) { //若全局servantViewID为空,则从本页面获取下赋值
       app.globalData.servantViewID = options.servantViewID
     }
   },
-  onShow() {},
+  onShow() {
+    console.log(new Date().getSeconds())
+    console.log(new Date())
+    this.getActivityDetail(this.data.activityId)
+  },
+  onHide () {
+    wxTimerInterval.stop()
+  },
+  initTimer(StartTime, EndTime) {
+    let _StartTime = Date.parse(new Date(StartTime))
+    let _EndTime = Date.parse(new Date(EndTime))
+    let _now = Date.parse(new Date())
+    let times = 0
+    if (_EndTime < _now) {
+      this.setData({
+        isEnd: true
+      })
+      return false
+    }
+    if (_StartTime > _now) {
+      times = _StartTime - _now
+    } else {
+      times = _EndTime - _now
+    }
+    console.log(times)
+    this.setData({
+      isStart: _StartTime > _now
+    })
+    wxTimerInterval = new timer({
+      beginTime: times,
+      name: 'timer'
+    })
+    wxTimerInterval.start(this)
+  },
   getActivityDetail(activityId) {
     const that = this
     api._get(`/SPUser/Activity-Detail?activityId=${activityId}`)
@@ -65,6 +97,7 @@ Page({
           pageReady: true,
           info: res.Data
         })
+        this.initTimer(this.data.info.StartTime, this.data.info.EndTime)
       })
   },
   async topay() {
@@ -101,6 +134,11 @@ Page({
   handleTabChange ({detail}) {
     this.setData({
       currentTabIndex: detail.key
+    })
+  },
+  toHome () {
+    wx.navigateTo({
+      url: '/pages/activity/activity',
     })
   }
 })

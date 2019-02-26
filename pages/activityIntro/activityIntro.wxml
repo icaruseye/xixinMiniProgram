@@ -3,13 +3,22 @@
   <!-- 封面 -->
   <image class='poster' mode='aspectFill' src="{{filter.transformImgUrl(info.CoverPhoto)}}"></image>
   <!-- 倒计时 -->
-  <view class='timer_bar'>
-    <view class='timer_bar_left'>
+  <view class="timer_bar {{isStart ? 'start' : ''}}">
+    <view class="timer_bar_left">
       <text class='big'>报名</text><text class='normal'>限时报名 超值低价</text>
     </view>
-    <view class='timer_bar_right'>
-      <view class='text'>距开始仅剩</view>
-      <view class='timer'>倒计时</view>
+    <view class='timer_bar_right' wx:if="{{!isEnd}}">
+      <view class='text'>距{{isStart ? '开始' : '结束'}}仅剩</view>
+      <view class='timer'>
+        <view class='time'>{{wxTimer.days}}</view>
+        <view>天</view>
+        <view class='time'>{{wxTimer.hours}}</view>
+        <view>小时</view>
+        <view class='time'>{{wxTimer.mins}}</view>
+        <view>分</view>
+        <view class='time'>{{wxTimer.secs}}</view>
+        <view>秒</view>
+      </view>
     </view>
   </view>
   <!-- 价格、参团列表 -->
@@ -20,54 +29,47 @@
     </button>
   </view>
   <view class='data_bar'>
-    <view class='price'>免费</view>
-    <view class='avatar_list'>
+    <view class='price'>{{filter.priceTrans(info.PresentPrice)}}元</view>
+    <!-- <view class='avatar_list'>
       <image
         class='avatar'
         mode='aspectFill'
         src='https://tvax1.sinaimg.cn/crop.0.0.473.473.180/78258c21ly8ft5x6jpwepj20d50d5wec.jpg'>
       </image>
-      <image
-        class='avatar'
-        mode='aspectFill'
-        src='https://tvax4.sinaimg.cn/crop.0.0.996.996.180/9d0d09ably8foq7clnhjwj20ro0ro3yv.jpg'>
-      </image>
-      <image
-        class='avatar'
-        mode='aspectFill'
-        src='https://tva1.sinaimg.cn/crop.0.0.179.179.180/771d5a55gw1emwpljaw12j2050050t8o.jpg'>
-      </image>
-      <image
-        class='avatar'
-        mode='aspectFill'
-        src='https://tvax1.sinaimg.cn/crop.0.0.360.360.180/0060fv5Fly8fgrw3vofbbj30a00a0wej.jpg'>
-      </image>
-      <image
-        class='arrow'
-        mode='aspectFill'
-        src='../../images/jiantouyou.png'>
-      </image>
-    </view>
+    </view> -->
   </view>
   <!-- 销售数据 -->
   <view class='sale_date_bar'>
     <view class='icon_item'>
       <image class='icon' mode='aspectFill' src='../../images/remain.png'></image>
-      <text>剩余999份</text>
+      <text>剩余{{info.AvailableDuantity}}份</text>
     </view>
     <view class='icon_item'>
       <image class='icon' mode='aspectFill' src='../../images/person.png'></image>
-      <text>参与666人</text>
+      <text>参与{{info.QuantityPerPerson}}人</text>
     </view>
   </view>
   <!-- Tabbar -->
   <i-tabs current="{{ currentTabIndex }}" color="#3ecccc" bindchange="handleTabChange" class="tabbar">
     <i-tab key="0" title="活动介绍"></i-tab>
-    <i-tab key="1" title="活动规则"></i-tab>
+    <!-- <i-tab key="1" title="活动规则"></i-tab> -->
   </i-tabs>
   <!-- 活动介绍 -->
-  <view class='introduce_wrap'></view>
+  <view class='introduce_wrap' wx:if="{{currentTabIndex == 0}}">
+    <view wx:if="{{info.ActivityIntroductionImg}}" class="imgs" wx:for="{{info.ActivityIntroductionImg}}" wx:key="{{index}}">
+      <image src="{{filter.transformImgUrl(item)}}" mode='widthFix'></image>
+    </view>
+    <view wx:if="{{info.ActivityDescribe}}" class='desc'>{{info.ActivityDescribe}}</view>
+  </view>
   <!-- 活动规则 -->
-  <view class='rules_wrap'></view>
+  <view class='rules_wrap' wx:if="{{currentTabIndex == 1}}"></view>
+  <!-- 按钮 -->
+  <view class='btn_bar'>
+    <view class='home_btn' bindtap='toHome'>
+      <image class='icon' mode='' src='../../images/tabbar1-1.png'></image>
+      <view>首页</view>
+    </view>
+    <view class='purchase_btn' bindtap='topay'>我要报名</view>
+  </view>
 </view>
 

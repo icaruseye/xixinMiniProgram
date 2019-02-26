@@ -1,6 +1,6 @@
 /* pages/activityIntro/activityIntro.wxss */
 .container {
-  padding-bottom: 140rpx;
+  padding-bottom: 120rpx;
 }
 
 .container .poster {
@@ -18,9 +18,14 @@
   background: #3ECCCC; 
 }
 
+.container .timer_bar.start {
+  background: #ff3a29;
+}
+
 .container .timer_bar_left {
   font-size: 24rpx;
 }
+
 
 .container .timer_bar_left .big {
   margin-right: 10rpx;
@@ -29,6 +34,26 @@
 }
 
 .container .timer_bar_right {
+  text-align: center;
+  font-size: 24rpx;
+}
+
+.container .timer_bar_right .timer {
+  margin-top: 5rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container .timer_bar_right .timer .time {
+  padding: 0 4rpx;
+  background: #fff;
+  color: #666;
+  min-width: 36rpx;
+  height: 36rpx;
+  line-height: 36rpx;
+  border-radius: 4rpx;
+  margin: 0 5rpx;
   font-size: 24rpx;
 }
 
@@ -115,4 +140,52 @@
   margin-right: 5rpx;
   width: 30rpx;
   height: 30rpx;
+}
+.container .introduce_wrap .imgs {
+  width: 80%;
+  margin: 20rpx auto;
+}
+
+.container .introduce_wrap .imgs image {
+  width: 100%;
+}
+
+.container .introduce_wrap .desc {
+  width: 80%;
+  margin: 20rpx auto;
+  font-size: 28rpx;
+  color: #666;
+}
+
+.btn_bar {
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  width: 100%;
+  background: #fff;
+}
+
+.btn_bar .home_btn {
+  padding: 10rpx 20rpx;
+  width: 100rpx;
+  font-size: 24rpx;
+  color: #999;
+  text-align: center;
+}
+
+.btn_bar .home_btn .icon {
+  display: block;
+  margin: 0 auto 5rpx;
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.btn_bar .purchase_btn {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #3ECCCC;
+  color: #fff;
+  font-size: 28rpx;
 }
