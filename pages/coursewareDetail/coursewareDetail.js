@@ -11,7 +11,8 @@ Page({
     coursewareID: '',
     proxyCourseID: '',
     imgList: [],
-    showMenuDialog: false
+    showMenuDialog: false,
+    type: 1
   },
   openMenuDialog () {
     this.setData({
@@ -35,7 +36,8 @@ Page({
   onLoad: function (options) {
     this.setData({
       coursewareID: options.id,
-      proxyCourseID: options.proxyCourseID
+      proxyCourseID: options.proxyCourseID,
+      type: options.type
     })
     this.getCoursewareDetail()
   },
@@ -51,7 +53,8 @@ Page({
   getCoursewareDetail () {
     api._get(`/User/CourseEnclosure/CouldWatchEnclosure`, {
       courseEnclosureID: this.data.coursewareID,
-      proxyCourseID: this.data.proxyCourseID
+      proxyCourseID: this.data.proxyCourseID,
+      type: this.data.type
     }).then(res => {
       this.setData({
         imgList: JSON.parse(res.Data)

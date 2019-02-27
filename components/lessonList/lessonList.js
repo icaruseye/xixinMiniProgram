@@ -58,7 +58,7 @@ Component({
       if (type === 2) {
         let lessonID = e.currentTarget.dataset.Content
         wx.navigateTo({
-          url: `/pages/coursewareDetail/coursewareDetail?proxyCourseID=${this.data.proxyCourseID}&id=${contentID}`
+          url: `/pages/coursewareDetail/coursewareDetail?proxyCourseID=${this.data.proxyCourseID}&id=${contentID}&type=2`
         })
       }
       // 音频

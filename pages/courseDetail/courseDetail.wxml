@@ -24,14 +24,6 @@
         src="{{audioSrc}}"
         name="{{lessonname}}"
       ></audioPlayer>
-      <!-- <audio
-        poster='{{filter.transformImgUrl(courseInfo.PreViewContent)}}'
-        name="{{chaptername}}"
-        author="{{lessonname}}"
-        src="{{audioSrc}}"
-        id="audioplayer"
-        controls
-      ></audio> -->
     </view>
     <view class="title_info">
       <view class="title">{{ courseInfo.ShopProxyCourseName }}</view>

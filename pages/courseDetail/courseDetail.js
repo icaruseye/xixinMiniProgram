@@ -115,7 +115,7 @@ Page({
         }
         if (detail.ContentType === 2) {
           wx.navigateTo({
-            url: `/pages/coursewareDetail/coursewareDetail?proxyCourseID=${this.data.proxyCourseID}&id=${detail.Content}`
+            url: `/pages/coursewareDetail/coursewareDetail?proxyCourseID=${this.data.proxyCourseID}&id=${detail.Content}&type=2`
           })
         }
         if (detail.ContentType === 3) {
