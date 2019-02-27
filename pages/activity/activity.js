@@ -94,11 +94,21 @@ Page({
   },
   init(key) {
     if (key === 'activity') {
+      this.initData()
       this.getActivityList()
     }
     if (key === 'activityMine') {
+      this.initData()
       this.getMyList()
     }
+  },
+  initData(){
+    this.setData({
+      list: [],
+      mineList: [],
+      pageIndex: 1,
+      totalNumber: 0,
+    })
   },
   getUserInfo: function (e) {
     wx.setStorageSync('userInfo', e.detail.userInfo)

@@ -11,7 +11,7 @@
       bindtap="toDetail"
       data-id="{{item.ID}}">
       <image class='poster' lazy-load='{{ true }}' mode='aspectFit' src='{{filter.transformImgUrl(item.CoverPhoto)}}'>
-        <text class='QuantityPerPerson'>{{item.QuantityPerPerson}}人参加</text>
+        <text class='QuantityPerPerson'>{{item.QuantityPurchased}}人参加</text>
       </image>
       <view class='content'>
         <view class='name'><text class="tag tuan">团购</text>{{item.ActivityName}} </view>
